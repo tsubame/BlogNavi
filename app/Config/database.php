@@ -63,9 +63,9 @@ class DATABASE_CONFIG {
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
-		'database' => 'database_name',
+		'login' => 'hideki',
+		'password' => 'ka4023',
+		'database' => 'foot_blog_navi',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);

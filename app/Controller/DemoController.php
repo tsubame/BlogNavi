@@ -32,7 +32,7 @@
  * name		varchar
  * url		varchar
  * rss_url	varchar
- * kind		varchar
+ * category		varchar
  * enabled	boolean
  *
  *

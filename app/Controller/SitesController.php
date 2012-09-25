@@ -8,8 +8,10 @@ class SitesController extends Controller {
 
 	//public $name = "Sites";
 
+	public $helpers = array('Form');
+
 	/**
-	 * データベースに登録のテスト
+	 *
 	 */
 	public function index() {
 
@@ -18,10 +20,10 @@ class SitesController extends Controller {
 	}
 
 	/**
-	 * 手動で登録
+	 * 登録フォームから手動でサイトを登録
 	 *
 	 */
-	public function manualRegister() {
+	public function registerFromForm() {
 
 	}
 
@@ -30,6 +32,14 @@ class SitesController extends Controller {
 	 *
 	 */
 	public function registerForm() {
+
+	}
+
+	/**
+	 * googleから登録
+	 */
+	public function registerFromGoogle() {
+
 
 	}
 

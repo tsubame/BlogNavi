@@ -39,52 +39,6 @@ class ArticlesController extends Controller {
 	 *
 	 */
 	public function searchTweet() {
-	// 並列処理を行わないロジック
-
-		// サイトをDBから取得
-		$sites = $this->Site->getAllSites();
-		// サイトの件数ループ
-		foreach ($sites as $site) {
-			// twitterAPIでURLを検索 24時間以内 100件
-//
-$q = $this->formatUrlForSearch($site['url']);
-
-			$json = $this->searchByJson($q);
-			$data = json_decode($json, true);
-			$tweets = $data["results"];
-debug('検索キーワード' . $q);
-			// 結果のツイートの件数ループ
-			foreach ($tweets as $tweet) {
-//echo $tweet["text"] . '<br />';
-				// t.co短縮URLを展開
-//debug($tweet['entities']['urls']);
-
-// ['entities']['urls']が複数の要素の配列になってることがある （2件のURL）
-$tweetedUrl = end($tweet["entities"]["urls"]);
-//debug($tweetedUrl);
-				if (isset($tweetedUrl["expanded_url"])) {
-					$url = $tweetedUrl["expanded_url"];
-					$url = $this->pickUpUrl($url);
-
-echo $url . '<br /><br />' ;
-				// 短縮URLではない
-				} else {
-debug('短縮URLではない' . $tweet["entities"]);
-					continue;
-				}
-			}
-
-			// 帰ってきたJSONデータをデコード
-
-			// JSONデータの中のツイートの件数ループ
-
-			// URLを配列に入れる（同じURLは入れない）
-
-			// 短縮URLの場合は展開（コンポーネント化）
-
-			// 取得したURLをarticlesテーブルに登録
-
-		}
 
 
 		$this->render('index');
@@ -95,7 +49,7 @@ debug('短縮URLではない' . $tweet["entities"]);
 	 * テスト
 	 */
 	public function test() {
-		$this->User->test();
+		$this->TweetSearcher->exec();
 
 		debug();
 		$this->render('index');

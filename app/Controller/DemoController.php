@@ -234,9 +234,9 @@ class DemoController extends Controller {
 		$longUrl = null;
 		// HTTPヘッダ取得
 		$h = get_headers($shortUrl, 1);
-		if(isset($h['Location'])){
+		if (isset($h['Location'])){
 			$longUrl = $h['Location'];
-			if(is_array($longUrl)){
+			if (is_array($longUrl)){
 				$longUrl = end($longUrl);
 			}
 		}

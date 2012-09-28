@@ -2,6 +2,7 @@
 
 
 <div>
+<!--
 サイトの登録<br /><br />
 	<form method="POST" action="insert" class="registerForm">
 		<table>
@@ -26,11 +27,13 @@
 		</table>
 	</form>
 </div>
-
+-->
 
 
 <?php
-$this->Form->create();
-
-$this->Form->end('送信');
+echo $this->Form->create(array('action' => './register'));
+//echo $this->Form->input('Site.name', array('type' => 'hidden'));
+echo $this->Form->input('Site.url');
+echo $this->Form->submit('登録');
+echo $this->Form->end();
 ?>

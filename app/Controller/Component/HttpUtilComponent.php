@@ -141,6 +141,7 @@ class HttpUtilComponent extends Component {
 			$header = get_headers($url, 1);
 		} catch (Exception $e) {
 			debug($e->getMessage());
+
 			return false;
 		}
 		// HTTPヘッダのLocationが複数ある場合は最後のURLを返す

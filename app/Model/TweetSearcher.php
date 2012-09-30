@@ -25,10 +25,11 @@ class TweetSearcher extends AppModel{
 	private $Site;
 	// 検索する件数
 	private $rpp = 30;
+	// テーブルに保存するURL
+	private $savedUrls = array();
+
 	// twitterAPIのURL
 	const API_URL = "http://search.twitter.com/search.json";
-
-	private $savedUrls = array();
 
 
 // 使用するのはコンストラクタでOKか？
@@ -46,7 +47,6 @@ class TweetSearcher extends AppModel{
 	 */
 	public function exec() {
 		$this->searchSingleThread();
-
 	}
 
 	/**
@@ -144,33 +144,6 @@ if (1 < count($tweet["entities"]["urls"])) {
 		debug('検索キーワード' . $searchKey);
 
 		return $searchKey;
-	}
-
-
-
-
-
-// 別のクラスに移動
-	/**
-	 * テキストからURLを抜き出す
-	 *
-	 * @param  string  $text
-	 * @param  boolean $includeParam true ?以降を含める
-	 * @return string  URL
-	 */
-	private function pickUpUrl($text, $includeParam = false) {
-		// ?以降を含めない場合
-		if ($includeParam == false) {
-			$pattern = '/^http:\/\/[\w\.\-\/_=]+/';
-		} else {
-			$pattern = '/^http:\/\/[\w\.\-\/_=?&@:]+$/';
-		}
-
-		if (preg_match($pattern, $text, $matches)) {
-			return $matches[0];
-		}
-
-		return null;
 	}
 
 

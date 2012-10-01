@@ -22,7 +22,7 @@ class TweetSearcherTest extends CakeTestCase  {
 	 */
 	public function testExec() {
 		//$tSearch = new TweetSearcher();
-		$this->TweetSearcher->demo();
+		$this->TweetSearcher->exec();
 	}
 
 

@@ -17,6 +17,8 @@
 App::uses('Site','Model');
 App::uses('AppModel', 'Model');
 App::uses('HttpSocket', 'Network/Http');
+App::uses('ComponentCollection', 'Controller');
+App::uses('CurlMultiComponent', 'Controller/Component');
 
 class TweetSearcher extends AppModel{
 
@@ -28,6 +30,7 @@ class TweetSearcher extends AppModel{
 	// テーブルに保存するURL
 	private $savedUrls = array();
 
+// 定数クラスに移す
 	// twitterAPIのURL
 	const API_URL = "http://search.twitter.com/search.json";
 
@@ -40,6 +43,9 @@ class TweetSearcher extends AppModel{
 	public function __construct() {
 		parent::__construct();
 		$this->Site = new Site();
+// この書き方でOK?
+		$Collection = new ComponentCollection();
+		$this->curlMulti = new CurlMultiComponent($Collection);
 	}
 
 	/**
@@ -67,11 +73,7 @@ class TweetSearcher extends AppModel{
 			foreach ($tweets as $tweet) {
 				// ツイート内のURLのデータを取得
 				$urlInfo = end($tweet["entities"]["urls"]);// ['entities']['urls']が複数の要素の配列になってることがある （2件のURL）
-// 記事の中にURLが2件ある場合がある。その場合の対処が必要
-if (1 < count($tweet["entities"]["urls"])) {
-	debug($tweet['text']);
-	debug($tweet["entities"]["urls"]);
-}
+echo $tweet['text'] . '<br />';
 				// t.co～展開後のURLを取得
 				if ( !isset($urlInfo["expanded_url"]) ) {
 					continue;
@@ -87,6 +89,10 @@ if (1 < count($tweet["entities"]["urls"])) {
 
 		debug ($this->savedUrls);
 		// 短縮URLの場合は展開（コンポーネント化）
+		$longUrls = $this->curlMulti->expandUrls($this->savedUrls);
+
+		debug($longUrls);
+
 
 		// 取得したURLをarticlesテーブルに登録
 	}

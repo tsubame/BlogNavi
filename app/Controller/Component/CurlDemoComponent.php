@@ -13,18 +13,7 @@ class CurlDemoComponent extends Component {
 	 */
 	public function demo() {
 
-		$url = 'http://yahoo.co.jp/';
 
-		$chYahoo = curl_init($url);
-		curl_setopt($chYahoo, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($chYahoo, CURLOPT_HEADER, true);
-		curl_setopt($chYahoo, CURLOPT_NOBODY, true);
-
-		$result = curl_exec($chYahoo);
-		curl_close($chYahoo);
-
-		debug($result);
-		echo $result;
 	}
 
 	/**
@@ -111,6 +100,9 @@ class CurlDemoComponent extends Component {
 			curl_multi_remove_handle($mh, $ch);
 			curl_close($ch);
 debug($result);
+
+// 文字列を分割
+
 			if (preg_match('/Location:[\s]*([^\n\s]+)/', $result, $matches)) {
 				$longUrls[$i] = $matches[1];
 			} else {

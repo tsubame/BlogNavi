@@ -6,15 +6,17 @@
  * （注意）TwitterのAPIの返り値の配列の内容はわかりにくいので書いておく必要あり
  *
  *
- * サイトのURLでtwitterを検索して、ツイートされた記事のURLを取得する。
+ * サイトのURLでtwitterを検索して、そのサイト内の記事でツイートされたものを検索する。
  * 取得した記事のURLをarticlesテーブルに保存。
+ * （短縮URLなら展開してから保存）
  *
- * URLは検索用のキーワードを抜き出して検索する
+ * サイトのURLは検索用にフォーマットして検索する（httpやwwwが含まれるとうまく検索できない）
  * htttp://www.yahoo.co.jp/ → yahoo.co.jp/
  *
  *
  */
 App::uses('Site','Model');
+App::uses('Article','Model');
 App::uses('AppModel', 'Model');
 App::uses('HttpSocket', 'Network/Http');
 App::uses('ComponentCollection', 'Controller');
@@ -25,10 +27,15 @@ class TweetSearcher extends AppModel{
 	public $useTable = false;
 	// Siteモデル
 	private $Site;
+	// Articleモデル
+	private $Article;
 	// 検索する件数
 	private $rpp = 30;
-	// テーブルに保存するURL
-	private $savedUrls = array();
+	// テーブルに保存するURLの配列
+	private $insertUrls = array();
+
+	// articlesテーブルに保存するデータの配列 Articleモデル
+	private $insertArticles = array();
 
 // 定数クラスに移す
 	// twitterAPIのURL
@@ -43,6 +50,7 @@ class TweetSearcher extends AppModel{
 	public function __construct() {
 		parent::__construct();
 		$this->Site = new Site();
+		$this->Article = new Article();
 // この書き方でOK?
 		$Collection = new ComponentCollection();
 		$this->curlMulti = new CurlMultiComponent($Collection);
@@ -53,6 +61,12 @@ class TweetSearcher extends AppModel{
 	 */
 	public function exec() {
 		$this->searchSingleThread();
+
+		// テーブルに保存
+		$this->Article->save($this->insertArticles);
+
+		// 保存前にサイトのタイトル、サイトIDを取得する必要あり
+
 	}
 
 	/**
@@ -62,39 +76,49 @@ class TweetSearcher extends AppModel{
 	 *
 	 */
 	private function searchSingleThread() {
+		$tweetedUrls = array();
+		$siteIds = array();
+
 		$sites = $this->Site->getAllSites();
 		// サイトの件数ループ
 		foreach ($sites as $site) {
-			// URLを検索用キーワードの形式にフォーマット
-			$searchKey = $this->formatUrlForSearch($site['url']);
-			// twitterAPIでURLを検索 24時間以内 100件
-			$tweets = $this->searchByJson($searchKey);
-			// 結果のツイートの件数ループ
+			// twitterAPIでサイトのURLが含まれるツイートを検索
+			$tweets = $this->searchByJson($site['url']);
+
 			foreach ($tweets as $tweet) {
-				// ツイート内のURLのデータを取得
-				$urlInfo = end($tweet["entities"]["urls"]);// ['entities']['urls']が複数の要素の配列になってることがある （2件のURL）
-echo $tweet['text'] . '<br />';
-				// t.co～展開後のURLを取得
-				if ( !isset($urlInfo["expanded_url"]) ) {
+				// ツイート内のURLの要素を取得
+				$urlEntity = end($tweet["entities"]["urls"]);// ['entities']['urls']が複数の要素の配列になってることがある （2件のURL）
+				if ( !isset($urlEntity["expanded_url"]) ) {
 					continue;
 				}
-				$tweetedUrl = $urlInfo["expanded_url"];
-				//echo $tweetedUrl . '<br /><br />' ;
-				// 配列にURLを保存
-				if ( !array_search($tweetedUrl, $this->savedUrls) ) {
-					array_push($this->savedUrls, $tweetedUrl);
+				$tweetedUrl = $urlEntity["expanded_url"];
+
+				// 重複分を除いてURLを配列に保存
+				if ( !array_search($tweetedUrl, $tweetedUrls) ) {
+					array_push($tweetedUrls, $tweetedUrl);
+					// サイトIDを保存
+					array_push($siteIds, $site['id']);
 				}
 			}
-		} // end foreach サイトの件数ループ
+		}
 
-		debug ($this->savedUrls);
-		// 短縮URLの場合は展開（コンポーネント化）
-		$longUrls = $this->curlMulti->expandUrls($this->savedUrls);
+		// 短縮URLを展開して配列に取得
+		$longUrls = $this->curlMulti->expandUrls($tweetedUrls);
+		// 重複分を除いて別の配列に入れなおす
+		$insertUrls  = array();
 
-		debug($longUrls);
+		foreach ($longUrls as $i => $url) {
+			if ( !array_search($url, $insertUrls) ) {
+				array_push($insertUrls, $url);
 
+				// 記事のデータを作成して配列に保存
+				$article = array('url' => $url, 'site_id' => $siteIds[$i]);
+				array_push($this->insertArticles, $article);
+			}
+		}
 
-		// 取得したURLをarticlesテーブルに登録
+		debug($insertUrls);
+		debug($this->insertArticles);
 	}
 
 
@@ -102,17 +126,21 @@ echo $tweet['text'] . '<br />';
 	/**
 	 * ツイッターを検索して結果をJSON形式で取得
 	 *
-	 * @param  string $q 	  検索キーワード
+	 * 検索前にURLを検索用の文字列にフォーマットする
+	 * 取得したJSONデータはデコードして配列で返す
+	 *
+	 * @param  string $url 	  URL
 	 * @return array  $tweets 配列
-	 *
-	 *
-	 *
 	 */
-	private function searchByJson($q) {
+	private function searchByJson($url) {
 		$socket = new HttpSocket();
+
+		// URLを検索用キーワードの形式にフォーマット
+		$searchKey = $this->formatUrlForSearch($url);
+
 // 24時間以内の条件も入れる必要あり
 // until=～～
-		$param = "rpp=" . $this->rpp . "&q=" . $q . "&include_entities=true";
+		$param = "rpp=" . $this->rpp . "&q=" . $searchKey . "&include_entities=true";
 		$res   = $socket->get(self::API_URL, $param);
 		// HTTPのBody取得
 		$json  = $res["body"];

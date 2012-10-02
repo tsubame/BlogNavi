@@ -7,6 +7,10 @@
  */
 class CurlMultiComponent extends Component {
 
+
+
+// 一度に取得する件数も設定する必要あり
+
 	/**
 	 * 複数のURLのHTTPヘッダを取得する。
 	 * リダイレクトされた場合はアクセスしたURLすべてのHTTPヘッダが取得される
@@ -65,7 +69,7 @@ class CurlMultiComponent extends Component {
 			// cURLオプション
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // データを文字列で取得
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);	// リダイレクト先のコンテンツを取得
-			curl_setopt($ch, CURLOPT_MAXREDIRS, 2);			// リダイレクトを受け入れる回数
+			curl_setopt($ch, CURLOPT_MAXREDIRS, 4);			// リダイレクトを受け入れる回数
 
 			curl_multi_add_handle($mh, $ch);
 			array_push($channels, $ch);

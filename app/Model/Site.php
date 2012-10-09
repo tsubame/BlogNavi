@@ -4,14 +4,14 @@
  * モデルクラス sitesテーブル
  *
  * ・sitesテーブル
- * id		integer
- * name		varchar
- * url		varchar
- * rss_url	varchar
- * kind		varchar
- * enabled	boolean
- *
- *
+ * id			integer primary
+ * name			varchar
+ * url			varchar unique
+ * rss_url		varchar
+ * category_id	integer
+ * disable		boolean
+ * created		datetime
+ * modified		datetime
  *
  */
 App::uses('AppModel', 'Model');

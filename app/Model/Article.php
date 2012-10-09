@@ -5,14 +5,14 @@
  *
  * テーブル構成
  *
- * id		integer
- * name		varchar
- * url		varchar
- * rss_url	varchar
- * kind		varchar
- * enabled	boolean
- * created  datetime
- * modified datetime
+ * id			 integer
+ * title		 varchar
+ * url			 varchar
+ * site_id		 integer
+ * tweeted_count integer
+ * disable 		 boolean  true 表示しない記事（ニュース以外のURLなど）
+ * created  	 datetime
+ * modified 	 datetime
  *
  */
 App::uses('AppModel', 'Model');

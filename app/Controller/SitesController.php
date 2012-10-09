@@ -41,6 +41,12 @@ class SitesController extends Controller {
 
 
 		$site = $this->data['Site'];
+
+		// ファイル名を取り除く
+		if (preg_match('/^(http:\/\/[\w\.\/\-_=]+\/)[\w\-\._=]*$/', $site['url'], $matches)) {
+			$site['url'] = $matches[1];
+		}
+
 		$site['name'] = $this->HttpUtil->getSiteName($site['url']);
 		debug($site);
 		// 登録

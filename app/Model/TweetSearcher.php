@@ -1,7 +1,7 @@
 <?php
 
 /**
- * モデルクラス
+ * ロジック
  *
  * （注意）TwitterのAPIの返り値の配列の内容はわかりにくいので書いておく必要あり
  *
@@ -29,8 +29,7 @@ class TweetSearcher extends AppModel{
 	private $Site;
 	// Articleモデル
 	private $Article;
-	// 検索する件数
-	private $rpp = 30;
+
 	// テーブルに保存するURLの配列
 	private $insertUrls = array();
 
@@ -40,7 +39,8 @@ class TweetSearcher extends AppModel{
 // 定数クラスに移す
 	// twitterAPIのURL
 	const API_URL = "http://search.twitter.com/search.json";
-
+	// 検索する件数
+	private $rpp = 30;
 
 // 使用するのはコンストラクタでOKか？
 	/**
@@ -138,9 +138,17 @@ class TweetSearcher extends AppModel{
 		// URLを検索用キーワードの形式にフォーマット
 		$searchKey = $this->formatUrlForSearch($url);
 
-// 24時間以内の条件も入れる必要あり
-// until=～～
-		$param = "rpp=" . $this->rpp . "&q=" . $searchKey . "&include_entities=true";
+// 24時間以内にしたいがこれでいいか？
+		// 本日の日付を取得
+		//$now = getdate();
+		$today = date('Y-m-d', strtotime('-1 day'));
+
+		// パラメータ設定 今日の日付ツイートを取得 q=○○+since:2012-09-10
+		$param = "rpp={$this->rpp}&q={$searchKey}+since:{$today}&include_entities=true";
+
+echo date('Y-m-d H:i:s');
+echo $param;
+		// GETリクエスト
 		$res   = $socket->get(self::API_URL, $param);
 		// HTTPのBody取得
 		$json  = $res["body"];

@@ -67,7 +67,7 @@ class DATABASE_CONFIG {
 		'password' => 'ka4023',
 		'database' => 'foot_blog_navi',
 		'prefix' => '',
-		//'encoding' => 'utf8',
+		'encoding' => 'utf8',
 	);
 
 	public $test = array(
@@ -77,7 +77,7 @@ class DATABASE_CONFIG {
 		'login' => 'hideki',
 		'password' => 'ka4023',
 		'database' => 'foot_blog_navi',
-		'prefix' => 'test_',
-		//'encoding' => 'utf8',
+		//'prefix' => 'test_',
+		'encoding' => 'utf8',
 	);
 }

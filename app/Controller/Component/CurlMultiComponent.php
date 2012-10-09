@@ -30,7 +30,7 @@ class CurlMultiComponent extends Component {
 			curl_setopt($ch, CURLOPT_HEADER, true);			// HTTP Headerを出力
 			curl_setopt($ch, CURLOPT_NOBODY, true);			// HTTP Bodyを出力しない
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);	// リダイレクト先のコンテンツを取得
-			curl_setopt($ch, CURLOPT_MAXREDIRS, 2);			// リダイレクトを受け入れる回数
+			curl_setopt($ch, CURLOPT_MAXREDIRS, 4);			// リダイレクトを受け入れる回数
 			curl_multi_add_handle($mh, $ch);
 
 			array_push($channels, $ch);

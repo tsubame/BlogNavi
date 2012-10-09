@@ -3,23 +3,21 @@
  * コントローラ
  *
  * ToDo
- * ・並列HTTPアクセスのコンポーネントを作る
+ * ・コード整形
+ * ・バリデーション
  *
  *
  *
  * メモ
- * ・コンポーネントには他のアプリでも使えるものを
- * ・それ以外の独自処理はモデルまたはvendorで
  *
- * ・ツイッターの検索は　http://を抜いて検索する必要あり？
+ * ・ツイッター検索でのsinceの日付は日本との時差が9時間。
+ *   毎日午前9時前に昨日の日付を指定して検索する必要あり
  *
  *
  * 技術的な疑問
  * ・デバッグ時にはdebugを使っていい？
  * ・ログはどうする？
  * ・エラー時の対処法
- *
- * ・cURLって？
  *
  */
 class ArticlesController extends Controller {
@@ -37,6 +35,13 @@ class ArticlesController extends Controller {
 		$datas = $this->Site->find('all');
 		$this->set('datas', $datas);
 		debug($datas);
+	}
+
+	/**
+	 * 記事の登録
+	 */
+	public function insert() {
+
 	}
 
 	/**

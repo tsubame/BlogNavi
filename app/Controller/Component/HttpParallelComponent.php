@@ -103,7 +103,7 @@ class HttpParallelComponent extends Component {
 			// リダイレクト先のコンテンツを取得
 			curl_setopt($connects[$i], CURLOPT_FOLLOWLOCATION, true);
 			// リダイレクトを受け入れる回数
-			curl_setopt($connects[$i], CURLOPT_MAXREDIRS, 2);
+			curl_setopt($connects[$i], CURLOPT_MAXREDIRS, 3);
 
 
 // ヘッダのみを取得

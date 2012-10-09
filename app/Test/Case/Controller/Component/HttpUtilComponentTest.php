@@ -84,7 +84,7 @@ class HttpUtilComponentTestCase extends CakeTestCase {
 				'http://dlvr.it/2DNVlW',
 				'http://www.plus-blog.sportsnavi.com/yakyuu_manga/article/174',
 				'http://tinyurl.com/8ktesgz',
-				'http://google.co.jp/'
+				'http://www.jsgoal.jp/tw/p192d8'
 		);
 
 		//$this->httpUtil->expandUrl('');
@@ -115,9 +115,9 @@ class HttpUtilComponentTestCase extends CakeTestCase {
 		debug($longUrl);
 		$this->assertEqual($longUrl, 'http://aa.com/aaaa.html');
 
-		$longUrl = $this->httpUtil->expandUrl('aaaa.html');
+		$longUrl = $this->httpUtil->expandUrl('http://www.jsgoal.jp/tw/p192d8');
 		debug($longUrl);
-		$this->assertEqual($longUrl, false);
+		$this->assertEqual($longUrl, 'http://www.jsgoal.jp/photo/00103100/00103128.html');
 	}
 
 }

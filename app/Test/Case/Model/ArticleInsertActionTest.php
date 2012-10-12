@@ -20,10 +20,13 @@ class ArticleInsertActionTest extends CakeTestCase  {
 
 	/**
 	 *
+	 * @test
 	 */
-	public function testExec() {
+	public function execTest() {
 		$this->ArticleInsertAction->exec();
 	}
+
+
 
 
 }

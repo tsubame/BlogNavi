@@ -1,30 +1,62 @@
 <?php
 
 /**
- * ロジック
+ * 記事登録処理
  *
- * （注意）TwitterのAPIの返り値の配列の内容はわかりにくいので書いておく必要あり
+ * ArticleコントローラのInsertアクションのロジック
+ *
+ * (メモ)
+ *
+ * ・出来れば並列化できるところはしたい
+ *   ・検索処理
+ *   ・タイトルの取得
  *
  *
- * サイトのURLでtwitterを検索して、そのサイト内の記事でツイートされたものを検索する。
- * 取得した記事のURLをarticlesテーブルに保存。
- * （短縮URLなら展開してから保存）
  *
- * サイトのURLは検索用にフォーマットして検索する（httpやwwwが含まれるとうまく検索できない）
- * htttp://www.yahoo.co.jp/ → yahoo.co.jp/
  *
+ *（概要）
+ *
+ * DBに保存したニュースサイトのURLでtwitterを検索して、そのサイト内の記事を取得する。
+ * 取得した記事のうちツイート数の多いものをarticlesテーブルに保存。 *
+ *
+ *
+ *（処理手順）
+ *
+ * ・sitesテーブルからカテゴリ別にニュースサイトをすべて取得
+ *
+ * ・twitter検索APIで各サイトのアドレスを検索し、結果をJSON形式で取得
+ *     サイトのURLは検索用にフォーマットして検索する（httpやwwwが含まれるとうまく検索できない）
+ *     htttp://www.yahoo.co.jp/ → yahoo.co.jp/
+ *
+ * ・JSONデータから検索結果内のURL（t.co形式の短縮URL）を取り出す
+ *
+ * ・短縮URLをまとめて展開
+ *
+ * ・展開後のURLから重複分を除いて配列に保存
+ *   ニュースサイトに関係ないアドレスのデータも除く
+ *
+ * ・各URLのツイート数をtwitterAPIで取得
+ *
+ * ・ツイート数が多いURLを25件取得
+ *
+ * ・それぞれのURLのタイトルを取得
+ *
+ * ・URL、タイトル、サイトID、ツイート数を記事の配列に保存
+ *
+ * ・articlesテーブルにデータを保存
+ *   すでに保存されているデータは保存しない
  *
  */
-//App::uses('Site','Model');
-//App::uses('Article','Model');
 App::uses('AppModel', 'Model');
 App::uses('HttpSocket', 'Network/Http');
 App::uses('ComponentCollection', 'Controller');
 App::uses('CurlMultiComponent', 'Controller/Component');
+App::uses('HttpUtilComponent', 'Controller/Component');
 
 class ArticleInsertAction extends AppModel {
 
 	public $useTable = false;
+
 	// Siteモデル
 	private $Site;
 	// Articleモデル
@@ -32,20 +64,24 @@ class ArticleInsertAction extends AppModel {
 	// Sitesモデルの配列
 	private $sites;
 
-	// テーブルに保存するURLの配列
-	private $insertUrls = array();
+	//コンポーネント
+	private $httpUtil;
+	private $curlMulti;
 
 	// 検索した記事の配列
 	private $searchedArticles = array();
+	// テーブルに保存する記事の配列
+	private $insertArticles = array();
 
 	// twitter検索APIのURL
 	const SEARCH_API_URL = "http://search.twitter.com/search.json";
 	// twitterツイート数取得APIのURL
 	const COUNT_API_URL = 'http://urls.api.twitter.com/1/urls/count.json?url=';
 	// 検索する件数
-	private $rpp = 30;
+	const RPP = 30;
+	// 一度にDBに保存する記事の件数
+	const SAVE_COUNT = 25;
 
-// 使用するのはコンストラクタでOKか？
 	/**
 	 * コンストラクタ
 	 *
@@ -57,6 +93,7 @@ class ArticleInsertAction extends AppModel {
 		$this->Article = ClassRegistry::init('Article');
 		$Collection = new ComponentCollection();
 		$this->curlMulti = new CurlMultiComponent($Collection);
+		$this->httpUtil  = new HttpUtilComponent($Collection);
 	}
 
 	/**
@@ -66,57 +103,12 @@ class ArticleInsertAction extends AppModel {
 		$this->sites = $this->Site->getAllSites();
 		// ツイッター検索
 		$this->searchSingleThread();
-		// カウント数取得
+		// ツイート数取得
 		$this->getTweetCountOfArticles();
-
-		/*
-		$options = array(
-					'atomic' => true,
-					'fieldList' => array('url', 'site_id', 'tweeted_count')
-				);
-		$this->Article->saveMany($this->searchedArticles);
-*/
-
-		// 保存前にサイトのタイトル、サイトIDを取得する必要あり
-
-	}
-
-	/**
-	 * 検索した記事のツイート数を取得
-	 *
-	 */
-	private function getTweetCountOfArticles() {
-		$urls = array();
-		// APIアクセス用のURLの配列を作成
-		foreach ($this->searchedArticles as $article) {
-			$reqUrl = self::COUNT_API_URL . $article['url'];;
-			array_push($urls, $reqUrl);
-		}
-		// 並列にAPIにアクセス
-		$jsons = $this->curlMulti->getContents($urls);
-
-		$urlCounts = array();
-		foreach ($jsons as $i => $json) {
-			$data = json_decode($json, true);
-			$this->searchedArticles[$i]['tweeted_count'] = $data['count'];
-			// 最後の / を外す
-			$url = $data['url'];
-			$url = substr($url, 0, strlen($url) - 1);
-			$urlCounts[$url] = $data['count'];
-		}
-
-		// 降順に並び替え
-		$res = arsort($urlCounts, SORT_NUMERIC);
-
-		debug($urlCounts);
-		debug($this->searchedArticles);
-	}
-
-	/**
-	 *
-	 */
-	public function demo() {
-		echo 'demo';
+		// タイトル取得
+		$this->getArticlesTitle();
+		// DBに存在しないデータを追加
+		$this->saveNotExistArticles();
 	}
 
 	/**
@@ -126,7 +118,6 @@ class ArticleInsertAction extends AppModel {
 	 *
 	 */
 	private function searchSingleThread() {
-
 		$articles = array();
 		// サイトの件数ループ
 		foreach ($this->sites as $site) {
@@ -145,86 +136,22 @@ class ArticleInsertAction extends AppModel {
 			$articles[$i]['url'] = $longUrls[$i];
 		}
 
+		// 重複分を除いて配列に記事を保存
 		$uniqueUrls  = array();
-		// 記事の件数ループ
 		foreach ($articles as $article) {
 			// すでに取得したURLと重複している場合はスキップ
 			if (array_search($article['url'], $uniqueUrls)) {
 				continue;
 			}
-
-			// URLが登録済みのサイトの記事のアドレスでなければスキップ
+			// URLを見て登録済みのサイトの記事のアドレスでなければスキップ
 			$result = $this->isValidArticleUrl($article['url']);
 			if ($result == false) {
 				continue;
 			}
 
-			// URLを配列に保存
 			array_push($uniqueUrls, $article['url']);
 			array_push($this->searchedArticles, $article);
 		}
-
-		debug($uniqueUrls);
-	}
-
-
-	/**
-	 * 検索処理
-	 *
-	 * 並列処理を行わないロジック
-	 *
-	 */
-	private function searchSingleThreadOld() {
-		$tweetedUrls = array();
-		$siteIds = array();
-
-		$this->sites = $this->Site->getAllSites();
-		// サイトの件数ループ
-		foreach ($this->sites as $site) {
-			// twitterAPIでサイトのURLが含まれるツイートを検索
-			$tweets = $this->searchTwitter($site['url']);
-			foreach ($tweets as $tweet) {
-				// ツイート内のURLの要素を取得
-				$urlRow = end($tweet["entities"]["urls"]);// ['entities']['urls']が複数の要素の配列になってることがある （2件のURL）
-
-				if ( !isset($urlRow["expanded_url"]) ) {
-					continue;
-				}
-				$tweetedUrl = $urlRow["expanded_url"];
-				// 重複分を除いてURLを配列に保存
-				if ( !array_search($tweetedUrl, $tweetedUrls) ) {
-					array_push($tweetedUrls, $tweetedUrl);
-					// サイトIDを保存
-					array_push($siteIds, $site['id']);
-				}
-			}
-
-		}
-		// 短縮URLを展開して配列に取得
-		$longUrls = $this->curlMulti->expandUrls($tweetedUrls);
-
-		// 必要なURLのみ別の配列に入れなおす
-		$uniqueUrls  = array();
-		foreach ($longUrls as $i => $url) {
-			// 重複している場合はスキップ
-			if (array_search($url, $uniqueUrls)) {
-				continue;
-			}
-			// 登録済みのサイトの記事でなければスキップ
-			$result = $this->isValidArticleUrl($url);
-			if ($result == false) {
-				continue;
-			}
-
-			// URLを配列に保存
-			array_push($uniqueUrls, $url);
-			// 記事のデータを作成して配列に保存
-			$article = array('url' => $url, 'site_id' => $siteIds[$i]);
-			array_push($this->searchedArticles, $article);
-		}
-
-		debug($uniqueUrls);
-		//debug($this->searchedArticles);
 	}
 
 	/**
@@ -273,40 +200,6 @@ class ArticleInsertAction extends AppModel {
 	}
 
 	/**
-	 * 記事のURLを見て登録済のサイトの記事であるかを調べる
-	 *
-	 * 記事のURLにサイトのURLが含まれればtrue
-	 * サイトのURLと同一の場合はfalse
-	 *
-	 * @param  string $entryUrl
-	 * @return bool   true => 含まれる
-	 */
-	private function isValidArticleUrl($url) {
-		// サイトの件数ループ
-		foreach ($this->sites as $site) {
-
-			$siteUrl = $site['url'];
-			// 正規表現比較用にエスケープ "/ . - ?"の4つに\を付ける
-			$escSiteUrl = addcslashes($siteUrl, '/.-?');
-
-			// サイトのURLと同じ、もしくは"サイトのURL/index.～"の場合はfalse
-			if ($url == $siteUrl || $url == "{$siteUrl}/") {
-				return false;
-			} else if (preg_match('/' . $escSiteUrl . '\/?index\.[\w]+/', $url)) {
-				return false;
-			}
-
-			// 記事のURLにサイトのURLが含まれるか比較
-			$result = strpos(strtoupper($url), strtoupper($siteUrl));
-			if ($result !== false) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
 	 * ツイッターを検索して結果をJSON形式で取得
 	 *
 	 * 検索前にURLを検索用の文字列にフォーマットする
@@ -326,11 +219,10 @@ class ArticleInsertAction extends AppModel {
 
 		// URLを検索用キーワードの形式にフォーマット
 		$searchKey = $this->formatUrlForSearch($url);
-
 		// 1日前の日付を取得
 		$today = date('Y-m-d', strtotime('-1 day'));
 		// パラメータ設定 今日の日付ツイートを取得 q=○○+since:2012-09-10
-		$param = "rpp={$this->rpp}&q={$searchKey}+since:{$today}&include_entities=true";
+		$param = "rpp=" . self::RPP . "&q={$searchKey}+since:{$today}&include_entities=true";
 
 		// GETリクエスト
 		$res   = $socket->get(self::SEARCH_API_URL, $param);
@@ -368,9 +260,148 @@ class ArticleInsertAction extends AppModel {
 				$searchKey = substr($searchKey, 4);
 			}
 		}
-		debug('検索キーワード' . $searchKey);
+		//debug('検索キーワード' . $searchKey);
 
 		return $searchKey;
+	}
+
+	/**
+	 * 記事のURLを見て登録済のサイトの記事であるかを調べる
+	 *
+	 * 記事のURLにサイトのURLが含まれればtrue
+	 * サイトのURLと同一の場合はfalse
+	 *
+	 * @param  string $entryUrl
+	 * @return bool   true => 含まれる
+	 */
+	private function isValidArticleUrl($url) {
+		// サイトの件数ループ
+		foreach ($this->sites as $site) {
+
+			$siteUrl = $site['url'];
+			// 正規表現比較用にエスケープ "/ . - ?"の4つに\を付ける
+			$escSiteUrl = addcslashes($siteUrl, '/.-?');
+
+			// サイトのURLと同じ、もしくは"サイトのURL/index.～"の場合はfalse
+			if ($url == $siteUrl || $url == "{$siteUrl}/") {
+				return false;
+			} else if (preg_match('/' . $escSiteUrl . '\/?index\.[\w]+/', $url)) {
+				return false;
+			}
+
+			// 記事のURLにサイトのURLが含まれるか比較
+			$result = strpos(strtoupper($url), strtoupper($siteUrl));
+			if ($result !== false) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * 検索した記事のツイート数を取得
+	 *
+	 */
+	private function getTweetCountOfArticles() {
+		$reqUrls = array();
+		// APIアクセス用のURLの配列を作成
+		foreach ($this->searchedArticles as $article) {
+			$reqUrl = self::COUNT_API_URL . $article['url'];;
+			array_push($reqUrls, $reqUrl);
+		}
+		// 並列にAPIにアクセス
+		$jsons = $this->curlMulti->getContents($reqUrls);
+
+		// ツイート数を配列に取得 array('記事のURL' => ツイート数)
+		$tweetCounts = array();
+		foreach ($jsons as $i => $json) {
+			$data = json_decode($json, true);
+			$this->searchedArticles[$i]['tweeted_count'] = $data['count'];
+			// 最後の / を外す
+			$url = $data['url'];
+			$url = substr($url, 0, strlen($url) - 1);
+
+			$tweetCounts[$url] = $data['count'];
+		}
+
+		// 上位25件を取得
+		$this->pickUpInsertArticles($tweetCounts);
+	}
+
+	/**
+	 * ツイート数の配列から上位25件のみを取り出して配列に保存
+	 *
+	 * @param array $tweetCounts array('記事のURL' => ツイート数)
+	 */
+	private function pickUpInsertArticles($tweetCounts) {
+		// 降順に並び替え
+		$res = arsort($tweetCounts, SORT_NUMERIC);
+
+		foreach ($tweetCounts as $url => $count) {
+			if (self::SAVE_COUNT <= count($this->insertArticles)) {
+				break;
+			}
+
+			$pickUps = false;
+			// サイトIDを取得する
+			foreach ($this->searchedArticles as $article) {
+				if ($article['url'] == $url) {
+					$siteId = $article['site_id'];
+					$pickUps = true;
+					break;
+				}
+			}
+			if ($pickUps == false) {
+				continue;
+			}
+
+			$article = array(
+					'url' => $url,
+					'tweeted_count' => $count,
+					'site_id' => $siteId
+			);
+			array_push($this->insertArticles, $article);
+		}
+	}
+
+	// 出来れば並列化
+	/**
+	 * DBに追加する記事のタイトルを取得
+	 *
+	 *
+	 */
+	private function getArticlesTitle() {
+		// 記事のタイトルを取得
+		foreach ($this->insertArticles as $i => $article) {
+			$title = $this->httpUtil->getSiteName($article['url']);
+
+			$this->insertArticles[$i]['title'] = $title;
+		}
+	}
+
+	/**
+	 * DBに存在しないデータを追加
+	 *
+	 */
+	private function saveNotExistArticles() {
+		debug($this->insertArticles);
+
+		foreach ($this->insertArticles as $article) {
+			// 同じURLのデータが存在するか調べる
+			$result = $this->Article->hasAny(
+					array('url' => $article['url'])
+			);
+
+			// なければ追加
+			if ($result == false) {
+				$this->Article->create();
+				$this->Article->save($article);
+				debug('追加しました' . $article['url']);
+			} else {
+				debug('追加できませんでした' . $article['url']);
+			}
+		}
 	}
 
 

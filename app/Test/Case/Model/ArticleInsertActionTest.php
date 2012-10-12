@@ -15,7 +15,9 @@ class ArticleInsertActionTest extends CakeTestCase  {
 	public function setUp() {
 		parent::setUp();
 		//$this->ArticleInsertAction = ClassRegistry::init('ArticleInsertAction');
-		$this->ArticleInsertAction = new ArticleInsertAction();
+		//$this->ArticleInsertAction = new ArticleInsertAction();
+		$this->ArticleInsertAction = ClassRegistry::init('ArticleInsertActionExtend');
+		//$this->ArticleInsertAction = new ArticleInsertActionExtend();
 	}
 
 	/**
@@ -27,6 +29,18 @@ class ArticleInsertActionTest extends CakeTestCase  {
 	}
 
 
+}
+
+class ArticleInsertActionExtend extends ArticleInsertAction {
+
+
+	public function createApiRequestUrl($url) {
+		return parent::createApiRequestUrl($url);
+	}
+
+	public function formatUrlForSearch($url) {
+		return parent::formatUrlForSearch($url);
+	}
 
 
 }

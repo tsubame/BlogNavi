@@ -27,8 +27,28 @@ class Article extends AppModel{
 	public $cacheQueries = true;
 	//public $actsAs	= array('Cache');
 
+	const LIMIT_COUNT = 20;
 
+	/**
+	 * 24時間以内の記事を取得
+	 */
+	public function selectTodaysArticles() {
 
+		$yesterday = date('Y-m-d', strtotime('-1 day'));
 
+		$options = array(
+				'conditions' => array(
+					'Article.created >' => $yesterday
+						),
+				'order' => 'tweeted_count DESC',
+				'limit' => self::LIMIT_COUNT
+				);
+
+		$results = $this->find('all', $options);
+
+//debug($results);
+
+return $results;
+	}
 
 }

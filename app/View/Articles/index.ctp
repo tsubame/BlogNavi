@@ -1,9 +1,10 @@
 記事のリスト
 <?php
-/*
-	foreach ($datas as $data) {
-		//debug($data);
-		echo $data['Site']['name'] , '<br />';
+
+	foreach ($results as $data) {
+		echo $data['Article']['title'] . '<br />';
+		echo $data['Article']['tweeted_count'] . '<br />';
+		echo $data['Article']['url'] . '<br /><br />';
 	}
-	*/
+
 ?>

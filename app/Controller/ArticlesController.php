@@ -22,7 +22,7 @@
  */
 class ArticlesController extends Controller {
 
-	public $uses  = array('Site', 'TweetSearcher', 'User');
+	public $uses  = array('Site', 'Article');
 	public $helpers = array('Form');
 	public $components = null;
 	//public $layout = 'articles';
@@ -32,38 +32,19 @@ class ArticlesController extends Controller {
 	 */
 	public function index() {
 
-		$datas = $this->Site->find('all');
-		$this->set('datas', $datas);
-		debug($datas);
+		$results = $this->Article->selectTodaysArticles();
+
+		$this->set('results', $results);
+		//debug($results);
 	}
 
-	/**
-	 * 記事の登録
-	 */
 	public function insert() {
+		$insertAction = ClassRegistry::init('ArticleInsertAction');
 
-	}
-
-	/**
-	 * twitterでサイトのURLを検索し、記事のURLを取得してDBに登録
-	 *
-	 */
-	public function searchTweet() {
-		$this->TweetSearcher->exec();
+		$insertAction->exec();
 
 		$this->render('index');
 	}
 
-	/**
-	 * テスト
-	 */
-	public function test() {
-
-		$this->render('index');
-	}
-
-	public function phpinfo() {
-		phpinfo();
-	}
 
 }

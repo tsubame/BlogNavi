@@ -21,9 +21,16 @@ class SitesController extends Controller {
 	 */
 	public function index() {
 
-		$datas = $this->Site->find('all');
-		$this->set('datas', $datas);
-		//debug($sites);
+		$results = $this->Site->find('all');
+
+		$sites = array();
+		foreach ($results as $data) {
+			$site = $data['Site'];
+
+			array_push($sites, $site);
+		}
+
+		$this->set('sites', $sites);
 	}
 
 	/**
@@ -37,9 +44,7 @@ class SitesController extends Controller {
 			return;
 		}
 
-// URLの最後がファイル名ならファイル名を削除
-
-
+		// URLの最後がファイル名ならファイル名を削除
 		$site = $this->data['Site'];
 
 		// ファイル名を取り除く
@@ -52,12 +57,10 @@ class SitesController extends Controller {
 		// 登録
 		$this->Site->save($site);
 
-
-
-
 		$this->render('registerForm');
-// Viewに変数として渡すべき
-debug ("{$site['name']} : {$site['url']} を登録しました。");
+
+		// Viewに変数として渡すべき
+		debug ("{$site['name']} : {$site['url']} を登録しました。");
 	}
 
 	/**
@@ -74,6 +77,26 @@ debug ("{$site['name']} : {$site['url']} を登録しました。");
 	public function registerByGoogle() {
 
 
+	}
+
+	/**
+	 * アップデート*
+	 *
+	 */
+	public function update() {
+		if (! isset($this->data['Site'])) {
+			return;
+		}
+
+		// URLの最後がファイル名ならファイル名を削除
+		$site = $this->data['Site'];
+
+
+		$this->Site->save($site);
+
+		debug($site);
+
+		$this->render('index');
 	}
 
 	/**

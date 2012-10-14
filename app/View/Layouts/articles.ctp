@@ -19,8 +19,14 @@
 <body>
 	<div id="container">
 		<div id="menuBar">
-			<a href="index">サイトの一覧</a>　
-			<a href="registerForm">サイトを登録</a>
+			<?php
+				echo $this->Html->link('記事一覧', array('action' => 'index')) . '　　';
+				echo $this->Html->link( '記事の登録',
+						array(
+								'controller' => 'articles',
+								'action' => 'insert')
+				) . '　　';
+			?>　
 		</div>
 		<div id="content">
 			<?php echo $this->Session->flash(); ?>

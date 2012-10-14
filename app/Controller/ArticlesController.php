@@ -5,7 +5,7 @@
  * ToDo
  * ・コード整形
  * ・バリデーション
- *
+ * ・URLエンコードへの対処が必要
  *
  *
  * メモ
@@ -22,20 +22,24 @@
  */
 class ArticlesController extends Controller {
 
-	public $uses  = array('Site', 'Article');
-	public $helpers = array('Form');
+	public $uses  	= array('Site', 'Article');
+	public $helpers = array('Form', 'Html');
 	public $components = null;
-	//public $layout = 'articles';
+	public $layout = 'articles';
 
 	/**
 	 * 記事の一覧
 	 */
 	public function index() {
 
-		$results = $this->Article->selectTodaysArticles();
+//debug($this->request);
+//debug($this->passedArgs);
+
+$categoryId = $this->passedArgs[0];
+
+		$results = $this->Article->selectTodaysArticles($categoryId);
 
 		$this->set('results', $results);
-		//debug($results);
 	}
 
 	public function insert() {

@@ -64,6 +64,8 @@ class ArticleInsertAction extends AppModel {
 	// Articleモデル
 	private $Article;
 	//
+	private $Category;
+	//
 	private $TwAccessor;
 
 	// Sitesモデルの配列
@@ -82,8 +84,9 @@ class ArticleInsertAction extends AppModel {
 	public function __construct() {
 		parent::__construct();
 
-		$this->Site    = ClassRegistry::init('Site');
-		$this->Article = ClassRegistry::init('Article');
+		$this->Site       = ClassRegistry::init('Site');
+		$this->Article    = ClassRegistry::init('Article');
+		$this->Category   = ClassRegistry::init('Category');
 		$this->TwAccessor = ClassRegistry::init('TwitterAPIAccessor');
 		$Collection       = new ComponentCollection();
 		$this->httpUtil   = new HttpUtilComponent($Collection);
@@ -94,7 +97,32 @@ class ArticleInsertAction extends AppModel {
 	 */
 	public function exec() {
 
+		// カテゴリの件数ループ
+		$categories = $this->Category->getAllCategories();
+		// すべてのサイトを取得（不要？）
 		$this->sites = $this->Site->getAllSites();
+
+		foreach ($categories as $category) {
+			$sites = $this->Site->getSitesOfCategory($category['id']);
+			// カテゴリ別に検索する必要あり
+			// ツイッターを検索
+			$tweetedUrls = $this->searchUrls($sites);
+
+			// 記事のツイート数取得
+			$tweetCounts = $this->TwAccessor->getTweetCountOfUrls($tweetedUrls);
+			// 上位25件の記事を取得
+			$articles = $this->pickUpInsertArticles($tweetCounts);
+
+			// ボトルネック
+			// タイトル取得
+			$articles = $this->getArticlesTitle($articles);
+
+			debug($articles);
+			// DBに存在しないデータを追加
+			$this->saveNotExistArticles($articles);
+		}
+/*
+		//$this->sites = $this->Site->getAllSites();
 // カテゴリ別に検索する必要あり
 		// ツイッターを検索
 		$tweetedUrls = $this->searchUrls($this->sites);
@@ -111,6 +139,7 @@ class ArticleInsertAction extends AppModel {
 		debug($articles);
 		// DBに存在しないデータを追加
 		$this->saveNotExistArticles($articles);
+*/
 	}
 
 
@@ -185,7 +214,7 @@ class ArticleInsertAction extends AppModel {
 			// サイトのURLと同じ、もしくは"サイトのURL/index.～"の場合はfalse
 			if ($url == $siteUrl || $url == "{$siteUrl}/") {
 				return false;
-			} else if (preg_match('/' . $escSiteUrl . '.*index\.[\w]+/', $url)) {
+			} else if (preg_match('/' . $escSiteUrl . '.*index[\w\.\-_]+/', $url)) {
 				return false;
 			}
 

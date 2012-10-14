@@ -31,24 +31,28 @@ class Article extends AppModel{
 
 	/**
 	 * 24時間以内の記事を取得
+	 *
+	 * @return array $results
 	 */
-	public function selectTodaysArticles() {
+	public function selectTodaysArticles($categoryId = null) {
 
 		$yesterday = date('Y-m-d', strtotime('-1 day'));
 
+		if ( !is_null($categoryId)) {
+			$conditions = array('Article.created >' => $yesterday, 'Site.category_id' => $categoryId);
+		} else {
+			$conditions = array('Article.created >' => $yesterday);
+		}
+
 		$options = array(
-				'conditions' => array(
-					'Article.created >' => $yesterday
-						),
-				'order' => 'tweeted_count DESC',
+				'conditions' => $conditions,
+				'order' => 'Article.tweeted_count DESC',
 				'limit' => self::LIMIT_COUNT
 				);
 
 		$results = $this->find('all', $options);
 
-//debug($results);
-
-return $results;
+		return $results;
 	}
 
 }

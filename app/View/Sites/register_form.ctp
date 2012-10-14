@@ -31,9 +31,12 @@
 
 
 <?php
+$categories = array(1 => 'ニュース', 2 => '2ch', 3 => 'ブログ');
+
 echo $this->Form->create(array('action' => './register'));
 //echo $this->Form->input('Site.name', array('type' => 'hidden'));
 echo $this->Form->input('Site.url');
+echo $this->Form->select('Site.category_id', $categories);
 echo $this->Form->submit('登録');
 echo $this->Form->end();
 ?>

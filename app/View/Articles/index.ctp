@@ -1,7 +1,7 @@
 <p>記事のリスト</p>
 <p>
-	<a href = "/articles/index">すべて</a>　
-<?php echo $this->Html->link( 'ニュース',
+<?php 	echo $this->Html->link( 'すべて') . '　　';
+		echo $this->Html->link( 'ニュース',
 		array(
 			'controller' => 'articles',
 			'action' => 'index',

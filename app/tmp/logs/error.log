@@ -1,0 +1,1259 @@
+2012-09-25 20:19:30 Error: [MissingViewException] View file "C:\Users\Public\Documents\www\FootBlogNavi\app\View\Site\insert.ctp" is missing.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\View\View.php(472): View->_getViewFileName(NULL)
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(957): View->render(NULL, NULL)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(SiteController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-09-25 20:35:48 Error: [MissingViewException] View file "C:\Users\Public\Documents\www\FootBlogNavi\app\View\Site\manual_register.ctp" is missing.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\View\View.php(472): View->_getViewFileName(NULL)
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(957): View->render(NULL, NULL)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(SiteController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-09-25 21:01:34 Error: [MissingViewException] View file "C:\Users\Public\Documents\www\FootBlogNavi\app\View\Site\index.ctp" is missing.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\View\View.php(472): View->_getViewFileName('index')
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(957): View->render('index', NULL)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\SiteController.php(16): Controller->render('index')
+#3 [internal function]: SiteController->insert()
+#4 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(SiteController), Array)
+#5 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#6 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(SiteController), Object(CakeRequest), Object(CakeResponse))
+#7 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-09-25 21:01:45 Error: [MissingActionException] Action SiteController::index() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(SiteController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-25 21:01:57 Error: [MissingViewException] View file "C:\Users\Public\Documents\www\FootBlogNavi\app\View\Site\index.ctp" is missing.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\View\View.php(472): View->_getViewFileName('index')
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(957): View->render('index', NULL)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\SiteController.php(16): Controller->render('index')
+#3 [internal function]: SiteController->index()
+#4 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(SiteController), Array)
+#5 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#6 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(SiteController), Object(CakeRequest), Object(CakeResponse))
+#7 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-09-25 21:03:02 Error: [MissingControllerException] Controller class SitesController could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-09-25 21:03:16 Error: [MissingViewException] View file "C:\Users\Public\Documents\www\FootBlogNavi\app\View\Site\index.ctp" is missing.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\View\View.php(472): View->_getViewFileName('index')
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(957): View->render('index', NULL)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\SitesController.php(16): Controller->render('index')
+#3 [internal function]: SitesController->index()
+#4 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(SitesController), Array)
+#5 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#6 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(SitesController), Object(CakeRequest), Object(CakeResponse))
+#7 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-09-25 21:08:59 Error: [MissingControllerException] Controller class SiteController could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-09-25 21:32:11 Error: Fatal Error (1): Call to a member function create() on a non-object in [C:\Users\Public\Documents\www\FootBlogNavi\app\View\Sites\register_form.ctp, line 32]
+2012-09-25 21:32:11 Error: [FatalErrorException] Call to a member function create() on a non-object
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\Users\Public...', 32)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\Users\Public...', 32, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\Users\Public...', 32, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-25 21:32:56 Error: Fatal Error (1): Call to a member function create() on a non-object in [C:\Users\Public\Documents\www\FootBlogNavi\app\View\Sites\register_form.ctp, line 32]
+2012-09-25 21:32:56 Error: [FatalErrorException] Call to a member function create() on a non-object
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\Users\Public...', 32)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\Users\Public...', 32, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\Users\Public...', 32, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-26 01:36:31 Error: [MissingViewException] View file "C:\Users\Public\Documents\www\FootBlogNavi\app\View\Sites\register_by_form.ctp" is missing.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\View\View.php(472): View->_getViewFileName(NULL)
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(957): View->render(NULL, NULL)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(SitesController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-09-26 01:37:57 Error: Fatal Error (1): Call to undefined function insert() in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\SitesController.php, line 27]
+2012-09-26 01:37:57 Error: [FatalErrorException] Call to undefined function insert()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\Users\Public...', 27)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\Users\Public...', 27, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\Users\Public...', 27, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-26 16:33:28 Error: Fatal Error (1): Call to undefined method HttpComponent::getSiteNameByFopen() in [C:\Users\Public\Documents\www\FootBlogNavi\app\Test\Case\Controller\Component\HttpComponentTest.php, line 68]
+2012-09-26 16:33:28 Error: [FatalErrorException] Call to undefined method HttpComponent::getSiteNameByFopen()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\Users\Public...', 68)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\Users\Public...', 68, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\Users\Public...', 68, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-26 17:09:21 Error: [MissingControllerException] Controller class UsersController could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-09-26 17:09:30 Error: [MissingControllerException] Controller class UsersController could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-09-26 17:09:36 Error: [MissingControllerException] Controller class UsersController could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-09-26 19:55:23 Error: Fatal Error (4): syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\SitesController.php, line 47]
+2012-09-26 19:55:23 Error: [FatalErrorException] syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING)
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\Users\Public...', 47)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\Users\Public...', 47, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\Users\Public...', 47, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-26 19:55:44 Error: [MissingActionException] Action SitesController::registerByForm() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(SitesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-26 20:06:22 Error: [MissingActionException] Action SitesController::list() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(SitesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-26 20:06:27 Error: [MissingActionException] Action SitesController::list() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(SitesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-26 20:07:05 Error: [MissingActionException] Action SitesController::list() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(SitesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-26 20:07:08 Error: [MissingActionException] Action SitesController::list() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(SitesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-27 13:43:36 Error: Fatal Error (1): Class 'Component' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\HttpUtilComponent.php, line 10]
+2012-09-27 13:43:36 Error: [FatalErrorException] Class 'Component' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'Componen...', 'C:\Users\Public...', 10)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Componen...', 'C:\Users\Public...', 10, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Componen...', 'C:\Users\Public...', 10, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 13:44:08 Error: Fatal Error (1): Class 'Component' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\HttpComponent.php, line 10]
+2012-09-27 13:44:08 Error: [FatalErrorException] Class 'Component' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'Componen...', 'C:\Users\Public...', 10)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Componen...', 'C:\Users\Public...', 10, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Componen...', 'C:\Users\Public...', 10, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 13:44:25 Error: Fatal Error (1): Class 'Component' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\HttpUtilComponent.php, line 10]
+2012-09-27 13:44:25 Error: [FatalErrorException] Class 'Component' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'Componen...', 'C:\Users\Public...', 10)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Componen...', 'C:\Users\Public...', 10, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Componen...', 'C:\Users\Public...', 10, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 13:45:11 Error: Fatal Error (1): Class 'Component' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\HttpUtilComponent.php, line 10]
+2012-09-27 13:45:11 Error: [FatalErrorException] Class 'Component' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'Componen...', 'C:\Users\Public...', 10)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Componen...', 'C:\Users\Public...', 10, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Componen...', 'C:\Users\Public...', 10, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 13:46:37 Error: Fatal Error (1): Class 'Component' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\HttpComponent.php, line 10]
+2012-09-27 13:46:37 Error: [FatalErrorException] Class 'Component' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'Componen...', 'C:\Users\Public...', 10)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Componen...', 'C:\Users\Public...', 10, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Componen...', 'C:\Users\Public...', 10, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 13:50:48 Error: Fatal Error (1): Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure() in [C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\TestSuite\Reporter\CakeHtmlReporter.php, line 252]
+2012-09-27 13:50:48 Error: [FatalErrorException] Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\Users\Public...', 252)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\Users\Public...', 252, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\Users\Public...', 252, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 13:51:34 Error: Fatal Error (1): Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure() in [C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\TestSuite\Reporter\CakeHtmlReporter.php, line 252]
+2012-09-27 13:51:34 Error: [FatalErrorException] Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\Users\Public...', 252)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\Users\Public...', 252, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\Users\Public...', 252, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 13:52:40 Error: Fatal Error (1): Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure() in [C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\TestSuite\Reporter\CakeHtmlReporter.php, line 252]
+2012-09-27 13:52:40 Error: [FatalErrorException] Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\Users\Public...', 252)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\Users\Public...', 252, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\Users\Public...', 252, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 13:52:58 Error: Fatal Error (1): Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure() in [C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\TestSuite\Reporter\CakeHtmlReporter.php, line 252]
+2012-09-27 13:52:58 Error: [FatalErrorException] Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\Users\Public...', 252)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\Users\Public...', 252, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\Users\Public...', 252, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 13:53:23 Error: Fatal Error (1): Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure() in [C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\TestSuite\Reporter\CakeHtmlReporter.php, line 252]
+2012-09-27 13:53:23 Error: [FatalErrorException] Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\Users\Public...', 252)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\Users\Public...', 252, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\Users\Public...', 252, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 13:53:30 Error: Fatal Error (1): Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure() in [C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\TestSuite\Reporter\CakeHtmlReporter.php, line 252]
+2012-09-27 13:53:30 Error: [FatalErrorException] Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\Users\Public...', 252)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\Users\Public...', 252, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\Users\Public...', 252, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 13:53:50 Error: Fatal Error (1): Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure() in [C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\TestSuite\Reporter\CakeHtmlReporter.php, line 252]
+2012-09-27 13:53:50 Error: [FatalErrorException] Call to undefined method PHPUnit_Framework_AssertionFailedError::getComparisonFailure()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\Users\Public...', 252)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\Users\Public...', 252, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\Users\Public...', 252, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 13:54:15 Error: Fatal Error (1): Class 'Component' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\HttpUtilComponent.php, line 10]
+2012-09-27 13:54:15 Error: [FatalErrorException] Class 'Component' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'Componen...', 'C:\Users\Public...', 10)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Componen...', 'C:\Users\Public...', 10, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Componen...', 'C:\Users\Public...', 10, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 13:54:36 Error: Fatal Error (1): Class 'Component' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Test\Case\Controller\Component\HttpUtilComponentTest.php, line 78]
+2012-09-27 13:54:36 Error: [FatalErrorException] Class 'Component' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'Componen...', 'C:\Users\Public...', 78)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Componen...', 'C:\Users\Public...', 78, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Componen...', 'C:\Users\Public...', 78, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 13:58:12 Error: Fatal Error (1): Class 'HttpUtilComponent' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\SitesController.php, line 74]
+2012-09-27 13:58:12 Error: [FatalErrorException] Class 'HttpUtilComponent' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'HttpUtil...', 'C:\Users\Public...', 74)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'HttpUtil...', 'C:\Users\Public...', 74, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'HttpUtil...', 'C:\Users\Public...', 74, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 14:03:54 Error: Fatal Error (1): Class 'Component' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\HttpComponent.php, line 10]
+2012-09-27 14:03:54 Error: [FatalErrorException] Class 'Component' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'Componen...', 'C:\Users\Public...', 10)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Componen...', 'C:\Users\Public...', 10, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Componen...', 'C:\Users\Public...', 10, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 14:09:06 Error: Fatal Error (1): Class 'Component' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\HttpComponent.php, line 10]
+2012-09-27 14:09:06 Error: [FatalErrorException] Class 'Component' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'Componen...', 'C:\Users\Public...', 10)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Componen...', 'C:\Users\Public...', 10, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Componen...', 'C:\Users\Public...', 10, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 14:57:40 Error: Fatal Error (1): Class 'Component' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\HttpComponent.php, line 10]
+2012-09-27 14:57:40 Error: [FatalErrorException] Class 'Component' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'Componen...', 'C:\Users\Public...', 10)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Componen...', 'C:\Users\Public...', 10, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Componen...', 'C:\Users\Public...', 10, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 15:22:23 Error: [MissingControllerException] Controller class SiteController could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-09-27 15:48:45 Error: Fatal Error (1): Call to a member function find() on a non-object in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php, line 32]
+2012-09-27 15:48:45 Error: [FatalErrorException] Call to a member function find() on a non-object
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\Users\Public...', 32)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\Users\Public...', 32, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\Users\Public...', 32, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-27 15:49:57 Error: [MissingViewException] View file "C:\Users\Public\Documents\www\FootBlogNavi\app\View\Articles\index.ctp" is missing.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\View\View.php(472): View->_getViewFileName(NULL)
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(957): View->render(NULL, NULL)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-09-27 15:50:58 Error: [MissingViewException] View file "C:\Users\Public\Documents\www\FootBlogNavi\app\View\Articles\search_tweet.ctp" is missing.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\View\View.php(472): View->_getViewFileName(NULL)
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(957): View->render(NULL, NULL)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-09-27 15:52:51 Error: [MissingComponentException] Component class HttpComponent could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\ComponentCollection.php(52): ComponentCollection->load('Http', Array)
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(635): ComponentCollection->init(Object(SitesController))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(182): Controller->constructClasses()
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(SitesController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-09-27 15:52:54 Error: [MissingComponentException] Component class HttpComponent could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\ComponentCollection.php(52): ComponentCollection->load('Http', Array)
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(635): ComponentCollection->init(Object(SitesController))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(182): Controller->constructClasses()
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(SitesController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-09-27 15:52:57 Error: [MissingComponentException] Component class HttpComponent could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\ComponentCollection.php(52): ComponentCollection->load('Http', Array)
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(635): ComponentCollection->init(Object(SitesController))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(182): Controller->constructClasses()
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(SitesController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-09-28 17:19:05 Error: Fatal Error (1): Class 'BaseModelTest' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Test\Case\Model\TweetSearcherTest.php, line 11]
+2012-09-28 17:19:05 Error: [FatalErrorException] Class 'BaseModelTest' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'BaseMode...', 'C:\Users\Public...', 11)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'BaseMode...', 'C:\Users\Public...', 11, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'BaseMode...', 'C:\Users\Public...', 11, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-28 19:41:43 Error: Fatal Error (1): Call to a member function exec() on a non-object in [C:\Users\Public\Documents\www\FootBlogNavi\app\Test\Case\Model\TweetSearcherTest.php, line 25]
+2012-09-28 19:41:43 Error: [FatalErrorException] Call to a member function exec() on a non-object
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\Users\Public...', 25)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\Users\Public...', 25, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\Users\Public...', 25, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-28 20:04:04 Error: [MissingTableException] Table tweet_searchers for model TweetSearcher was not found in datasource default.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(3179): Model->setSource('tweet_searchers')
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(784): Model->getDataSource()
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(100): Model->__call('demo', Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(100): AppModel->demo()
+#4 [internal function]: ArticlesController->test()
+#5 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ArticlesController), Array)
+#6 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#7 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest), Object(CakeResponse))
+#8 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2012-09-28 20:06:14 Error: [MissingTableException] Table tweet_searchers for model TweetSearcher was not found in datasource default.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(3179): Model->setSource('tweet_searchers')
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(784): Model->getDataSource()
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(100): Model->__call('demo', Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(100): AppModel->demo()
+#4 [internal function]: ArticlesController->test()
+#5 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ArticlesController), Array)
+#6 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#7 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest), Object(CakeResponse))
+#8 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2012-09-28 20:08:15 Error: [MissingTableException] Table tweet_searchers for model TweetSearcher was not found in datasource default.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(3179): Model->setSource('tweet_searchers')
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(784): Model->getDataSource()
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(100): Model->__call('demo', Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(100): AppModel->demo()
+#4 [internal function]: ArticlesController->test()
+#5 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ArticlesController), Array)
+#6 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#7 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest), Object(CakeResponse))
+#8 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2012-09-28 20:09:33 Error: [MissingTableException] Table tweet_searchers for model TweetSearcher was not found in datasource default.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(3179): Model->setSource('tweet_searchers')
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(784): Model->getDataSource()
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(100): Model->__call('demo', Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(100): AppModel->demo()
+#4 [internal function]: ArticlesController->test()
+#5 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ArticlesController), Array)
+#6 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#7 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest), Object(CakeResponse))
+#8 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2012-09-28 20:09:51 Error: [MissingTableException] Table tweet_searchers for model TweetSearcher was not found in datasource default.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(3179): Model->setSource('tweet_searchers')
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(784): Model->getDataSource()
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(100): Model->__call('demoTest', Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(100): AppModel->demoTest()
+#4 [internal function]: ArticlesController->test()
+#5 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ArticlesController), Array)
+#6 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#7 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest), Object(CakeResponse))
+#8 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2012-09-28 20:24:59 Error: [MissingTableException] Table searchers for model Searcher was not found in datasource default.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(3179): Model->setSource('searchers')
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(784): Model->getDataSource()
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(98): Model->__call('test', Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(98): AppModel->test()
+#4 [internal function]: ArticlesController->test()
+#5 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ArticlesController), Array)
+#6 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#7 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest), Object(CakeResponse))
+#8 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2012-09-28 20:26:22 Error: [MissingTableException] Table searchers for model Searcher was not found in datasource default.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(3179): Model->setSource('searchers')
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(784): Model->getDataSource()
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(98): Model->__call('test', Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(98): AppModel->test()
+#4 [internal function]: ArticlesController->test()
+#5 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ArticlesController), Array)
+#6 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#7 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest), Object(CakeResponse))
+#8 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2012-09-28 20:27:03 Error: [MissingTableException] Table searchers for model Searcher was not found in datasource default.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(3179): Model->setSource('searchers')
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(784): Model->getDataSource()
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(98): Model->__call('test', Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(98): AppModel->test()
+#4 [internal function]: ArticlesController->test()
+#5 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ArticlesController), Array)
+#6 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#7 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest), Object(CakeResponse))
+#8 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2012-09-28 20:29:08 Error: [MissingTableException] Table searches for model Search was not found in datasource default.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(3179): Model->setSource('searches')
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(784): Model->getDataSource()
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(98): Model->__call('test', Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(98): AppModel->test()
+#4 [internal function]: ArticlesController->test()
+#5 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ArticlesController), Array)
+#6 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#7 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest), Object(CakeResponse))
+#8 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2012-09-28 20:34:23 Error: [MissingTableException] Table searchers for model Searcher was not found in datasource default.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(3179): Model->setSource('searchers')
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(784): Model->getDataSource()
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(98): Model->__call('test', Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(98): AppModel->test()
+#4 [internal function]: ArticlesController->test()
+#5 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ArticlesController), Array)
+#6 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#7 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest), Object(CakeResponse))
+#8 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2012-09-28 20:35:04 Error: Fatal Error (64): Cannot redeclare class Search in [C:\Users\Public\Documents\www\FootBlogNavi\app\Model\Searcher.php, line 32]
+2012-09-28 20:35:04 Error: [FatalErrorException] Cannot redeclare class Search
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\Users\Public...', 32)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\Users\Public...', 32, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\Users\Public...', 32, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-28 20:37:03 Error: [MissingActionException] Action ArticlesController::exec() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-28 20:37:18 Error: Fatal Error (1): Call to undefined function searchSingleThread() in [C:\Users\Public\Documents\www\FootBlogNavi\app\Model\Searcher.php, line 41]
+2012-09-28 20:37:18 Error: [FatalErrorException] Call to undefined function searchSingleThread()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\Users\Public...', 41)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\Users\Public...', 41, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\Users\Public...', 41, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-28 20:37:31 Error: Fatal Error (1): Call to a member function getAllSites() on a non-object in [C:\Users\Public\Documents\www\FootBlogNavi\app\Model\Searcher.php, line 55]
+2012-09-28 20:37:31 Error: [FatalErrorException] Call to a member function getAllSites() on a non-object
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\Users\Public...', 55)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\Users\Public...', 55, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\Users\Public...', 55, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-28 20:38:49 Error: Fatal Error (1): Call to a member function getAllSites() on a non-object in [C:\Users\Public\Documents\www\FootBlogNavi\app\Model\Searcher.php, line 57]
+2012-09-28 20:38:49 Error: [FatalErrorException] Call to a member function getAllSites() on a non-object
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\Users\Public...', 57)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\Users\Public...', 57, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\Users\Public...', 57, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-28 22:23:01 Error: Fatal Error (1): Call to undefined function curl_multi_init() in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\HttpParallelComponent.php, line 75]
+2012-09-28 22:23:01 Error: [FatalErrorException] Call to undefined function curl_multi_init()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\Users\Public...', 75)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\Users\Public...', 75, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\Users\Public...', 75, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-28 22:29:21 Error: Fatal Error (1): Call to undefined function curl_multi_init() in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\HttpParallelComponent.php, line 75]
+2012-09-28 22:29:21 Error: [FatalErrorException] Call to undefined function curl_multi_init()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\Users\Public...', 75)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\Users\Public...', 75, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\Users\Public...', 75, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-30 16:28:49 Error: Fatal Error (1): Class 'ComponentCollection' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Test\Case\Controller\Component\CurlDemoComponentTest.php, line 14]
+2012-09-30 16:28:49 Error: [FatalErrorException] Class 'ComponentCollection' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'Componen...', 'C:\Users\Public...', 14)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Componen...', 'C:\Users\Public...', 14, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Componen...', 'C:\Users\Public...', 14, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-30 16:32:18 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:32:19 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:33:17 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:33:17 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:33:17 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:33:18 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:33:18 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:33:17 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:33:18 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:33:18 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:33:18 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:33:18 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:33:18 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:33:18 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:33:18 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:33:18 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:33:18 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:34:47 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-09-30 16:40:20 Error: Fatal Error (4): syntax error, unexpected '$result' (T_VARIABLE) in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\CurlDemoComponent.php, line 24]
+2012-09-30 16:40:20 Error: [FatalErrorException] syntax error, unexpected '$result' (T_VARIABLE)
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\Users\Public...', 24)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\Users\Public...', 24, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\Users\Public...', 24, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-09-30 21:08:35 Error: Fatal Error (4): syntax error, unexpected '}' in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\CurlDemoComponent.php, line 108]
+2012-09-30 21:08:35 Error: [FatalErrorException] syntax error, unexpected '}'
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\Users\Public...', 108)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\Users\Public...', 108, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\Users\Public...', 108, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-01 15:28:48 Error: Fatal Error (64): Cannot redeclare CurlMultiComponent::getHeaders() in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\CurlMultiComponent.php, line 65]
+2012-10-01 15:28:48 Error: [FatalErrorException] Cannot redeclare CurlMultiComponent::getHeaders()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\Users\Public...', 65)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\Users\Public...', 65, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\Users\Public...', 65, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-01 15:29:22 Error: Fatal Error (64): Cannot redeclare CurlMultiComponent::getContents() in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\CurlMultiComponent.php, line 65]
+2012-10-01 15:29:22 Error: [FatalErrorException] Cannot redeclare CurlMultiComponent::getContents()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\Users\Public...', 65)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\Users\Public...', 65, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\Users\Public...', 65, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-01 15:38:54 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 130809856 bytes) in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\CurlMultiComponent.php, line 105]
+2012-10-01 15:38:54 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 130809856 bytes)
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\Users\Public...', 105)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\Users\Public...', 105, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\Users\Public...', 105, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-07 11:25:17 Error: Fatal Error (1): Class 'ArticleInsertAction' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Test\Case\Model\ArticleInsertActionTest.php, line 18]
+2012-10-07 11:25:17 Error: [FatalErrorException] Class 'ArticleInsertAction' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'ArticleI...', 'C:\Users\Public...', 18)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'ArticleI...', 'C:\Users\Public...', 18, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'ArticleI...', 'C:\Users\Public...', 18, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-07 21:05:18 Error: Fatal Error (1): Cannot use object of type stdClass as array in [C:\Users\Public\Documents\www\FootBlogNavi\app\Model\ArticleInsertAction.php, line 83]
+2012-10-07 21:05:18 Error: [FatalErrorException] Cannot use object of type stdClass as array
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Cannot use obje...', 'C:\Users\Public...', 83)
+#1 [internal function]: ErrorHandler::handleError(1, 'Cannot use obje...', 'C:\Users\Public...', 83, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Cannot use obje...', 'C:\Users\Public...', 83, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-07 21:07:00 Error: Fatal Error (1): Cannot use object of type stdClass as array in [C:\Users\Public\Documents\www\FootBlogNavi\app\Model\ArticleInsertAction.php, line 83]
+2012-10-07 21:07:00 Error: [FatalErrorException] Cannot use object of type stdClass as array
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Cannot use obje...', 'C:\Users\Public...', 83)
+#1 [internal function]: ErrorHandler::handleError(1, 'Cannot use obje...', 'C:\Users\Public...', 83, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Cannot use obje...', 'C:\Users\Public...', 83, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-09 12:25:30 Error: Fatal Error (4): syntax error, unexpected '=', expecting ')' in [C:\Users\Public\Documents\www\FootBlogNavi\app\Model\ArticleInsertAction.php, line 106]
+2012-10-09 12:25:30 Error: [FatalErrorException] syntax error, unexpected '=', expecting ')'
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\Users\Public...', 106)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\Users\Public...', 106, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\Users\Public...', 106, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-12 08:48:49 Error: Fatal Error (1): Unsupported operand types in [C:\Users\Public\Documents\www\FootBlogNavi\app\Test\Case\Model\ArticleTest.php, line 89]
+2012-10-12 08:48:49 Error: [FatalErrorException] Unsupported operand types
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Unsupported ope...', 'C:\Users\Public...', 89)
+#1 [internal function]: ErrorHandler::handleError(1, 'Unsupported ope...', 'C:\Users\Public...', 89, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Unsupported ope...', 'C:\Users\Public...', 89, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-12 08:49:17 Error: Fatal Error (1): Unsupported operand types in [C:\Users\Public\Documents\www\FootBlogNavi\app\Test\Case\Model\ArticleTest.php, line 90]
+2012-10-12 08:49:17 Error: [FatalErrorException] Unsupported operand types
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Unsupported ope...', 'C:\Users\Public...', 90)
+#1 [internal function]: ErrorHandler::handleError(1, 'Unsupported ope...', 'C:\Users\Public...', 90, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Unsupported ope...', 'C:\Users\Public...', 90, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-12 11:55:39 Error: Fatal Error (1): Call to undefined function createApiRequestUrl() in [C:\Users\Public\Documents\www\FootBlogNavi\app\Model\ArticleInsertAction.php, line 210]
+2012-10-12 11:55:39 Error: [FatalErrorException] Call to undefined function createApiRequestUrl()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\Users\Public...', 210)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\Users\Public...', 210, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\Users\Public...', 210, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-12 16:00:18 Error: Fatal Error (64): Cannot redeclare ArticleInsertActionTest::formatUrlForSearchTest() in [C:\Users\Public\Documents\www\FootBlogNavi\app\Test\Case\Model\ArticleInsertActionTest.php, line 79]
+2012-10-12 16:00:18 Error: [FatalErrorException] Cannot redeclare ArticleInsertActionTest::formatUrlForSearchTest()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\Users\Public...', 79)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\Users\Public...', 79, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\Users\Public...', 79, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-12 17:10:33 Error: Fatal Error (1): Undefined class constant 'RPP' in [C:\Users\Public\Documents\www\FootBlogNavi\app\Model\TwitterAPIAccessor.php, line 137]
+2012-10-12 17:10:33 Error: [FatalErrorException] Undefined class constant 'RPP'
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Undefined class...', 'C:\Users\Public...', 137)
+#1 [internal function]: ErrorHandler::handleError(1, 'Undefined class...', 'C:\Users\Public...', 137, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Undefined class...', 'C:\Users\Public...', 137, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-12 17:41:57 Error: Fatal Error (1): Call to a member function expandUrls() on a non-object in [C:\Users\Public\Documents\www\FootBlogNavi\app\Model\ArticleInsertAction.php, line 129]
+2012-10-12 17:41:57 Error: [FatalErrorException] Call to a member function expandUrls() on a non-object
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\Users\Public...', 129)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\Users\Public...', 129, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\Users\Public...', 129, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-12 22:21:44 Error: Fatal Error (1): Unsupported operand types in [C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Router.php, line 751]
+2012-10-12 22:21:44 Error: [FatalErrorException] Unsupported operand types
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Unsupported ope...', 'C:\Users\Public...', 751)
+#1 [internal function]: ErrorHandler::handleError(1, 'Unsupported ope...', 'C:\Users\Public...', 751, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Unsupported ope...', 'C:\Users\Public...', 751, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-12 22:22:09 Error: Fatal Error (1): Unsupported operand types in [C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Router.php, line 751]
+2012-10-12 22:22:09 Error: [FatalErrorException] Unsupported operand types
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Unsupported ope...', 'C:\Users\Public...', 751)
+#1 [internal function]: ErrorHandler::handleError(1, 'Unsupported ope...', 'C:\Users\Public...', 751, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Unsupported ope...', 'C:\Users\Public...', 751, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-12 22:24:35 Error: Fatal Error (1): Unsupported operand types in [C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Router.php, line 751]
+2012-10-12 22:24:35 Error: [FatalErrorException] Unsupported operand types
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Unsupported ope...', 'C:\Users\Public...', 751)
+#1 [internal function]: ErrorHandler::handleError(1, 'Unsupported ope...', 'C:\Users\Public...', 751, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Unsupported ope...', 'C:\Users\Public...', 751, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-12 22:25:47 Error: [MissingActionException] Action ArticlesController::articles() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-10-12 22:28:36 Error: [MissingActionException] Action ArticlesController::articles() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-10-12 23:57:28 Error: [MissingActionException] Action ArticlesController::site() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-10-13 00:04:17 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'name' cannot be null
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Datasource\DboSource.php(461): PDOStatement->execute(Array)
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Datasource\DboSource.php(427): DboSource->_execute('INSERT INTO `fo...', Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Datasource\DboSource.php(1009): DboSource->execute('INSERT INTO `fo...')
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(1730): DboSource->create(Object(Site), Array, Array)
+#4 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\SitesController.php(53): Model->save(Array)
+#5 [internal function]: SitesController->register()
+#6 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(SitesController), Array)
+#7 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#8 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(SitesController), Object(CakeRequest), Object(CakeResponse))
+#9 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-10-13 00:07:16 Error: Fatal Error (4): syntax error, unexpected ''<br />'' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in [C:\Users\Public\Documents\www\FootBlogNavi\app\View\Articles\index.ctp, line 5]
+2012-10-13 00:07:16 Error: [FatalErrorException] syntax error, unexpected ''<br />'' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';'
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\Users\Public...', 5)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\Users\Public...', 5, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\Users\Public...', 5, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-14 05:48:29 Error: Fatal Error (1): Class 'HTTP_Request' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Test\Case\Model\TweetSearcherTest.php, line 43]
+2012-10-14 05:48:29 Error: [FatalErrorException] Class 'HTTP_Request' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'HTTP_Req...', 'C:\Users\Public...', 43)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'HTTP_Req...', 'C:\Users\Public...', 43, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'HTTP_Req...', 'C:\Users\Public...', 43, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-14 12:46:36 Error: Fatal Error (1): Unsupported operand types in [C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\View\Helper\FormHelper.php, line 1809]
+2012-10-14 12:46:36 Error: [FatalErrorException] Unsupported operand types
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Unsupported ope...', 'C:\Users\Public...', 1809)
+#1 [internal function]: ErrorHandler::handleError(1, 'Unsupported ope...', 'C:\Users\Public...', 1809, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Unsupported ope...', 'C:\Users\Public...', 1809, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-14 12:48:48 Error: Fatal Error (1): Unsupported operand types in [C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\View\Helper\FormHelper.php, line 1809]
+2012-10-14 12:48:48 Error: [FatalErrorException] Unsupported operand types
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Unsupported ope...', 'C:\Users\Public...', 1809)
+#1 [internal function]: ErrorHandler::handleError(1, 'Unsupported ope...', 'C:\Users\Public...', 1809, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Unsupported ope...', 'C:\Users\Public...', 1809, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-14 12:50:53 Error: Fatal Error (1): Unsupported operand types in [C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\View\Helper\FormHelper.php, line 1809]
+2012-10-14 12:50:53 Error: [FatalErrorException] Unsupported operand types
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Unsupported ope...', 'C:\Users\Public...', 1809)
+#1 [internal function]: ErrorHandler::handleError(1, 'Unsupported ope...', 'C:\Users\Public...', 1809, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Unsupported ope...', 'C:\Users\Public...', 1809, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-14 12:58:21 Error: [MissingViewException] View file "C:\Users\Public\Documents\www\FootBlogNavi\app\View\Sites\update.ctp" is missing.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\View\View.php(472): View->_getViewFileName(NULL)
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(957): View->render(NULL, NULL)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(SitesController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-14 12:59:00 Error: [MissingViewException] View file "C:\Users\Public\Documents\www\FootBlogNavi\app\View\Sites\update.ctp" is missing.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\View\View.php(472): View->_getViewFileName(NULL)
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(957): View->render(NULL, NULL)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(SitesController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-14 13:35:37 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Article.category_id' in 'where clause'
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Datasource\DboSource.php(461): PDOStatement->execute(Array)
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Datasource\DboSource.php(427): DboSource->_execute('SELECT `Article...', Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Datasource\DboSource.php(671): DboSource->execute('SELECT `Article...', Array, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Datasource\DboSource.php(1082): DboSource->fetchAll('SELECT `Article...', true)
+#4 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(2630): DboSource->read(Object(Article), Array)
+#5 C:\Users\Public\Documents\www\FootBlogNavi\app\Model\Article.php(53): Model->find('all', Array)
+#6 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(40): Article->selectTodaysArticles('2')
+#7 [internal function]: ArticlesController->index('2')
+#8 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ArticlesController), Array)
+#9 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#10 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest), Object(CakeResponse))
+#11 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2012-10-14 13:54:52 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'getSitesOfCatgories' at line 1
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Datasource\DboSource.php(461): PDOStatement->execute(Array)
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Datasource\DboSource.php(427): DboSource->_execute('getSitesOfCatgo...', Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Datasource\DboSource.php(671): DboSource->execute('getSitesOfCatgo...', Array, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Datasource\DboSource.php(613): DboSource->fetchAll('getSitesOfCatgo...', Array, Array)
+#4 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Model.php(784): DboSource->query('getSitesOfCatgo...', Array, Object(Site))
+#5 C:\Users\Public\Documents\www\FootBlogNavi\app\Model\ArticleInsertAction.php(107): Model->__call('getSitesOfCatgo...', Array)
+#6 C:\Users\Public\Documents\www\FootBlogNavi\app\Model\ArticleInsertAction.php(107): Site->getSitesOfCatgories('1')
+#7 C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\ArticlesController.php(48): ArticleInsertAction->exec()
+#8 [internal function]: ArticlesController->insert()
+#9 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ArticlesController), Array)
+#10 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#11 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ArticlesController), Object(CakeRequest), Object(CakeResponse))
+#12 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2012-10-15 00:08:14 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\CurlMultiComponent.php, line 149]
+2012-10-15 00:08:14 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\Users\Public...', 149)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\Users\Public...', 149, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\Users\Public...', 149, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-15 00:21:44 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\CurlMultiComponent.php, line 149]
+2012-10-15 00:21:44 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\Users\Public...', 149)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\Users\Public...', 149, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\Users\Public...', 149, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-15 00:22:36 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\CurlMultiComponent.php, line 71]
+2012-10-15 00:22:36 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\Users\Public...', 71)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\Users\Public...', 71, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\Users\Public...', 71, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-16 12:58:11 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\CurlMultiComponent.php, line 71]
+2012-10-16 12:58:11 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\Users\Public...', 71)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\Users\Public...', 71, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\Users\Public...', 71, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-16 13:58:11 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\CurlMultiComponent.php, line 71]
+2012-10-16 13:58:11 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\Users\Public...', 71)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\Users\Public...', 71, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\Users\Public...', 71, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-17 03:31:25 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\CurlMultiComponent.php, line 71]
+2012-10-17 03:31:25 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\Users\Public...', 71)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\Users\Public...', 71, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\Users\Public...', 71, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-17 04:31:25 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\CurlMultiComponent.php, line 149]
+2012-10-17 04:31:25 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\Users\Public...', 149)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\Users\Public...', 149, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\Users\Public...', 149, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-17 08:31:25 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\CurlMultiComponent.php, line 149]
+2012-10-17 08:31:25 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\Users\Public...', 149)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\Users\Public...', 149, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\Users\Public...', 149, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-17 08:55:30 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\CurlMultiComponent.php, line 71]
+2012-10-17 08:55:30 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\Users\Public...', 71)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\Users\Public...', 71, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\Users\Public...', 71, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-17 09:31:25 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\CurlMultiComponent.php, line 71]
+2012-10-17 09:31:25 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\Users\Public...', 71)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\Users\Public...', 71, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\Users\Public...', 71, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-17 10:31:25 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\CurlMultiComponent.php, line 149]
+2012-10-17 10:31:25 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\Users\Public...', 149)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\Users\Public...', 149, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\Users\Public...', 149, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-17 11:31:25 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\CurlMultiComponent.php, line 71]
+2012-10-17 11:31:25 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\Users\Public...', 71)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\Users\Public...', 71, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\Users\Public...', 71, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-17 12:31:25 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\CurlMultiComponent.php, line 149]
+2012-10-17 12:31:25 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\Users\Public...', 149)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\Users\Public...', 149, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\Users\Public...', 149, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-17 20:22:45 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Model\Datasource\DboSource.php, line 461]
+2012-10-17 20:22:45 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'C:\Users\Public...', 461)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'C:\Users\Public...', 461, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'C:\Users\Public...', 461, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}

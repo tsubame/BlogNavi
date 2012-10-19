@@ -82,6 +82,16 @@ class ArticlesController extends Controller {
 	}
 
 	/**
+	 *
+	 */
+	public function insertAndUpdate() {
+		$this->insert();
+		$this->update();
+
+		$this->render('update');
+	}
+
+	/**
  	 * 記事の登録
  	 *
  	 */
@@ -89,14 +99,23 @@ class ArticlesController extends Controller {
 		$insertAction = ClassRegistry::init('ArticleInsertAction');
 		$insertAction->exec();
 
-		$this->render('index');
+		$this->update();
+	}
+
+	/**
+	 * ツイート数を取得して記事を更新
+	 */
+	public function update() {
+		$action = ClassRegistry::init('ArticleUpdateAction');
+		$action->exec();
 	}
 
 	/**
 	 * ツイート数を取得
 	 */
 	public function getTweetCount() {
-		
+		$action = ClassRegistry::init('ArticleGetTweetCountAction');
+		$action->exec();
 	}
 
 

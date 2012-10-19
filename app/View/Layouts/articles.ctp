@@ -26,6 +26,11 @@
 								'controller' => 'articles',
 								'action' => 'insert')
 				) . '　　';
+				echo $this->Html->link( 'ツイート数の更新',
+						array(
+								'controller' => 'articles',
+								'action' => 'getTweetCount')
+				) . '　　';
 			?>　
 		</div>
 		<div id="content">

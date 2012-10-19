@@ -1,7 +1,8 @@
 #tmp/*
 #config/database.php
-#app/tmp/*
-#app/config/database.php
+app/tmp/cache/persistent/*
+app/tmp/cache/models/*
+app/tmp/cache/views/*
 vendors/simplepie/tests/*
 app/webroot/cache/*
 !empty

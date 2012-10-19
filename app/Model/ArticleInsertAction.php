@@ -97,15 +97,4 @@ class ArticleInsertAction extends AppModel {
 		}
 	}
 
-	/**
-	 * 処理手順
-	 */
-	protected function logic() {
-
-		// 各フィードのうち、登録していないものをarticlesテーブルに登録
-
-	}
-
-
-
 }

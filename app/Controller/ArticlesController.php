@@ -73,7 +73,7 @@ class ArticlesController extends Controller {
 		if (isset($this->passedArgs[0])) {
 			$categoryId = $this->passedArgs[0];
 		} else {
-			$categoryId = 0;
+			$categoryId = null;
 		}
 
 		$results = $this->Article->selectTodaysArticles($categoryId);
@@ -90,6 +90,13 @@ class ArticlesController extends Controller {
 		$insertAction->exec();
 
 		$this->render('index');
+	}
+
+	/**
+	 * ツイート数を取得
+	 */
+	public function getTweetCount() {
+
 	}
 
 

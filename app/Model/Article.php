@@ -38,12 +38,12 @@ class Article extends AppModel{
 	 */
 	public function selectTodaysArticles($categoryId = null) {
 
-		$yesterday = date('Y-m-d', strtotime('-1 day'));
+		$yesterday = date('Y-m-d H:i:s', strtotime('-1 day'));
 
 		if ( !is_null($categoryId)) {
-			$conditions = array('Article.created >' => $yesterday, 'Site.category_id' => $categoryId);
+			$conditions = array('Article.published >' => $yesterday, 'Site.category_id' => $categoryId);
 		} else {
-			$conditions = array('Article.created >' => $yesterday);
+			$conditions = array('Article.published >' => $yesterday);
 		}
 
 		$options = array(
@@ -57,4 +57,33 @@ class Article extends AppModel{
 		return $results;
 	}
 
+	/**
+	 * 24時間以内の記事を取得
+	 *
+	 * @return array $results
+	 */
+	public function selectTodaysAllArticles($categoryId = null) {
+
+		$yesterday = date('Y-m-d H:i:s', strtotime('-1 day'));
+
+		if ( !is_null($categoryId)) {
+			$conditions = array('Article.published >' => $yesterday, 'Site.category_id' => $categoryId);
+		} else {
+			$conditions = array('Article.published >' => $yesterday);
+		}
+
+		$options = array(
+				'conditions' => $conditions
+		);
+
+		$results = $this->find('all', $options);
+
+		$articles = array();
+				// 配列に移し替え
+		foreach ($results as $data) {
+			array_push($articles, $data['Article']);
+		}
+
+		return $articles;
+	}
 }

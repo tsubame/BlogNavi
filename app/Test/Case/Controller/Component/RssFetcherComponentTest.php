@@ -21,15 +21,12 @@ class RssFetcherComponentTestCase extends CakeTestCase {
 
 
 	/**
-	 * デモ
 	 *
 	 * 正常系
 	 *
 	 * test
 	 */
 	public function getFeedTest() {
-		$url = 'http://sportsnavi.yahoo.co.jp/';
-
 		$urls = array(
 				'http://kyuukaiou.ldblog.jp/',
 				'http://ameblo.jp/nin-shin/',
@@ -42,7 +39,7 @@ class RssFetcherComponentTestCase extends CakeTestCase {
 				'http://sportiva.shueisha.co.jp/clm/wfootball/',
 				'http://japan.cnet.com/'
 			);
-
+/*
 		$urls = array(
 				'http://blog.livedoor.jp/domesoccer/index.rdf',
 				'http://sportsnavi.yahoo.co.jp/rss/soccer.xml',
@@ -55,20 +52,19 @@ class RssFetcherComponentTestCase extends CakeTestCase {
 				'http://feed.japan.cnet.com/rss/index.rdf',
 				'http://blog.livedoor.jp/yaruj/index.rdf'
 				);
-
+*/
 		foreach ($urls as $url) {
 			$entries = $this->rssFetcher->getFeed($url);
 
-			//debug($entries);
+			debug($entries);
 		}
 	}
 
 	/**
-	 * デモ
 	 *
 	 * 正常系
 	 *
-	 * @test
+	 * test
 	 */
 	public function getFeedParallelTest() {
 
@@ -107,6 +103,34 @@ class RssFetcherComponentTestCase extends CakeTestCase {
 
 		//debug($parsedFeeds);
 
+	}
+
+	/**
+	 * 正常系
+	 *
+	 * @test
+	 */
+	public function getFeedUrlFromSiteUrlTest() {
+
+		$urls = array(
+				'http://jp.uefa.com/index.html',
+				'http://sportiva.shueisha.co.jp/clm/wfootball/',
+				'http://japan.cnet.com/',
+				'http://www.goal.com/jp/'
+		);
+
+		$expecteds = array(
+				false,
+				'http://sportiva.shueisha.co.jp/clm/wfootball/rss.xml',
+				'http://feed.japan.cnet.com/rss/index.rdf',
+				'http://www.goal.com/jp/feeds/news?fmt=atom'
+		);
+
+		foreach ($urls as $i => $url) {
+			$feedUrl = $this->rssFetcher->getFeedUrlFromSiteUrl($url);
+
+			$this->assertEqual($feedUrl, $expecteds[$i]);
+		}
 	}
 
 }

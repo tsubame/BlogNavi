@@ -25,7 +25,7 @@
  *
  * ・各サイトのRSSフィードにアクセス
  *
- * 
+ *
  *
  *
  *
@@ -40,29 +40,53 @@
  */
 class ArticlesController extends Controller {
 
+	/**
+	 *
+	 * @var unknown_type
+	 */
 	public $uses  	= array('Site', 'Article');
+
+	/**
+	 *
+	 * @var unknown_type
+	 */
 	public $helpers = array('Form', 'Html');
+
+	/**
+	 *
+	 * @var unknown_type
+	 */
 	public $components = null;
+
+	/**
+	 *
+	 * @var unknown_type
+	 */
 	public $layout = 'articles';
+
 
 	/**
 	 * 記事の一覧
 	 */
 	public function index() {
 
-//debug($this->request);
-//debug($this->passedArgs);
-
-$categoryId = $this->passedArgs[0];
+		if (isset($this->passedArgs[0])) {
+			$categoryId = $this->passedArgs[0];
+		} else {
+			$categoryId = 0;
+		}
 
 		$results = $this->Article->selectTodaysArticles($categoryId);
 
 		$this->set('results', $results);
 	}
 
+	/**
+ 	 * 記事の登録
+ 	 *
+ 	 */
 	public function insert() {
 		$insertAction = ClassRegistry::init('ArticleInsertAction');
-
 		$insertAction->exec();
 
 		$this->render('index');

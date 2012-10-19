@@ -5,7 +5,6 @@ App::uses('ArticleInsertAction', 'Model');
 /**
  *
  *
- * @author hid
  *
  */
 class ArticleInsertActionTest extends CakeTestCase  {
@@ -14,10 +13,7 @@ class ArticleInsertActionTest extends CakeTestCase  {
 
 	public function setUp() {
 		parent::setUp();
-		//$this->ArticleInsertAction = ClassRegistry::init('ArticleInsertAction');
-		//$this->ArticleInsertAction = new ArticleInsertAction();
 		$this->ArticleInsertAction = ClassRegistry::init('ArticleInsertActionExtend');
-		//$this->ArticleInsertAction = new ArticleInsertActionExtend();
 	}
 
 	/**

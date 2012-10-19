@@ -16,7 +16,7 @@ App::uses('CurlMultiComponent', 'Controller/Component');
  *
  *
  */
-class RssFetcherComponent extends Object {
+class RssFetcherComponent extends Component {
 
 	public $components = array("CurlMulti");
 
@@ -25,20 +25,15 @@ class RssFetcherComponent extends Object {
 	 */
 	private $CurlMulti;
 
-	/**
-	 * @var object Instance of ComponentCollection
-	 */
-	private $Collection;
 
 	/**
 	 * コンストラクタ
 	 *
 	 */
-	public function __construct() {
-		parent::__construct();
+	public function __construct($collection) {
+		parent::__construct($collection);
 
-		$this->Collection = new ComponentCollection();
-		$this->CurlMulti  = new CurlMultiComponent($this->Collection);
+		$this->CurlMulti  = new CurlMultiComponent($collection);
 	}
 
 	/**
@@ -61,9 +56,8 @@ class RssFetcherComponent extends Object {
 	 */
 	public function getFeed($url) {
 		$simplePie = new SimplePie();
-		$simplePie->set_raw_data($url);
+		$simplePie->set_feed_url($url);
 		$simplePie->init();
-		$simplePie->handle_content_type();
 
 		$entries = array();
 
@@ -124,6 +118,27 @@ class RssFetcherComponent extends Object {
 		}
 
 		return $parsedFeeds;
+	}
+
+	/**
+	 * URLからフィードURLを取得
+	 *
+	 * 取得できないときはfalseを返す
+	 *
+	 * @param  string $url
+	 * @return bool | string
+	 */
+	public function getFeedUrlFromSiteUrl($url) {
+		$simplePie = new SimplePie();
+		$simplePie->set_feed_url($url);
+		$simplePie->init();
+
+		$type = $simplePie->get_type();
+		if ($type == 0) {
+			return false;
+		}
+
+		return $simplePie->feed_url;
 	}
 
 }

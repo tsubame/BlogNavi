@@ -9,8 +9,6 @@ App::uses('HttpSocket', 'Network/Http');
  */
 class HttpUtilComponent extends Component {
 
-	//public $components = array("Debug", "String");
-
 	// ライブドアブログのRSSフィードのURLの末尾
 	const LIVEDOOR_URL_SUFFIX = 'index.rdf';
 	// FC2のRSSフィードのURLの末尾

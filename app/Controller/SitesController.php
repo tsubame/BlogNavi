@@ -12,7 +12,7 @@ class SitesController extends Controller {
 
 	//public $name = "Sites";
 
-	public $components = array('HttpUtil');
+	public $components = array('HttpUtil', 'RssFetcher');
 	public $helpers = array('Form');
 	public $layout = 'sites';
 
@@ -53,14 +53,21 @@ class SitesController extends Controller {
 		}
 
 		$site['name'] = $this->HttpUtil->getSiteName($site['url']);
-		debug($site);
+// フィードURLを取得
+$feedUrl = $this->RssFetcher->getFeedUrlFromSiteUrl($site['url']);
+if ($feedUrl != false) {
+	$site['feed_url'] = $feedUrl;
+} else {
+	debug('フィードURLを取得できませんでした');
+}
+
 		// 登録
 		$this->Site->save($site);
 
 		$this->render('registerForm');
 
 		// Viewに変数として渡すべき
-		debug ("{$site['name']} : {$site['url']} を登録しました。");
+		//debug ("{$site['name']} : {$site['url']} を登録しました。");
 	}
 
 	/**

@@ -1,42 +1,16 @@
-<!-- フォームヘルパーを使うべき -->
-
-
-<div>
-<!--
-サイトの登録<br /><br />
-	<form method="POST" action="insert" class="registerForm">
-		<table>
-			<tr>
-				<td class="formHead">URL：</td>
-				<td><input type="text" name="url" /></td>
-			</tr>
-			<tr>
-				<td>カテゴリー：</td>
-				<td>
-					<select name="category">
-						<option>ニュースサイト</option>
-						<option>ブログ</option>
-					</select>
-					<input type="checkbox" name="categoryFix" value="true" />カテゴリ固定
-				</td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td><br /><input type="submit" value="登録"/></td>
-			</tr>
-		</table>
-	</form>
-</div>
--->
-
-
+<div class = "formArea">
+	<fieldset>
 <?php
-$categories = array(1 => 'ニュース', 2 => '2ch', 3 => 'ブログ');
+	$categories = array(1 => 'ニュース', 2 => '2ch', 3 => 'ブログ');
 
-echo $this->Form->create(array('action' => './register'));
-//echo $this->Form->input('Site.name', array('type' => 'hidden'));
-echo $this->Form->input('Site.url');
-echo $this->Form->select('Site.category_id', $categories);
-echo $this->Form->submit('登録');
-echo $this->Form->end();
+	echo $this->Form->create(array('action' => 'register'));
+	//echo $this->Form->input('Site.url', array('type' => 'text', 'default' => ' '));
+	?>
+	<div class="input text"><label for="SiteUrl">Url</label><input name="data[Site][url]" value="" id="SiteUrl" type="text"></div>
+	<?php
+	echo $this->Form->input('Site.category_id', array('type' => 'select', 'options' => $categories, 'selected' => 1));
+	echo $this->Form->submit('登録');
+	echo $this->Form->end();
 ?>
+	</fieldset>
+</div>

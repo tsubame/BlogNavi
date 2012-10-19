@@ -624,6 +624,7 @@ class SimplePie
 	 */
 	public function __construct()
 	{
+		// バージョン比較
 		if (version_compare(PHP_VERSION, '5.2', '<'))
 		{
 			trigger_error('PHP 4.x, 5.0 and 5.1 are no longer supported. Please upgrade to PHP 5.2 or newer.');
@@ -717,6 +718,8 @@ class SimplePie
 		{
 			$this->feed_url = $this->registry->call('Misc', 'fix_protocol', array($url, 1));
 		}
+
+
 	}
 
 	/**
@@ -1226,8 +1229,11 @@ class SimplePie
 		$this->sanitize->pass_cache_data($this->cache, $this->cache_location, $this->cache_name_function, $this->registry->get_class('Cache'));
 		$this->sanitize->pass_file_data($this->registry->get_class('File'), $this->timeout, $this->useragent, $this->force_fsockopen);
 
+//
 		if (!empty($this->multifeed_url))
 		{
+
+
 			$i = 0;
 			$success = 0;
 			$this->multifeed_objects = array();
@@ -1256,6 +1262,7 @@ class SimplePie
 		$this->multifeed_objects = array();
 		$cache = false;
 //
+
 		if ($this->feed_url !== null)
 		{
 			$parsed_feed_url = $this->registry->call('Misc', 'parse_url', array($this->feed_url));
@@ -1328,6 +1335,9 @@ class SimplePie
 		// Loop through each possible encoding, till we return something, or run out of possibilities
 		foreach ($encodings as $encoding)
 		{
+//debug($encoding);
+
+			//debug($this->feed_url);
 			// Change the encoding to UTF-8 (as we always use UTF-8 internally)
 			if ($utf8_data = $this->registry->call('Misc', 'change_encoding', array($this->raw_data, $encoding, 'UTF-8')))
 			{
@@ -1356,6 +1366,8 @@ class SimplePie
 					{
 						trigger_error("$this->cache_location is not writeable. Make sure you've set the correct relative or absolute path, and that the location is server-writable.", E_USER_WARNING);
 					}
+//echo $this->feed_url;
+
 					return true;
 				}
 			}
@@ -1383,6 +1395,7 @@ class SimplePie
 	 * @param SimplePie_Cache|false $cache Cache handler, or false to not load from the cache
 	 * @return array|true Returns true if the data was loaded from the cache, or an array of HTTP headers and sniffed type
 	 */
+// サイトのURL指定時にこれが呼ばれる
 	protected function fetch_data(&$cache)
 	{
 		// If it's enabled, use the cache
@@ -1413,6 +1426,8 @@ class SimplePie
 						// Do not need to do feed autodiscovery yet.
 						if ($this->data['feed_url'] !== $this->data['url'])
 						{
+//
+//echo "フィードではない";
 							$this->set_feed_url($this->data['feed_url']);
 							return $this->init();
 						}
@@ -1424,6 +1439,7 @@ class SimplePie
 				// Check if the cache has been updated
 				elseif ($cache->mtime() + $this->cache_duration < time())
 				{
+
 					// If we have last-modified and/or etag set
 					if (isset($this->data['headers']['last-modified']) || isset($this->data['headers']['etag']))
 					{
@@ -1472,6 +1488,7 @@ class SimplePie
 		// If we don't already have the file (it'll only exist if we've opened it to check if the cache has been modified), open it.
 		if (!isset($file))
 		{
+
 			if ($this->file instanceof SimplePie_File && $this->file->url === $this->feed_url)
 			{
 				$file =& $this->file;
@@ -1483,6 +1500,7 @@ class SimplePie
 				);
 				$file = $this->registry->create('File', array($this->feed_url, $this->timeout, 5, $headers, $this->useragent, $this->force_fsockopen));
 			}
+
 		}
 		// If the file connection has an error, set SimplePie::error to that and quit
 		if (!$file->success && !($file->method & SIMPLEPIE_FILE_SOURCE_REMOTE === 0 || ($file->status_code === 200 || $file->status_code > 206 && $file->status_code < 300)))
@@ -1498,6 +1516,7 @@ class SimplePie
 
 			if (!$locate->is_feed($file))
 			{
+//echo "フィードではない";
 				// We need to unset this so that if SimplePie::set_file() has been called that object is untouched
 				unset($file);
 				if (!($file = $locate->find($this->autodiscovery, $this->all_discovered_feeds)))
@@ -1515,7 +1534,11 @@ class SimplePie
 					}
 					$cache = $this->registry->call('Cache', 'create', array($this->cache_location, call_user_func($this->cache_name_function, $file->url), 'spc'));
 				}
+//echo $this->feed_url;
+
 				$this->feed_url = $file->url;
+//echo $this->feed_url;
+
 			}
 			$locate = null;
 		}
@@ -1523,9 +1546,10 @@ class SimplePie
 		$this->raw_data = $file->body;
 
 		$headers = $file->headers;
+//debug($file->body);
 		$sniffer = $this->registry->create('Content_Type_Sniffer', array(&$file));
 		$sniffed = $sniffer->get_type();
-
+//debug($sniffed);
 		return array($headers, $sniffed);
 	}
 
@@ -2973,5 +2997,12 @@ class SimplePie
 			trigger_error('Cannot merge zero SimplePie objects', E_USER_WARNING);
 			return array();
 		}
+	}
+
+	/**
+	 *
+	 */
+	public function get_feed_url() {
+		return $this->feed_url;
 	}
 }

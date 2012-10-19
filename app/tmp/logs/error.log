@@ -1257,3 +1257,88 @@
 #3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2012-10-18 17:53:11 Error: Fatal Error (1): Call to undefined method HttpUtilComponent::getRssUrl() in [C:\Users\Public\Documents\www\FootBlogNavi\app\Test\Case\Controller\Component\HttpUtilComponentTest.php, line 51]
+2012-10-18 17:53:11 Error: [FatalErrorException] Call to undefined method HttpUtilComponent::getRssUrl()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\Users\Public...', 51)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\Users\Public...', 51, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\Users\Public...', 51, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-18 18:19:38 Error: [MissingActionException] Action AppController::webroot() could not be found.
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\Users\Public\Documents\www\FootBlogNavi\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-10-18 18:23:35 Error: Fatal Error (64): Cannot redeclare HttpUtilComponentTestCase::getFeedUrlTest() in [C:\Users\Public\Documents\www\FootBlogNavi\app\Test\Case\Controller\Component\HttpUtilComponentTest.php, line 114]
+2012-10-18 18:23:35 Error: [FatalErrorException] Cannot redeclare HttpUtilComponentTestCase::getFeedUrlTest()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\Users\Public...', 114)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\Users\Public...', 114, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\Users\Public...', 114, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-19 01:51:03 Error: Fatal Error (1): Class 'MagpieRSS' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\RssFetcherComponent.php, line 163]
+2012-10-19 01:51:03 Error: [FatalErrorException] Class 'MagpieRSS' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'MagpieRS...', 'C:\Users\Public...', 163)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'MagpieRS...', 'C:\Users\Public...', 163, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'MagpieRS...', 'C:\Users\Public...', 163, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-19 01:55:42 Error: Fatal Error (1): Class 'MagpieRSS' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\RssFetcherComponent.php, line 163]
+2012-10-19 01:55:42 Error: [FatalErrorException] Class 'MagpieRSS' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'MagpieRS...', 'C:\Users\Public...', 163)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'MagpieRS...', 'C:\Users\Public...', 163, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'MagpieRS...', 'C:\Users\Public...', 163, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-19 01:56:38 Error: Fatal Error (1): Class 'MagpieRSS' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\RssFetcherComponent.php, line 163]
+2012-10-19 01:56:38 Error: [FatalErrorException] Class 'MagpieRSS' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'MagpieRS...', 'C:\Users\Public...', 163)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'MagpieRS...', 'C:\Users\Public...', 163, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'MagpieRS...', 'C:\Users\Public...', 163, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-19 01:59:30 Error: Fatal Error (1): Class 'MagpieRSS' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\RssFetcherComponent.php, line 163]
+2012-10-19 01:59:30 Error: [FatalErrorException] Class 'MagpieRSS' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'MagpieRS...', 'C:\Users\Public...', 163)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'MagpieRS...', 'C:\Users\Public...', 163, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'MagpieRS...', 'C:\Users\Public...', 163, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-19 02:01:01 Error: Fatal Error (1): Class 'MagpieRSS' not found in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\RssFetcherComponent.php, line 163]
+2012-10-19 02:01:01 Error: [FatalErrorException] Class 'MagpieRSS' not found
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'MagpieRS...', 'C:\Users\Public...', 163)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'MagpieRS...', 'C:\Users\Public...', 163, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'MagpieRS...', 'C:\Users\Public...', 163, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-19 09:44:05 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 19161556 bytes) in [C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Utility\Debugger.php, line 558]
+2012-10-19 09:44:05 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 19161556 bytes)
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'C:\Users\Public...', 558)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'C:\Users\Public...', 558, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'C:\Users\Public...', 558, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-19 09:51:41 Error: Fatal Error (1): Call to undefined method SimplePie_Item::content() in [C:\Users\Public\Documents\www\FootBlogNavi\app\Controller\Component\RssFetcherComponent.php, line 93]
+2012-10-19 09:51:41 Error: [FatalErrorException] Call to undefined method SimplePie_Item::content()
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\Users\Public...', 93)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\Users\Public...', 93, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\Users\Public...', 93, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-19 10:33:51 Error: Fatal Error (64): Cannot redeclare SimplePie::$cache in [C:\Users\Public\Documents\www\FootBlogNavi\vendors\simplepie\library\SimplePie.php, line 491]
+2012-10-19 10:33:51 Error: [FatalErrorException] Cannot redeclare SimplePie::$cache
+#0 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'C:\Users\Public...', 491)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'C:\Users\Public...', 491, Array)
+#2 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'C:\Users\Public...', 491, Array)
+#3 C:\Users\Public\Documents\www\FootBlogNavi\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}

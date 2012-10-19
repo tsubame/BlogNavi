@@ -121,25 +121,27 @@ class ArticleInsertAction extends AppModel {
 			// DBに存在しないデータを追加
 			$this->saveNotExistArticles($articles);
 		}
-/*
-		//$this->sites = $this->Site->getAllSites();
-// カテゴリ別に検索する必要あり
-		// ツイッターを検索
-		$tweetedUrls = $this->searchUrls($this->sites);
+	}
 
-		// 記事のツイート数取得
-		$tweetCounts = $this->TwAccessor->getTweetCountOfUrls($tweetedUrls);
-		// 上位25件の記事を取得
-		$articles = $this->pickUpInsertArticles($tweetCounts);
+	/**
+	 * RSSで記事を取得
+	 *
+	 */
+	public function insertArticlesbyRss() {
 
-// ボトルネック
-		// タイトル取得
-		$articles = $this->getArticlesTitle($articles);
+	// 6時間ごとに実行　
 
-		debug($articles);
-		// DBに存在しないデータを追加
-		$this->saveNotExistArticles($articles);
-*/
+		// カテゴリごとにDBからサイトを取得
+
+		// 各サイトのRSSを取得
+
+		// DBに記事を登録
+
+
+	// 24時間ごとに実行
+
+		// ツイート数の少ない木を削除
+
 	}
 
 

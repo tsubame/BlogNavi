@@ -7,10 +7,12 @@
  *
  * id			 integer
  * title		 varchar
- * url			 varchar
+ * url			 mediumtext
+ * description	 mediumtext
  * site_id		 integer
  * tweeted_count integer
  * disable 		 boolean  true 表示しない記事（ニュース以外のURLなど）
+ * published 	 datetime
  * created  	 datetime
  * modified 	 datetime
  *

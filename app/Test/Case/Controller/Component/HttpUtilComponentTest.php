@@ -10,13 +10,139 @@ App::uses('HttpUtilComponent', 'Controller/Component');
  */
 class HttpUtilComponentTestCase extends CakeTestCase {
 
+	private $Collection;
+	private $httpUtil;
+
 	public function setUp(){
 		parent::setUp();
-		$Collection = new ComponentCollection();
-		$this->httpUtil = new HttpUtilComponent($Collection);
+		$this->Collection = new ComponentCollection();
+		$this->httpUtil = new HttpUtilComponent($this->Collection);
+	}
+
+
+	/**
+	 * urlのコンテンツを取得
+	 *
+	 * 正常系
+	 *
+	 * test
+	 */
+	public function getContents() {
+		$url = 'http://sportsnavi.yahoo.co.jp/';
+
+		$html = $this->httpUtil->getContents($url);
+
+		//debug($html);
+		$this->assertNotEqual($html, false);
 	}
 
 	/**
+	 * RSSのURLを取得
+	 *
+	 * 正常系
+	 *
+	 * test
+	 */
+	public function getFeedUrlTest() {
+
+		$urls = array(
+				'http://blog.livedoor.jp/domesoccer/',
+				'http://sportsnavi.yahoo.co.jp/soccer/',
+				'http://www.goal.com/jp/',
+				'http://blog.livedoor.jp/nanjstu/',
+				'http://www.soccer-king.jp/'
+		);
+
+		$expecteds = array(
+				'http://blog.livedoor.jp/domesoccer/index.rdf',
+				'http://sportsnavi.yahoo.co.jp/rss/soccer.xml',
+				'http://www.goal.com/jp/feeds/news?fmt=atom',
+				'http://blog.livedoor.jp/nanjstu/index.rdf',
+				'http://www.soccer-king.jp/RSS.rdf'
+		);
+
+		foreach ($urls as $i => $url) {
+			$feedUrl = $this->httpUtil->getFeedUrl($url);
+			echo $url . " =>　フィードURL : <a href = '$feedUrl' target = '_blank'>" . $feedUrl . '</a><br />';
+
+			$this->assertNotEqual($feedUrl, false);
+			$this->assertEqual($feedUrl, $expecteds[$i]);
+		}
+	}
+
+	/**
+	 * RSSのURLを取得
+	 *
+	 * 正常系
+	 *
+	 * @test
+	 */
+	public function getFeedUrlByCurlTest() {
+
+		$urls = array(
+				'http://blog.livedoor.jp/domesoccer/',
+				'http://sportsnavi.yahoo.co.jp/soccer/',
+				'http://www.goal.com/jp/',
+				'http://blog.livedoor.jp/nanjstu/',
+				'http://www.soccer-king.jp/'
+		);
+
+		$expecteds = array(
+				'http://blog.livedoor.jp/domesoccer/index.rdf',
+				'http://sportsnavi.yahoo.co.jp/rss/soccer.xml',
+				'http://www.goal.com/jp/feeds/news?fmt=atom',
+				'http://blog.livedoor.jp/nanjstu/index.rdf',
+				'http://www.soccer-king.jp/RSS.rdf'
+				);
+
+		foreach ($urls as $i => $url) {
+			$feedUrl = $this->httpUtil->getFeedUrlByCurl($url);
+			echo $url . " =>　フィードURL : <a href = '$feedUrl' target = '_blank'>" . $feedUrl . '</a><br />';
+
+			$this->assertNotEqual($feedUrl, false);
+			$this->assertEqual($feedUrl, $expecteds[$i]);
+		}
+	}
+
+	/**
+	 * RSSのURLを取得
+	 *
+	 * 正常系
+	 * rssとatomのURLが混在するときに指定した方を取得する
+	 *
+	 * test
+	 */
+	public function getFeedUrlTest2() {
+		//$httpUtil = new HttpUtilComponent($this->Collection);
+		//$url = 'http://sportsnavi.yahoo.co.jp/';
+
+		$rssUrl = $this->httpUtil->getRssUrl($url, 'atom');
+		//$this->assertEqual($rssUrl, 'http://sportsnavi.yahoo.co.jp/rss/column.xml');
+
+		$rssUrl = $this->httpUtil->getRssUrl($url, 'rss');
+	}
+
+	/**
+	 * RSSのURLを取得
+	 *
+	 * 異常系
+	 * 取得できない時にfalseを返す
+	 *
+	 * test
+	 */
+	public function getFeedUrlTestError() {
+		//$httpUtil = new HttpUtilComponent($this->Collection);
+		//$url = 'http://sportsnavi.yahoo.co.jp/';
+
+		$rssUrl = $this->httpUtil->getRssUrl($url, 'atom');
+		//$this->assertEqual($rssUrl, 'http://sportsnavi.yahoo.co.jp/rss/column.xml');
+
+		$rssUrl = $this->httpUtil->getRssUrl($url, 'rss');
+	}
+
+	/**
+	 * サイト名を取得
+	 *
 	 * 正常系
 	 *
 	 */
@@ -45,29 +171,6 @@ class HttpUtilComponentTestCase extends CakeTestCase {
 		}
 	}
 
-	/**
-	 * 正常系
-	 *
-	 * test
-	 */
-	public function getFeedUrlTest() {
-		$http = new HttpUtilComponent();
-
-		$urls = array(
-					'http://sportsnavi.yahoo.co.jp/soccer/',
-					'http://www.goal.com/jp/',
-					'http://www.goal.com/en/',
-					'http://www.soccer-king.jp/',
-					'http://jp.uefa.com/index.html'
-				);
-
-		foreach ($urls as $url) {
-			$feedUrl = $http->getFeedUrl($url);
-
-			debug($url . ' : ' . $feedUrl);
-			$this->assertNotNull($feedUrl);
-		}
-	}
 
 	/**
 	 * expandUrl() 正常系
@@ -104,19 +207,19 @@ class HttpUtilComponentTestCase extends CakeTestCase {
 	public function expandUrlTestNull() {
 		// null
 		$longUrl = $this->httpUtil->expandUrl(null);
-		debug($longUrl);
+		//debug($longUrl);
 		$this->assertEqual($longUrl, false);
 		// 空文字
 		$longUrl = $this->httpUtil->expandUrl('');
-		debug($longUrl);
+		//debug($longUrl);
 		$this->assertEqual($longUrl, false);
 		// 存在しないURL
 		$longUrl = $this->httpUtil->expandUrl('http://aa.com/aaaa.html');
-		debug($longUrl);
+		//debug($longUrl);
 		$this->assertEqual($longUrl, 'http://aa.com/aaaa.html');
 
 		$longUrl = $this->httpUtil->expandUrl('http://www.jsgoal.jp/tw/p192d8');
-		debug($longUrl);
+		//debug($longUrl);
 		$this->assertEqual($longUrl, 'http://www.jsgoal.jp/photo/00103100/00103128.html');
 	}
 

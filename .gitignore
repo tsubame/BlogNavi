@@ -2,4 +2,6 @@
 #config/database.php
 #app/tmp/*
 #app/config/database.php
+vendors/simplepie/tests/*
+app/webroot/cache/*
 !empty

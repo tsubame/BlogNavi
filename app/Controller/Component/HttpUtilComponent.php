@@ -11,6 +11,15 @@ class HttpUtilComponent extends Component {
 
 	//public $components = array("Debug", "String");
 
+	// ライブドアブログのRSSフィードのURLの末尾
+	const LIVEDOOR_URL_SUFFIX = 'index.rdf';
+	// FC2のRSSフィードのURLの末尾
+	const FC2_URL_SUFFIX = '?xml';
+	// はてなのRSSフィードのURLの末尾
+	const HATENA_URL_SUFFIX = 'index.rdf';
+	// アメブロのRSSフィードのURLの末尾
+	const AMEBA_URL_SUFFIX = 'index.rdf';
+
 	/**
 	 * URLを受け取ってWebページのタイトルを返す。
 	 *
@@ -59,7 +68,7 @@ class HttpUtilComponent extends Component {
 	 * 判別できなければURLにHTTPで接続して<link>タグからフィードURLを取得。
 	 *
 	 * @param  String url
-	 * @return String feedUrl 取得できなければnull
+	 * @return String feedUrl 取得できなければfalse
 	 */
 	public function getFeedUrl($url) {
 		// URLのドメイン名からフィードURLを取得
@@ -71,26 +80,107 @@ class HttpUtilComponent extends Component {
 		$fp = fopen($url, 'r');
 		// HTMLを1行ずつ読み出す
 		$html = null;
+
+// 外に出す
+$feedTagPattern = '/<(link|LINK)([^>]|\n)*?(alternate|ALTERNATE)([^>]|\n)*?(rss|xml)[^>]*?>/s';
+$feedUrlPattern = '/(http:\\/\\/)[\\w\\/\\.\\-\\?\\=\\&]+/s';
+$feedHrefPattern = '/(href|HREF)[^\\w\\/]+([\\w\\/\\.\\-\\?\\=\\&]+)/s';
+
 		while ($line = fgets($fp)) {
 			$html .= $line;
 			// フィードURLを表記しているタグを取得 <link rel="alternate" type="application/rss+xml" title="RSS" href="http://d.hatena.ne.jp/nunnnunn/rss">
-			if (preg_match('/<(link|LINK)([^>]|\n)*?(alternate|ALTERNATE)([^>]|\n)*?(rss|xml)[^>]*?>/s', $html, $matchTags)) {
+			if (preg_match($feedTagPattern, $html, $matchTags)) {
 				// 結果があればURL部分を取得
-// href="/jp/feeds/news?fmt=atom" のように書いている場合は取得できない
-// ヘッダに書いてない場合は取得できない
-				if (preg_match('/(http:\\/\\/)[\\w\\/\\.\\-\\?\\=\\&]+/s', $matchTags[0], $matchURLs)) {
+				if (preg_match($feedUrlPattern, $matchTags[0], $matchURLs)) {
 					fclose($fp);
 					return $matchURLs[0];
 				}
-				if (preg_match('/(href|HREF)[^\\w\\/]+([\\w\\/\\.\\-\\?\\=\\&]+)/s', $matchTags[0], $matchURLs)) {
-					fclose($fp);
+				if (preg_match($feedHrefPattern, $matchTags[0], $matchURLs)) {
+					// URLから最初の/までを取得
+					if (preg_match('/(http:\/\/[\w\.\-_=]+)\//', $url, $matches)) {
+						$url = $matches[1];
+					}
+
 					return $url . $matchURLs[2];
 				}
 			}
 		} // end while
 		fclose($fp);
 
-		return null;
+		return false;
+	}
+
+	/**
+	 * URLを受け取ってRSSのフィードURLを返す。
+	 *
+	 * curlを使用
+	 *
+	 * @param  String url
+	 * @return String 取得できなければfalse
+	 */
+	public function getFeedUrlbyCurl($url) {
+
+		//$url = "http://www.example.com";
+		// 初期化
+		$html = $this->getContents($url);
+// 外に出す
+$feedTagPattern = '/<(link|LINK)([^>]|\n)*?(alternate|ALTERNATE)([^>]|\n)*?(rss|xml)[^>]*?>/s';
+$feedUrlPattern = '/(http:\\/\\/)[\\w\\/\\.\\-\\?\\=\\&]+/s';
+$feedHrefPattern = '/(href|HREF)[^\\w\\/]+([\\w\\/\\.\\-\\?\\=\\&]+)/s';
+
+		if (preg_match($feedTagPattern, $html, $matchTags)) {
+			if (preg_match($feedUrlPattern, $matchTags[0], $matchURLs)) {
+				return $matchURLs[0];
+			}
+
+			if (preg_match($feedHrefPattern, $matchTags[0], $matchURLs)) {
+				// URLから最初の/までを取得
+				if (preg_match('/(http:\/\/[\w\.\-_=]+)\//', $url, $matches)) {
+					$url = $matches[1];
+				}
+
+				return $url . $matchURLs[2];
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * 指定したURLのコンテンツ（HTML）を取得
+	 *
+	 *
+	 * @param  string $url
+	 * @return string $html 取得できないときはfalse
+	 */
+	public function getContents($url) {
+		$timeOut = 10;
+
+		$ch = curl_init();
+		// オプション
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		// リダイレクト先のコンテンツを取得
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		// リダイレクトを受け入れる回数
+		curl_setopt($ch, CURLOPT_MAXREDIRS, 3);
+		// タイムアウトの設定
+		curl_setopt($ch, CURLOPT_TIMEOUT, $timeOut);
+
+		$html = curl_exec($ch); // 3. 実行してデータを得る
+
+		$error = curl_error($ch);
+
+		// エラーがなければコンテンツ内容、HTTPコードの取得
+		if($error != '') {
+			debug("取得に失敗しました: {$url}");
+
+			return false;
+		}
+
+		curl_close($ch);
+
+		return $html;
 	}
 
 	/**
@@ -101,18 +191,20 @@ class HttpUtilComponent extends Component {
 	 * @param  String url
 	 * @return String feedUrl
 	 */
-	private function getFeedUrlFromUrl($url) {
+	protected function getFeedUrlFromUrl($url) {
+
+
 		// 受け取ったURLがフィードURLならそのまま返す
 		if (strpos($url, ".rdf") !== false || strpos($url, "?xml") !== false || strpos($url, ".xml") !== false) {
 			return $url;
 		}
 		// ライブドアブログの場合
 		if (strpos($url, "livedoor") !== false) {
-			return $url.LIVEDOOR_URL_SUFFIX;
+			return $url . self::LIVEDOOR_URL_SUFFIX;
 		}
 		// fc2ブログ
 		if (strpos($url, "fc2") !== false) {
-			return $url.FC2_URL_SUFFIX;
+			return $url . self::FC2_URL_SUFFIX;
 		}
 
 		return false;

@@ -7,7 +7,7 @@
  * id			integer primary
  * name			varchar
  * url			varchar unique
- * rss_url		varchar
+ * feed_url		varchar
  * category_id	integer
  * disable		boolean
  * created		datetime

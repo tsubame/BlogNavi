@@ -3,6 +3,9 @@
 app/tmp/cache/persistent/*
 app/tmp/cache/models/*
 app/tmp/cache/views/*
+app/tmp/logs/*
+app/tmp/sessions/*
+app/tmp/tests/*
 vendors/simplepie/tests/*
 app/webroot/cache/*
 !empty

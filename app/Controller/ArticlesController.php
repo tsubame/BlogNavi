@@ -96,7 +96,7 @@ class ArticlesController extends Controller {
 	 * ツイート数を取得
 	 */
 	public function getTweetCount() {
-
+		
 	}
 
 

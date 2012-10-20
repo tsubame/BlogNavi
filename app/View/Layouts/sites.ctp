@@ -18,9 +18,15 @@
 </head>
 <body>
 	<div id="container">
-		<div id="menuBar">
-			<a href="index">サイトの一覧</a>　
-			<a href="registerForm">サイトを登録</a>
+		<div id="header">
+			<?php
+				echo $this->Html->link('記事一覧', array('controller' => 'articles','action' => 'index')) . '　　';
+				echo $this->Html->link('記事の登録', array('controller' => 'articles', 'action' => 'insert')) . '　　';
+				echo $this->Html->link('ツイート数の更新',array('controller' => 'articles', 'action' => 'getTweetCount')) . '　　';
+
+				echo $this->Html->link('サイトの一覧', array('controller' => 'sites', 'action' => 'index')) . '　　';
+				echo $this->Html->link('サイトの登録', array('controller' => 'sites', 'action' => 'registerForm')) . '　　';
+			?>
 		</div>
 		<div id="content">
 			<?php echo $this->Session->flash(); ?>

@@ -53,21 +53,18 @@ class SitesController extends Controller {
 		}
 
 		$site['name'] = $this->HttpUtil->getSiteName($site['url']);
-// フィードURLを取得
-$feedUrl = $this->RssFetcher->getFeedUrlFromSiteUrl($site['url']);
-if ($feedUrl != false) {
-	$site['feed_url'] = $feedUrl;
-} else {
-	debug('フィードURLを取得できませんでした');
-}
+		// フィードURLを取得
+		$feedUrl = $this->RssFetcher->getFeedUrlFromSiteUrl($site['url']);
+		if ($feedUrl != false) {
+			$site['feed_url'] = $feedUrl;
+		} else {
+			debug('フィードURLを取得できませんでした');
+		}
 
 		// 登録
 		$this->Site->save($site);
 
 		$this->render('registerForm');
-
-		// Viewに変数として渡すべき
-		//debug ("{$site['name']} : {$site['url']} を登録しました。");
 	}
 
 	/**
@@ -87,22 +84,19 @@ if ($feedUrl != false) {
 	}
 
 	/**
-	 * アップデート*
+	 * アップデート
 	 *
 	 */
 	public function update() {
 		if (! isset($this->data['Site'])) {
 			return;
 		}
-
 		// URLの最後がファイル名ならファイル名を削除
 		$site = $this->data['Site'];
 
-
 		$this->Site->save($site);
 
-		debug($site);
-
+		$this->index();
 		$this->render('index');
 	}
 

@@ -29,6 +29,7 @@
 		<?php
 		echo $data['Article']['tweeted_count'] . 'tweet　　';
 		echo $this->Html->link($data['Article']['title'], $data['Article']['url'], array('target' => '_blank'));
+		echo '　　 ' . $data['Site']['name'];
 		?>
 		</p>
 		<?php

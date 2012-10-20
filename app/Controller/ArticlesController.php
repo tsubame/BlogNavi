@@ -2,65 +2,54 @@
 /**
  * コントローラ
  *
- * ToDo
- * ・コード整形
+ *
+ * （ToDo）
+ *
+ * ・ctpファイルを作りこむ
+ *   ・編集画面
+ *
+ * ・ajax
+ *
+ * ・googleからの登録ロジックを考える
+ *
+ *
+ *
  *
  * ・バリデーション
- * ・RSSで記事取得
- * ・サーバにアップロードして運用
- * ・phpmyadminインストール
- *
- *
- * 今の方式の問題点
- *
- * ・かなり前の日付の記事まで拾ってくる
- * ・記事以外のURLまで拾ってくる
- * ・タイトルにサイト名が入る
- * ・記事の日付がわからない
- *
- *
- * RSSで取得する流れ
- *
- * ・各サイトのRSSを登録しておく
- *
- * ・各サイトのRSSフィードにアクセス
+ * ・テストコードを丁寧に書く
  *
  *
  *
  *
  *
  *
- *
- * 技術的な疑問
+ * （技術的な疑問）
  * ・ログはどうする？
- * ・エラー時の対処法
- * 　→エラーが複数発生する場合はエラーコードなど作る
- * 　それ以外はfalseを返すようにする
  *
  */
 class ArticlesController extends Controller {
 
 	/**
 	 *
-	 * @var unknown_type
+	 * @var array
 	 */
-	public $uses  	= array('Site', 'Article');
+	public $uses = array('Site', 'Article');
 
 	/**
 	 *
-	 * @var unknown_type
+	 * @var array
 	 */
 	public $helpers = array('Form', 'Html');
 
 	/**
 	 *
-	 * @var unknown_type
+	 * @var array
 	 */
 	public $components = null;
 
 	/**
 	 *
-	 * @var unknown_type
+	 * @var string
 	 */
 	public $layout = 'articles';
 

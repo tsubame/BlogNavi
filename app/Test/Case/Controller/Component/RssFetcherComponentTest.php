@@ -133,4 +133,34 @@ class RssFetcherComponentTestCase extends CakeTestCase {
 		}
 	}
 
+
+	/**
+	 * 正常系
+	 *
+	 * @test
+	 */
+	public function getSiteNameTest() {
+
+		$urls = array(
+				'http://jp.uefa.com/index.html',
+				'http://sportiva.shueisha.co.jp/clm/wfootball/',
+				'http://japan.cnet.com/',
+				'http://kapusoku.blog.fc2.com/'
+		);
+
+
+		$expecteds = array(
+				false,
+				'集英社のスポーツ総合雑誌 スポルティーバ 公式サイト web Sportiva｜World Football',
+				'CNET Japan 最新情報　総合',
+				'カプ速（広島東洋カープまとめブログ）'
+		);
+
+		foreach ($urls as $i => $url) {
+			$siteName = $this->rssFetcher->getSiteName($url);
+
+			//debug($siteName);
+			$this->assertEqual($siteName, $expecteds[$i]);
+		}
+	}
 }

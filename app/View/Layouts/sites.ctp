@@ -6,15 +6,18 @@
 	<title>
 		<?php echo $title_for_layout; ?>
 	</title>
+	<script src = "http://www.google.com/jsapi"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<?php
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('common');
-
+		echo $this->Html->script('main');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+
 </head>
 <body>
 	<div id="container">
@@ -24,8 +27,9 @@
 				echo $this->Html->link('記事の登録', array('controller' => 'articles', 'action' => 'insert')) . '　　';
 				echo $this->Html->link('ツイート数の更新',array('controller' => 'articles', 'action' => 'getTweetCount')) . '　　';
 
-				echo $this->Html->link('サイトの一覧', array('controller' => 'sites', 'action' => 'index')) . '　　';
+				echo $this->Html->link('サイトの一覧', array('controller' => 'sites', 'action' => 'editList')) . '　　';
 				echo $this->Html->link('サイトの登録', array('controller' => 'sites', 'action' => 'registerForm')) . '　　';
+				echo $this->Html->link('未登録サイト一覧', array('controller' => 'sites', 'action' => 'uncatList')) . '　　';
 			?>
 		</div>
 		<div id="content">

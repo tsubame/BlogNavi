@@ -60,7 +60,7 @@ class ArticleInsertAction extends AppModel {
 	 */
 	public function exec() {
 		// sitesテーブルからサイトを取得
-		$sites = $this->Site->getAllSites();
+		$sites = $this->Site->getSites();
 
 		$feedUrls = array();
 		// URLを配列に入れる
@@ -82,7 +82,7 @@ class ArticleInsertAction extends AppModel {
 
 				// 同じURLのデータが存在するか調べる
 				$result = $this->Article->hasAny(
-						array('url' => $article['url'])
+					array('url' => $article['url'])
 				);
 
 				// なければ追加

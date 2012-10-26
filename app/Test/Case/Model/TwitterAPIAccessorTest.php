@@ -14,10 +14,7 @@ class TwitterAPIAccessorTest extends CakeTestCase  {
 
 	public function setUp() {
 		parent::setUp();
-		//$this->ArticleInsertAction = ClassRegistry::init('ArticleInsertAction');
-		//$this->ArticleInsertAction = new ArticleInsertAction();
 		$this->TwitterAPIAccessor = ClassRegistry::init('TwitterAPIAccessorExtend');
-		//$this->ArticleInsertAction = new ArticleInsertActionExtend();
 	}
 
 	/**

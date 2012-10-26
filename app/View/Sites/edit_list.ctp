@@ -15,6 +15,9 @@ $categories = array(1 => 'ニュース', 2 => '2ch', 3 => 'ブログ');
 		<td class = "feed">
 			<a href = "<?= $site['feed_url'] ?>" target = "_blank">RSS</a>
 		</td>
+		<td class = "category">
+				<?= $this->Form->input('Site.category_id', array('type' => 'select', 'label' => ' ', 'options' => $categories, 'selected' => $site['category_id'], 'class' => 'category_id')); ?>
+		</td>
 		<td class = "editButton">
 			<input type = "button" value = "編集" class = "button editFormOpenButton" name = "<?= $site['id'] ?>" />
 		</td>
@@ -22,8 +25,6 @@ $categories = array(1 => 'ニュース', 2 => '2ch', 3 => 'ブログ');
 			<input type = "button" value = "削除" class = "button deleteButton" name = "<?= $site['id'] ?>"  />
 
 			<fieldset class = "siteEditDialog dialog" id = "siteEditDialog<?= $site['id'] ?>">
-			<?= $this->Form->create(array('action' => './update')); ?>
-				<?= $this->Form->input('Site.id', array('type' => 'hidden', 'default' => $site['id'])); ?>
 				<?= $this->Form->input('Site.name', array('default' => $site['name'], 'class' => 'name')); ?>
 				<?= $this->Form->input('Site.url', array('default' => $site['url'], 'class' => 'url')); ?>
 				<?= $this->Form->input('Site.feed_url', array('default' => $site['feed_url'], 'class' => 'feed_url')); ?>
@@ -31,7 +32,6 @@ $categories = array(1 => 'ニュース', 2 => '2ch', 3 => 'ブログ');
 				<p class = "submit">
 					<input type = "button" value = "Ajax更新" class = "closeButton editButton" name = "<?= $site['id'] ?>" />
 				</p>
-			<?= $this->Form->end(); ?>
 			</fieldset>
 		</td>
 	</tr>

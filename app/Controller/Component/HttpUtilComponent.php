@@ -79,10 +79,10 @@ class HttpUtilComponent extends Component {
 		// HTMLを1行ずつ読み出す
 		$html = null;
 
-// 外に出す
-$feedTagPattern = '/<(link|LINK)([^>]|\n)*?(alternate|ALTERNATE)([^>]|\n)*?(rss|xml)[^>]*?>/s';
-$feedUrlPattern = '/(http:\\/\\/)[\\w\\/\\.\\-\\?\\=\\&]+/s';
-$feedHrefPattern = '/(href|HREF)[^\\w\\/]+([\\w\\/\\.\\-\\?\\=\\&]+)/s';
+		// 外に出す
+		$feedTagPattern = '/<(link|LINK)([^>]|\n)*?(alternate|ALTERNATE)([^>]|\n)*?(rss|xml)[^>]*?>/s';
+		$feedUrlPattern = '/(http:\\/\\/)[\\w\\/\\.\\-\\?\\=\\&]+/s';
+		$feedHrefPattern = '/(href|HREF)[^\\w\\/]+([\\w\\/\\.\\-\\?\\=\\&]+)/s';
 
 		while ($line = fgets($fp)) {
 			$html .= $line;
@@ -121,10 +121,10 @@ $feedHrefPattern = '/(href|HREF)[^\\w\\/]+([\\w\\/\\.\\-\\?\\=\\&]+)/s';
 		//$url = "http://www.example.com";
 		// 初期化
 		$html = $this->getContents($url);
-// 外に出す
-$feedTagPattern = '/<(link|LINK)([^>]|\n)*?(alternate|ALTERNATE)([^>]|\n)*?(rss|xml)[^>]*?>/s';
-$feedUrlPattern = '/(http:\\/\\/)[\\w\\/\\.\\-\\?\\=\\&]+/s';
-$feedHrefPattern = '/(href|HREF)[^\\w\\/]+([\\w\\/\\.\\-\\?\\=\\&]+)/s';
+		// 外に出す
+		$feedTagPattern = '/<(link|LINK)([^>]|\n)*?(alternate|ALTERNATE)([^>]|\n)*?(rss|xml)[^>]*?>/s';
+		$feedUrlPattern = '/(http:\\/\\/)[\\w\\/\\.\\-\\?\\=\\&]+/s';
+		$feedHrefPattern = '/(href|HREF)[^\\w\\/]+([\\w\\/\\.\\-\\?\\=\\&]+)/s';
 
 		if (preg_match($feedTagPattern, $html, $matchTags)) {
 			if (preg_match($feedUrlPattern, $matchTags[0], $matchURLs)) {

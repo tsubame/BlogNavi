@@ -7,64 +7,94 @@
  * ・コンポーネントには他のアプリでも使えるものを
  * ・それ以外の独自処理はモデルまたはvendorで
  *
+ *
+ * アクション
+ *
+ * ・編集画面
+ *     カテゴリ別のサイトのリスト
+ *     削除済みのサイトは表示しない
+ *
+ * ・編集処理 ajax 画面はなし
+ *
+ * ・未カテゴライズサイトの一覧画面
+ *     削除済みのサイトは表示しない
+ *
+ * ・登録画面
+ *
+ * ・登録処理 画面はなし
+ *     登録フォームを表示
+ *
+ * ・サイトを自動登録
+ *
+ * ・削除処理 ajax 画面はなし
+ *
  */
 class SitesController extends Controller {
 
-	//public $name = "Sites";
-
+	// コンポーネント
 	public $components = array('HttpUtil', 'RssFetcher');
+
+	// ヘルパー
 	public $helpers = array('Form');
+
+	// レイアウト
 	public $layout = 'sites';
+
 
 	/**
 	 * サイトの一覧
+	 *
 	 */
-	public function index() {
+	public function index($categoryId = null) {
 
-		$results = $this->Site->find('all');
-
-		$sites = array();
-		foreach ($results as $data) {
-			$site = $data['Site'];
-
-			array_push($sites, $site);
-		}
+		$sites = $this->Site->getSites($categoryId);
 
 		$this->set('sites', $sites);
 	}
 
 	/**
-	 * 登録フォームから手動でサイトを登録
+	 * 編集画面 サイトの一覧
 	 *
-	 * 登録前にURLからサイトの名前を取得する
+	 * @param string $categoryId
+	 */
+	public function editList($categoryId = null) {
+
+		$sites = $this->Site->getSites($categoryId);
+
+		$this->set('sites', $sites);
+		//$this->render('index');
+	}
+
+	/**
+	 * 編集処理 Ajax
 	 *
 	 */
-	public function register() {
-		if (! isset($this->data['Site'])) {
+	public function edit() {
+		if ( !isset($this->request->data)) {
+			$this->redirect(array('action' => 'editList'));
+
 			return;
 		}
+		$site = $this->request->data;
 
-		// URLの最後がファイル名ならファイル名を削除
-		$site = $this->data['Site'];
-
-		// ファイル名を取り除く
-		if (preg_match('/^(http:\/\/[\w\.\/\-_=]+\/)[\w\-\._=]*$/', $site['url'], $matches)) {
-			$site['url'] = $matches[1];
+		if (isset($site['id'])) {
+			$this->Site->save($site);
 		}
 
-		$site['name'] = $this->HttpUtil->getSiteName($site['url']);
-		// フィードURLを取得
-		$feedUrl = $this->RssFetcher->getFeedUrlFromSiteUrl($site['url']);
-		if ($feedUrl != false) {
-			$site['feed_url'] = $feedUrl;
-		} else {
-			debug('フィードURLを取得できませんでした');
-		}
+		$this->render('editList');
+	}
 
-		// 登録
-		$this->Site->save($site);
+	/**
+	 * 未カテゴライズサイトの一覧
+	 * 編集画面
+	 *
+	 */
+	public function uncatList() {
 
-		$this->render('registerForm');
+		$sites = $this->Site->getUnCatSites();
+
+		$this->set('sites', $sites);
+		//$this->render('index');
 	}
 
 	/**
@@ -76,41 +106,50 @@ class SitesController extends Controller {
 	}
 
 	/**
-	 * googleから登録
-	 */
-	public function registerByGoogle() {
-
-
-	}
-
-	/**
-	 * アップデート
+	 * 登録処理
+	 * フォームからサイトを登録
 	 *
 	 */
-	public function update() {
-		if (! isset($this->data['Site'])) {
-			return;
+	public function register() {
+		if ( !isset($this->data['Site'])) {
+			$this->redirect(array('action' => 'registerForm'));
 		}
-		// URLの最後がファイル名ならファイル名を削除
 		$site = $this->data['Site'];
 
-		$this->Site->save($site);
+		$action = ClassRegistry::init('SiteRegisterAction');
+		$action->exec($site);
 
-		$this->index();
-		$this->render('index');
+		$this->render('registerForm');
 	}
 
 	/**
-	 * テスト
+	 * サイトを自動登録
 	 */
-	public function test() {
+	public function registerAuto() {
+		$action = ClassRegistry::init('SiteRegisterAutoAction');
+		$action->exec($site);
 
-		//echo $this->Http->getSiteName('http://yahoo.co.jp/');
-
-		echo $this->HttpUtil->expandUrl('http://www.yahoo.co.jp/');
-
-		$this->render('index');
+		$this->render('uncatList');
 	}
 
+	/**
+	 * 削除
+	 *
+	 */
+	public function delete() {
+		if ( !isset($this->request->data)) {
+			$this->redirect(array('action' => 'editList'));
+
+			return;
+		}
+
+		$site = $this->request->data;
+
+		if (isset($site['id'])) {
+			$this->Site->checkDeleted($site);
+		}
+
+		$this->render('editList');
+	}
 
 }

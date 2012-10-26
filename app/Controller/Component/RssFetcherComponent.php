@@ -129,6 +129,19 @@ class RssFetcherComponent extends Component {
 	 * @return bool | string
 	 */
 	public function getFeedUrlFromSiteUrl($url) {
+
+		$fc2RssSuffix = '?xml';
+		$livedoorRssSuffix = 'index.rdf';
+		$fc2Pattern = '/blog\.fc2\.com/';
+		$livedoorPattern = '/livedoor/';
+
+		if (preg_match($fc2Pattern, $url)) {
+			return $url . $fc2RssSuffix;
+		}
+		if (preg_match($livedoorPattern, $url)) {
+			return $url . $livedoorRssSuffix;
+		}
+
 		$simplePie = new SimplePie();
 		$simplePie->set_feed_url($url);
 		$simplePie->init();
@@ -139,6 +152,30 @@ class RssFetcherComponent extends Component {
 		}
 
 		return $simplePie->feed_url;
+	}
+
+	/**
+	 * URLからサイトの名前を取得
+	 *
+	 * 取得できないときはfalseを返す
+	 *
+	 * @param  string $url
+	 * @return bool | string
+	 */
+	public function getSiteName($url) {
+		$simplePie = new SimplePie();
+		$simplePie->set_feed_url($url);
+		$simplePie->init();
+
+		$type = $simplePie->get_type();
+		if ($type == 0) {
+
+			debug($simplePie);
+
+			return false;
+		}
+
+		return $simplePie->get_title();
 	}
 
 }

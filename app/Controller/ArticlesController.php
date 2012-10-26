@@ -51,7 +51,7 @@ class ArticlesController extends Controller {
 	 *
 	 * @var string
 	 */
-	public $layout = 'articles';
+	//public $layout = 'articles';
 
 
 	/**

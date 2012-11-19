@@ -1,23 +1,3 @@
-<?php
-/**
- *
- * PHP 5
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       Cake.View.Layouts
- * @since         CakePHP(tm) v 0.10.0.1076
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
- */
-
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -25,11 +5,13 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<title>
 		<?php echo $title_for_layout; ?>
 	</title>
+	<script src = "http://www.google.com/jsapi"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<?php
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('common');
-
+		echo $this->Html->script('main');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -43,9 +25,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 				echo $this->Html->link('記事の登録', array('controller' => 'articles', 'action' => 'insert')) . '　　';
 				echo $this->Html->link('ツイート数の更新',array('controller' => 'articles', 'action' => 'getTweetCount')) . '　　';
 
-				echo $this->Html->link('サイトの一覧', array('controller' => 'sites', 'action' => 'editList')) . '　　';
+				echo $this->Html->link('サイトの一覧', array('controller' => 'sites', 'action' => 'editForm')) . '　　';
 				echo $this->Html->link('サイトの登録', array('controller' => 'sites', 'action' => 'registerForm')) . '　　';
-				echo $this->Html->link('未登録サイト一覧', array('controller' => 'sites', 'action' => 'uncatList')) . '　　';
+				echo $this->Html->link('未登録サイト一覧', array('controller' => 'sites', 'action' => 'unregiList')) . '　　';
 			?>
 		</div>
 		<div id="content">

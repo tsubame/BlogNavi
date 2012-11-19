@@ -73,17 +73,12 @@ $(function() {
 
 		// サイトIDを収得
 		var siteId = $(this).attr("name");
-
 		// フォームのデータを受け取る
-		//var name = $("tr#tr" + siteId + " input.name").val();
-		//var url  = $("tr#tr" + siteId + " input.url").val();
-		//var feed_url  =$("tr#tr" + siteId + " input.feed_url").val();
 		var category_id  =$("tr#tr" + siteId + " .category_id").get(0).selectedIndex + 1;
 
 		var data = {
 				"id": siteId,
-				"is_categorized": true,
-				"is_available": true,
+				"is_registered": true,
 				"category_id": category_id
 			};
 

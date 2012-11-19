@@ -25,13 +25,9 @@ class SiteTest extends CakeTestCase  {
 	 *
 	 * @test
 	 */
-	public function getSitesOfCategoriesTest() {
+	public function registerAll() {
 
-
-
-		$sites = $this->Site->getSitesOfCategory();
-
-		//debug($sites);
+		$this->Site->registerAll();
 	}
 
 	/**
@@ -62,10 +58,9 @@ class SiteTest extends CakeTestCase  {
 	 *
 	 * @test
 	 */
-	public function getUnCatSites() {
+	public function getUnregiSites() {
 
-		$sites = $this->Site->getUnCatSites();
-
+		$sites = $this->Site->getUnregiSites();
 
 		debug(count($sites));
 	}
@@ -80,5 +75,6 @@ class SiteTest extends CakeTestCase  {
 
 		$this->Site->checkDeleted($site);
 	}
+
 
 }

@@ -4,7 +4,7 @@
 	<?php
 
 // 外に出す
-$categories = array(1 => 'ニュース', 2 => '2ch', 3 => 'ブログ');
+//$categories = array(1 => 'ニュース', 2 => '2ch', 3 => 'ブログ');
 
 	foreach ($sites as $site) {
 	 ?>

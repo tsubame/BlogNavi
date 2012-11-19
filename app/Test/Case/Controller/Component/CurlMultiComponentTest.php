@@ -17,6 +17,19 @@ class CurlMultiComponentTestCase extends CakeTestCase {
 	}
 
 	/**
+	 * パフォーマンス測定
+	 *
+	 *
+	 */
+	public function checkPerformance() {
+
+		$this->curlMulti->setreqCountOnce(100);
+
+
+
+	}
+
+	/**
 	 * 正常系
 	 * ・帰ってきたデータの件数が正しいか
 	 * ・帰ってきたデータがすべてfalseではないか

@@ -24,20 +24,11 @@ class RssFetcherComponentTestCase extends CakeTestCase {
 	 *
 	 * 正常系
 	 *
-	 * test
+	 * @test
 	 */
 	public function getFeedTest() {
 		$urls = array(
-				'http://kyuukaiou.ldblog.jp/',
-				'http://ameblo.jp/nin-shin/',
-				'http://blog.livedoor.jp/maxell011/',
-				'http://2ch11soccer.blog.fc2.com/',
-				'http://blog.livedoor.jp/aushio/',
-				'http://sportsnavi.yahoo.co.jp/',
-				'http://www.plus-blog.sportsnavi.com/takkun/',
-				'http://jp.uefa.com/index.html',
-				'http://sportiva.shueisha.co.jp/clm/wfootball/',
-				'http://japan.cnet.com/'
+				'http://www.sanspo.com/soccer/soccer.html'
 			);
 /*
 		$urls = array(

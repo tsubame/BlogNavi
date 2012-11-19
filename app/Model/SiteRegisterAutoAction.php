@@ -72,6 +72,12 @@ class SiteRegisterAutoAction extends AppModel {
 	 */
 	const LIVEDOOR_RANK_URL = 'http://blog.livedoor.com/category/9/';
 
+	/**
+	 * 2chまとめのカテゴリーID
+	 *
+	 * @var int
+	 */
+	const CATEGORY_2CH_ID = 2;
 
 	/**
 	 * コンストラクタ
@@ -107,10 +113,12 @@ class SiteRegisterAutoAction extends AppModel {
 				debug("フィードURLを取得できませんでした  \n{$site['url']}");
 			}
 
-			$sites[$i]['is_categorized'] = false;
-			$sites[$i]['is_available']    = false;
+			$sites[$i]['is_registered']  = false;
 			$sites[$i]['category_id']    = 3;
 		}
+
+		// カテゴライズ
+		$this->autoCategorize($sites);
 
 		debug($sites);
 
@@ -158,7 +166,7 @@ class SiteRegisterAutoAction extends AppModel {
 					$sites[$i]['url'] = $urlMatchs[0];
 				}
 
-				$sites[$i]['register_from']  = 'fc2';
+				$sites[$i]['registered_from']  = 'fc2';
 			}
 		}
 
@@ -205,11 +213,42 @@ class SiteRegisterAutoAction extends AppModel {
 					$sites[$i]['url'] = $urlMatchs[0];
 				}
 
-				$sites[$i]['register_from']  = 'livedoor';
+				$sites[$i]['registered_from']  = 'livedoor';
 			}
 		}
 
 		return $sites;
+	}
+
+	/**
+	 * 2chまとめブログをカテゴライズ
+	 *
+	 */
+	public function autoCategorize(&$sites) {
+
+		$pattern = '/201[\d]\/[\d\/]+[^\s]+[\d\s\.:]+ID:/s';
+
+		// 未登録サイトを取得
+		//$sites = $this->Site->getUnRegiSites();
+
+		$feedUrls = array();
+		foreach ($sites as $site) {
+			$feedUrls[] = $site['feed_url'];
+		}
+		// RSSフィードを並列に取得
+		$feedOfSites = $this->RssFetcher->getFeedParallel($feedUrls);
+
+		// サイトの数ループ
+		foreach ($feedOfSites as $i => $feedOfSite) {
+			foreach ($feedOfSite as $entry) {
+				// エントリ内のサマリーを検索
+				if (preg_match($pattern, $entry['description'], $matches)) {
+					$sites[$i]['category_id'] = self::CATEGORY_2CH_ID;
+
+					break;
+				}
+			}
+		}
 	}
 
 }

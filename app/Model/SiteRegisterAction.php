@@ -1,4 +1,6 @@
 <?php
+App::uses('ComponentCollection', 'Controller');
+App::uses('RssFetcherComponent', 'Controller/Component');
 
 /**
  * SitesControllerのregisterアクション
@@ -21,14 +23,12 @@ class SiteRegisterAction extends AppModel {
 	 */
 	private $Site;
 
-
-
 	/**
-	 * コンポーネントのインスタンス生成用引数
 	 *
-	 * @var object ComponentCollection
+	 * @var object
 	 */
-	private $collection;
+	private $rssFetcher;
+
 
 	/**
 	 * コンストラクタ
@@ -37,8 +37,9 @@ class SiteRegisterAction extends AppModel {
 	public function __construct() {
 		parent::__construct();
 
-		$this->Site       = ClassRegistry::init('Site');
-		$this->collection = new ComponentCollection();
+		$collection = new ComponentCollection();
+		$this->Site = ClassRegistry::init('Site');
+		$this->rssFetcher = new RssFetcherComponent($collection);
 	}
 
 	/**
@@ -46,33 +47,30 @@ class SiteRegisterAction extends AppModel {
 	 *
 	 */
 	public function exec($site) {
-
-		$rssFetcher = new RssFetcherComponent($this->collection);
-
-		// ファイル名を取り除く
-		if (preg_match('/^(http:\/\/[\w\.\/\-_=]+\/)[\w\-\._=]*$/', $site['url'], $matches)) {
-			$site['url'] = $matches[1];
-		}
-
 		// フィードURLを取得
-		$feedUrl = $rssFetcher->getFeedUrlFromSiteUrl($site['url']);
-		if ($feedUrl != false) {
-			$site['feed_url'] = $feedUrl;
-		} else {
-			debug('フィードURLを取得できませんでした');
+		if ( !isset($site['feed_url']) || $site['feed_url'] == '') {
+			$feedUrl = $this->rssFetcher->getFeedUrlFromSiteUrl($site['url']);
+			if ($feedUrl != false) {
+				$site['feed_url'] = $feedUrl;
+			} else {
+				debug('フィードURLを取得できませんでした');
+			}
 		}
 
 		// サイト名を取得
-		$siteName = $rssFetcher->getSiteName($feedUrl);
-		if ($siteName != false) {
-			$site['name'] = $siteName;
-		} else {
-			debug('サイト名を取得できませんでした');
+		if ( !isset($site['name']) || $site['name'] == '') {
+			$siteName = $this->rssFetcher->getSiteName($feedUrl);
+			if ($siteName != false) {
+				$site['name'] = $siteName;
+			} else {
+				debug('サイト名を取得できませんでした');
+			}
 		}
 
 		// 登録
 		$this->Site->saveIfNotExists($site);
 	}
+
 
 
 }

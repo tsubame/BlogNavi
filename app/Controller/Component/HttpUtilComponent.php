@@ -56,8 +56,6 @@ class HttpUtilComponent extends Component {
 		return null;
 	}
 
-// 未完全
-// バグ修正の必要あり
 	/**
 	 * URLを受け取ってRSSのフィードURLを返す。
 	 *

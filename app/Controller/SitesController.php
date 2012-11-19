@@ -31,14 +31,33 @@
  */
 class SitesController extends Controller {
 
-	// コンポーネント
-	public $components = array('HttpUtil', 'RssFetcher');
+	/**
+	 * コンポーネント
+	 *
+	 * @var array
+	 */
+	public $components = array();
 
-	// ヘルパー
+	/**
+	 * ヘルパー
+	 *
+	 * @var array
+	 */
 	public $helpers = array('Form');
 
-	// レイアウト
-	public $layout = 'sites';
+	/**
+	 * レイアウト
+	 *
+	 * @var array
+	 */
+	public $layout = 'default';
+
+	/**
+	 * モデル
+	 *
+	 * @var array
+	 */
+	public $uses = array('Site', 'Category');
 
 
 	/**
@@ -57,12 +76,12 @@ class SitesController extends Controller {
 	 *
 	 * @param string $categoryId
 	 */
-	public function editList($categoryId = null) {
-
+	public function editForm($categoryId = null) {
 		$sites = $this->Site->getSites($categoryId);
-
 		$this->set('sites', $sites);
-		//$this->render('index');
+
+		$categories = $this->Category->getCategoryNames();
+		$this->set('categories', $categories);
 	}
 
 	/**
@@ -81,20 +100,20 @@ class SitesController extends Controller {
 			$this->Site->save($site);
 		}
 
-		$this->render('editList');
+		$this->render('editForm');
 	}
 
 	/**
-	 * 未カテゴライズサイトの一覧
+	 * 未登録サイトの一覧
 	 * 編集画面
 	 *
 	 */
-	public function uncatList() {
-
-		$sites = $this->Site->getUnCatSites();
+	public function unregiList() {
+		$sites = $this->Site->getUnRegiSites();
+		$categories = $this->Category->getCategoryNames();
 
 		$this->set('sites', $sites);
-		//$this->render('index');
+		$this->set('categories', $categories);
 	}
 
 	/**
@@ -102,7 +121,10 @@ class SitesController extends Controller {
 	 *
 	 */
 	public function registerForm() {
+		// カテゴリ取得
+		$categories = $this->Category->getCategoryNames();
 
+		$this->set('categories', $categories);
 	}
 
 	/**
@@ -127,9 +149,29 @@ class SitesController extends Controller {
 	 */
 	public function registerAuto() {
 		$action = ClassRegistry::init('SiteRegisterAutoAction');
-		$action->exec($site);
+		$action->exec();
 
-		$this->render('uncatList');
+		$this->render('unregiList');
+	}
+
+	/**
+	 * サイトをファイルから登録
+	 */
+	public function registerFromFile() {
+		$action = ClassRegistry::init('SiteRegisterFromFileAction');
+		$action->exec();
+
+		$this->render('unregiList');
+	}
+
+	/**
+	 * 未登録サイトをすべて登録
+	 */
+	public function registerAll() {
+
+		$this->Site->registerAll();
+
+		$this->render('unregiList');
 	}
 
 	/**
@@ -149,7 +191,7 @@ class SitesController extends Controller {
 			$this->Site->checkDeleted($site);
 		}
 
-		$this->render('editList');
+		$this->render('editForm');
 	}
 
 }

@@ -4,16 +4,18 @@
  * モデルクラス sitesテーブル
  *
  * ・sitesテーブル
- * id			  int primary
- * name			  varchar
- * url			  varchar
- * feed_url		  varchar
- * category_id	  int
- * is_categorized boolean 自動登録の際は手動でカテゴリ分けするまでfalse
- * is_available	  boolean
- * is_deleted	  boolean
- * created		  datetime
- * modified		  datetime
+ * id			   int primary
+ * name			   varchar
+ * url			   varchar
+ * feed_url		   varchar
+ * category_id	   int
+ * like_count	   int	   Facebookのいいね！の数
+ * registered_from varchar
+ * is_categorized  boolean 自動登録の際は手動でカテゴリ分けするまでfalse
+ * is_available	   boolean
+ * is_deleted	   boolean
+ * created		   datetime
+ * modified		   datetime
  */
 App::uses('AppModel', 'Model');
 
@@ -29,35 +31,10 @@ class Site extends AppModel{
 	// モデルに必要なプロパティ、メソッドは？
 
 
-
 	/**
 	 * すべてのサイトを取得
 	 *
-	 * @return array $sites サイトの配列
-	 *						$sites[0] ('name' = > 'サイト名')
-	 */
-	/*
-	public function getAllSites() {
-		$sites = array();
-		$conditions = array();
-
-		$options = array(
-				'conditions' => $conditions,
-				'order' => 'Site.id ASC'
-		);
-
-		$results = $this->find('all', $options);
-		// 配列に移し替え
-		foreach ($results as $data) {
-			array_push($sites, $data['Site']);
-		}
-
-		return $sites;
-	}
-	*/
-
-	/**
-	 * すべてのサイトを取得
+	 * 未登録、削除済み、使用不可のサイトも含める
 	 *
 	 * @return array $sites サイトの配列
 	 *						$sites[0] ('name' = > 'サイト名')
@@ -87,7 +64,9 @@ class Site extends AppModel{
 	}
 
 	/**
-	 * 削除していないサイトを取得
+	 * 特定のカテゴリのサイトを取得
+	 *
+	 * 未登録、削除済み、使用不可のサイトは除く
 	 *
 	 * @return int   $categoryId カテゴリID nullの場合はすべてのカテゴリ
 	 * @return array $sites サイトの配列
@@ -96,9 +75,9 @@ class Site extends AppModel{
 	public function getSites($categoryId = null) {
 
 		$conditions = array(
-				'Site.is_available'   => true,
-				'Site.is_categorized' => true,
-				'Site.is_deleted'     => false
+				'Site.is_available'  => true,
+				'Site.is_registered' => true,
+				'Site.is_deleted'    => false
 		);
 
 		if ( !is_null($categoryId)) {
@@ -121,53 +100,20 @@ class Site extends AppModel{
 		return $sites;
 	}
 
-
 	/**
-	 * 特定のカテゴリのサイトを取得
-	 *
-	 * is_availableがtrue、is_deletedがfalseのサイトのみ
-	 *
-	 * @param  int   $categoryId
-	 * @return array $sites サイトの配列
-	 *						$sites[0] ('name' = > 'サイト名')
-	 */
-	public function getSitesOfCategory($categoryId = 1) {
-		$sites = array();
-
-		$conditions = array(
-				'Site.category_id'  => $categoryId,
-				'Site.is_available' => true,
-				'Site.is_deleted'   => false
-		);
-
-		$options = array(
-				'conditions' => $conditions,
-				'order' => 'Site.id ASC'
-		);
-
-		$results = $this->find('all', $options);
-		// 配列に移し替え
-		foreach ($results as $data) {
-			array_push($sites, $data['Site']);
-		}
-
-		return $sites;
-	}
-
-	/**
-	 * カテゴライズされていないサイトを取得
+	 * 未登録サイトを取得
 	 *
 	 *
 	 * @param  int   $categoryId
 	 * @return array $sites サイトの配列
 	 *						$sites[0] ('name' = > 'サイト名')
 	 */
-	public function getUnCatSites() {
+	public function getUnRegiSites() {
 		$sites = array();
 
 		$conditions = array(
-				'Site.is_categorized' => false,
-				'Site.is_deleted'     => false
+				'Site.is_registered' => false,
+				'Site.is_deleted'    => false
 		);
 
 		$options = array(
@@ -212,6 +158,21 @@ class Site extends AppModel{
 	}
 
 	/**
+	 * 未登録サイトをすべて登録
+	 *
+	 */
+	public function registerAll() {
+		// 未登録サイトをすべて取得
+		$sites = $this->getUnRegiSites();
+
+		foreach ($sites as $i => $site) {
+			$site['is_registered'] = true;
+debug($site);
+			$this->save($site);
+		}
+	}
+
+	/**
 	 * 削除処理
 	 * is_deleted を trueに編集
 	 *
@@ -233,4 +194,5 @@ class Site extends AppModel{
 			return false;
 		}
 	}
+
 }

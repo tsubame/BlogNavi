@@ -22,10 +22,15 @@ class SiteRegisterAutoActionTest extends CakeTestCase  {
 	 * @test
 	 */
 	public function execTest() {
-
-
-
 		$this->SiteRegisterAutoAction->exec();
+	}
+
+	/**
+	 *
+	 * test
+	 */
+	public function autoCategorize() {
+		$this->SiteRegisterAutoAction->autoCategorize();
 	}
 
 	/**

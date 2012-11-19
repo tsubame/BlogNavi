@@ -20,7 +20,7 @@ class ArticleTest extends CakeTestCase  {
 
 	/**
 	 *
-	 * @test
+	 * test
 	 */
 	public function selectTodaysArticlesTest() {
 		$this->Article->selectTodaysArticles();
@@ -42,7 +42,7 @@ class ArticleTest extends CakeTestCase  {
 
 	/**
 	 *
-	 * @test
+	 * test
 	 */
 	public function 同じURLの記事は挿入できない() {
 
@@ -72,7 +72,7 @@ class ArticleTest extends CakeTestCase  {
 
 	/**
 	 *
-	 * @test
+	 * test
 	 */
 	public function 同じURLの記事は() {
 
@@ -102,10 +102,11 @@ class ArticleTest extends CakeTestCase  {
 	}
 
 	/**
+	 * 複数件の記事を挿入できる
 	 *
-	 * @test
+	 * test
 	 */
-	public function test複数件の記事を挿入できる() {
+	public function insertMultipleArticles() {
 		$insertCount = 30;
 
 		// データを1件挿入
@@ -141,7 +142,7 @@ class ArticleTest extends CakeTestCase  {
 				$this->Article->save($article);
 				//debug('追加しました' . $article['url']);
 			} else {
-				debug('追加できませんでした' . $article['url']);
+				//debug('追加できませんでした' . $article['url']);
 			}
 
 			if ($i == $insertCount) {
@@ -150,6 +151,29 @@ class ArticleTest extends CakeTestCase  {
 				$this->assertEqual($res, false);
 			}
 		}
+	}
+
+	/**
+	 * 正常系
+	 *
+	 * @test
+	 */
+	public function deletePastArticles() {
+		 $this->Article->deletePastArticles();
+
+		 $this->Article->output();
+	}
+
+	/**
+	 * 正常系
+	 *
+	 * test
+	 */
+	public function selectDeletableArticles() {
+
+		$articles = $this->Article->selectDeletableArticles(1, 1);
+
+		debug($articles);
 	}
 
 }

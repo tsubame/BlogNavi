@@ -3,7 +3,7 @@
 App::uses('TwitterAPIAccessor', 'Model');
 App::uses('ComponentCollection', 'Controller');
 App::uses('HttpUtilComponent', 'Controller/Component');
-
+App::uses('RssFetcherComponent', 'Controller/Component');
 /**
  *
  *
@@ -15,6 +15,7 @@ class DemoCodeTest extends CakeTestCase  {
 	private $TwitterAPIAccessor;
 
 	private $httpUtil;
+	private $rssFetcher;
 
 	public function setUp() {
 		parent::setUp();
@@ -22,10 +23,40 @@ class DemoCodeTest extends CakeTestCase  {
 
 		$collection = new ComponentCollection();
 		$this->httpUtil = new HttpUtilComponent($collection);
+		$this->rssFetcher = new RssFetcherComponent($collection);
 	}
 
 
 	/**
+	 * Facebook
+	 *
+	 * test
+	 */
+	public function fbTest() {
+		$url = 'http://number.bunshun.jp/';
+
+		$fql = urlencode('SELECT total_count FROM link_stat WHERE url="' . $url . '"');
+
+		$fql = urlencode('SELECT total_count FROM link_stat WHERE url="http://number.bunshun.jp/"');
+
+		$url = 'https://api.facebook.com/method/fql.query?query=' . $fql;
+
+		$url = 'https://api.facebook.com/method/fql.query?query=SELECT+total_count+FROM+link_stat+WHERE+url%3D%22http%3A%2F%2Fnumber.bunshun.jp%2F%22';
+
+		$res = $this->httpUtil->getContents($url);
+
+		echo $fql;
+
+		//$response = file_get_contents('https://api.facebook.com/method/fql.query?query=SELECT+total_count+FROM+link_stat+WHERE+url%3D%22http%3A%2F%2Fnumber.bunshun.jp%2F%22');
+		$xml = simplexml_load_string($res);
+
+		$count =  $xml->link_stat->total_count;
+
+		debug($count);
+	}
+
+	/**
+	 * ヤフーブログ登録
 	 *
 	 * test
 	 */
@@ -49,110 +80,51 @@ class DemoCodeTest extends CakeTestCase  {
 		$res = file_get_contents($url);
 
 		debug($res);
-
-
 	}
 
 	/**
-	 * FC2 ブログ登録
 	 *
 	 * @test
 	 */
-	public function blogRegisterFc2() {
+	public function demo2() {
+		$dayAgo = -1;
+		$dayAgoMinus = (string)($dayAgo * -1);
 
-		$rankUrl = 'http://blog.fc2.com/subgenre/250/';
-		$pattern = '/http:\/\/[\w]+\.blog[\d]*\.fc2\.com\//';
+		$dateFrom = date('Y-m-d 0:00:00', strtotime($dayAgoMinus . ' day'));
+		$dateTo = date('Y-m-d 23:59:59', strtotime($dayAgoMinus . ' day'));
 
-		$html = $this->httpUtil->getContents($rankUrl);
-
-		$siteUrls = array();
-
-		if (preg_match_all($pattern, $html, $matches)) {
-
-			foreach ($matches[0] as $i => $url) {
-				if (30 <= $i) {
-					break;
-				}
-
-				// echo "$i => $url <br />";
-				$siteUrls[] = $url;
- 			}
-		}
-
-		$tw = new TwitterAPIAccessor();
-		$counts = $tw->getTweetCountOfUrls($siteUrls);
-
-		debug($counts);
+		debug($dateFrom);
+		debug($dateTo);
 	}
 
 	/**
-	 * ライブドア ブログ登録
 	 *
-	 * @test
+	 * test
 	 */
-	public function blogRegisteLivedoor() {
+	public function preg2ch() {
 
-		$rankUrl = 'http://blog.livedoor.com/category/9/';
-		$html = $this->httpUtil->getContents($rankUrl);
+		$text = '【サッカー/日本代表】2015南米選手権(コパ･アメリカ)に日本を招待へhttp://awabi.2ch.net/test/read.cgi/mnewsplus/13511289561れいおφ ★：2012/10/25(木) 10:35:56.77 ID:???0南米サッカー連盟は２４日、アルゼンチンで理事会を開き、２０１５年にチリで開く南米選手権...';
 
-		$tagPattern = '/<h3[\s]+class\="ttl">.+?<\/h3>/is';
-		$urlPattern = '/http:\/\/[\w\/\.\-_]+/is';
+		$pattern = '/201[\d]\/[\d\/]+.{3}[\s][\d\.:]+[\s]*ID:/s';
 
-		$registerCount = 50;
+		$pattern = '/201[\d]\/[\d\/]+[^\s]+[\d\s\.:]+ID:/s';
 
-		$siteUrls = array();
-		if (preg_match_all($tagPattern, $html, $tags)) {
-
-			foreach ($tags[0] as $i => $tag) {
-				if ($registerCount < $i) {
-					break;
-				}
-
-				if (preg_match($urlPattern, $tag, $urlMatchs)){
-					$url = $urlMatchs[0];
-
-					$siteUrls[] = $url;
-				}
-			}
+		if (preg_match($pattern, $text, $matches)) {
+			debug($matches[0]);
 		}
-
-		$tw = new TwitterAPIAccessor();
-		$counts = $tw->getTweetCountOfUrls($siteUrls);
-
-		debug($counts);
 	}
-
 
 	/**
-	 * 登録ロジック
+	 *
+	 *
 	 */
-	public function register() {
+	public function demo() {
 
-	// 定期的に？
-		// ライブドアブログランキング
-
-		// 人気ブログランキング
-
-		// fc2
-
-		// アメブロ
-
-		//
-
-
-	// 記事の取得
-
-
-
-
-
-	// 要件
-		// ツイート件数が一定以上のブログのみ登録
-
-		// 定期的にブログ入れ替え
-
-		// 選手のブログも追加（手動）
-
-
+		// ロギング
+		$obj = ClassRegistry::init('Site');
+		//$obj->log("Something didn't work!", LOG_DEBUG);
+		CakeLog::debug("デバッグテストなう");
+		CakeLog::info('info');
 	}
+
 }

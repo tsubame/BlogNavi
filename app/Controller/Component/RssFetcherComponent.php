@@ -86,10 +86,9 @@ class RssFetcherComponent extends Component {
 	 * 			)
 	 * 		)
 	 * 	)
+	 *
 	 * @param  array $feedUrls フィードURLの配列
 	 * @return array $parsedFeeds
-	 *
-	 *
 	 */
 	public function getFeedParallel($feedUrls) {
 		// HTTPで並列にRSSフィードを取得
@@ -169,9 +168,6 @@ class RssFetcherComponent extends Component {
 
 		$type = $simplePie->get_type();
 		if ($type == 0) {
-
-			debug($simplePie);
-
 			return false;
 		}
 

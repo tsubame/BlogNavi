@@ -26,6 +26,72 @@ class DemoCodeTest extends CakeTestCase  {
 		$this->rssFetcher = new RssFetcherComponent($collection);
 	}
 
+	/**
+	 *
+	 * @test
+	 */
+	public function constTest() {
+		debug(Configure::read('test2.test'));
+		debug(Configure::read('test'));
+
+		debug(Configure::read('Category.names'));
+	}
+
+	/**
+	 *
+	 * test
+	 */
+	public function pickupWordTest() {
+		$model = ClassRegistry::init('Article');
+
+		$results = $model->selectTodaysArticles(1, 30);
+
+		$articleWords = array();
+
+		$words = array();
+		// 記事の件数ループ
+		foreach ($results as $result) {
+			$title = $result['Article']['title'];
+			$pattern = '/[一-龠]+|[ァ-ヴー]+|[a-zA-Z0-9]+|[ａ-ｚＡ-Ｚ０-９]+/ius';
+
+			if (preg_match_all($pattern, $title, $matches)) {
+
+				$articleWords = array();
+
+				foreach ($matches[0] as $word) {
+					if (mb_strlen($word) < 2) {
+						continue;
+					} else {
+						array_push($words, $word);
+						array_push($articleWords, $word);
+					}
+				}
+
+				debug($articleWords);
+			}
+		}
+
+		debug($words);
+
+		$hotWords = array();
+		while(0 < count($words)) {
+			$word = array_pop($words);
+
+			foreach ($words as $tWord) {
+				if ($word == $tWord || strpos($word, $tWord) !== false || strpos($tWord, $word) !== false) {
+					if (array_search($word, $hotWords) !== false) {
+						debug('値あり' . $word);
+						break;
+					}
+					$hotWords[] = $word;
+
+					break;
+				}
+			}
+		}
+
+		debug($hotWords);
+	}
 
 	/**
 	 * Facebook

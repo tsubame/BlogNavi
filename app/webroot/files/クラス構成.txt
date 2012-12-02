@@ -1,0 +1,38 @@
+ articles
+
+  id			integer
+  title		 	varchar
+  url			mediumtext
+  description	mediumtext
+  site_id		integer
+  tweeted_count integer
+  is_deleted 	boolean  true 表示しない記事（ニュース以外のURLなど）
+  published 	datetime
+  created  	 	datetime
+  modified 	 	datetime
+
+
+
+ sites
+
+  id			  int primary
+  name			  varchar
+  url			  varchar
+  feed_url		  varchar
+  category_id	  int
+  like_count	  int	   Facebookのいいね！の数
+  registered_from varchar
+  has_many_sites  boolean  スポーツナビのRSSはtrue
+  is_registered   boolean  ブログランキングから自動で登録したサイトはfalse、名前を考える
+  is_deleted	  boolean
+  created		  datetime
+  modified		  datetime
+
+
+
+categories
+
+  id			   int primary
+  name			   varchar
+  created		   datetime
+  modified		   datetime

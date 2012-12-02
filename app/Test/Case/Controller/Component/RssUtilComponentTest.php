@@ -3,12 +3,12 @@
 //App::uses('Component', 'Controller');
 //App::uses('Controller', 'Controller');
 App::uses('ComponentCollection', 'Controller');
-App::uses('RssFetcherComponent', 'Controller/Component');
+App::uses('RssUtilComponent', 'Controller/Component');
 
 /**
  *
  */
-class RssFetcherComponentTestCase extends CakeTestCase {
+class RssUtilComponentTestCase extends CakeTestCase {
 
 	private $Collection;
 	private $rssFetcher;
@@ -16,7 +16,7 @@ class RssFetcherComponentTestCase extends CakeTestCase {
 	public function setUp(){
 		parent::setUp();
 		$this->Collection = new ComponentCollection();
-		$this->rssFetcher = new RssFetcherComponent($this->Collection);
+		$this->rssFetcher = new RssUtilComponent($this->Collection);
 	}
 
 	/**
@@ -41,18 +41,35 @@ class RssFetcherComponentTestCase extends CakeTestCase {
 	 *
 	 * 正常系
 	 *
-	 * test
+	 * @test
 	 */
 	public function getFeedTest() {
 		$urls = array(
-				'http://www.sanspo.com/soccer/soccer.html'
+				//'http://www.plus-blog.sportsnavi.com/turntable/',
+				//'http://www.goal.com/jp/feeds/news?fmt=atom',
+				'http://college-soccer.com/'
 			);
 
 		foreach ($urls as $url) {
 			$entries = $this->rssFetcher->getFeed($url);
 
 			debug($entries);
+
+			$title = $entries[0]['title'];
+			if (strpos($title, '&amp;') !== false) {
+				print_r($entries[0]);
+				//$title = str_replace('&amp;', '&', $title);
+				debug('一致');
+			}
+
+			echo $title . '<br />';
+
+			foreach ($entries as $entry) {
+				debug($entry['title']);
+				echo $entry['title'] . '<br />';
+			}
 		}
+
 	}
 
 	/**

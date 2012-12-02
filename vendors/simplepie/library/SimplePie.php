@@ -487,7 +487,8 @@ class SimplePie
 	 * @see SimplePie::enable_cache()
 	 * @access private
 	 */
-	public $cache = true;
+//	public $cache = true;
+public $cache = false;
 
 	/**
 	 * @var int Cache duration (in seconds)
@@ -1229,7 +1230,6 @@ class SimplePie
 		$this->sanitize->pass_cache_data($this->cache, $this->cache_location, $this->cache_name_function, $this->registry->get_class('Cache'));
 		$this->sanitize->pass_file_data($this->registry->get_class('File'), $this->timeout, $this->useragent, $this->force_fsockopen);
 
-//
 		if (!empty($this->multifeed_url))
 		{
 
@@ -1328,7 +1328,8 @@ class SimplePie
 		$encodings = array_merge($encodings, $this->registry->call('Misc', 'xml_encoding', array($this->raw_data, &$this->registry)));
 		$encodings[] = 'UTF-8';
 		$encodings[] = 'ISO-8859-1';
-
+// 要削除
+//debug($encodings);
 		// There's no point in trying an encoding twice
 		$encodings = array_unique($encodings);
 

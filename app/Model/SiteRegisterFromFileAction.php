@@ -1,9 +1,6 @@
 <?php
-
-App::uses('AppModel', 'Model');
 App::uses('ComponentCollection', 'Controller');
-App::uses('HttpUtilComponent', 'Controller/Component');
-App::uses('RssFetcherComponent', 'Controller/Component');
+App::uses('RssUtilComponent',    'Controller/Component');
 
 /**
  * SitesControllerのregisterFromFileアクション
@@ -22,19 +19,20 @@ App::uses('RssFetcherComponent', 'Controller/Component');
  *   http://yahoo.co.jp/ ヤフー
  *   http://google.co.jp/ google
  *
- * 必要なクラス
- * ・RssFetcherComponent
- * ・Sitesモデル
+ * 依存クラス
+ *
+ * ・Component/RssUtilComponent
+ * ・ComponentCollection
+ * ・Model/Sites
  *
  * エラー処理
  *
- * ・ファイルが開けないとき → ログにエラーメッセージを記録して処理続行
- * ・書式がおかしい行 → ログに記録して処理続行
- * ・フィードURLが取得できないとき → ログに記録してスキップ
+ * ・ファイルが開けない        → ログにエラーメッセージを記録
+ * ・書式がおかしい行がある    → ログに警告メッセージを記録
+ * ・フィードURLが取得できない → ログに警告メッセージを記録してスキップ
  *
  */
 class SiteRegisterFromFileAction extends AppModel {
-
 
 	/**
 	 * テーブルの使用
@@ -43,82 +41,43 @@ class SiteRegisterFromFileAction extends AppModel {
 	 */
 	public $useTable = false;
 
-	/**
-	 * Siteモデル
-	 *
-	 * @var object Site
-	 */
-	private $Site;
-
-	/**
-	 * RssFetcherコンポーネント
-	 *
-	 * @var object RssFetcherComponent
-	 */
-	private $RssFetcher;
-
-	/**
-	 * ニュースサイトのファイル名
-	 *
-	 * @var string
-	 */
-	const FILE_NEWS = 'sites_news.txt';
-
-	/**
-	 * 2chまとめサイトのファイル名
-	 *
-	 * @var string
-	 */
-	const FILE_2CH = 'sites_2ch.txt';
-
-	/**
-	 * ブログサイトのファイル名
-	 *
-	 * @var string
-	 */
-	const FILE_BLOG = 'sites_blog.txt';
-
-	/**
-	 * コンストラクタ
-	 *
-	 */
-	public function __construct() {
-		parent::__construct();
-
-		$collection = new ComponentCollection();
-		$this->Site       = ClassRegistry::init('Site');
-		//$this->HttpUtil   = new HttpUtilComponent($collection);
-		$this->RssFetcher = new RssFetcherComponent($collection);
-	}
 
 	/**
 	 * 処理実行
 	 *
 	 */
 	public function exec() {
-		$this->register(1, self::FILE_NEWS);
-		$this->register(2, self::FILE_2CH);
-		$this->register(3, self::FILE_BLOG);
+		// ファイル名を定数から取得
+		$fileNames = Configure::read('Site.fileNames');
+
+		// 各ファイルから読み込んで登録
+		foreach ($fileNames as $i => $fileName) {
+			$this->register($i, $fileName);
+		}
 	}
 
 	/**
 	 * 登録処理
 	 *
-	 * @param  int $catId カテゴリ番号
-	 * @return bool false or true
+	 * ファイルからサイトを読み込んでDBに保存する
+	 *
+	 * @param  int    $catId    カテゴリ番号
+	 * @param  string $fileName ファイル名
 	 */
 	protected function register($catId = 1, $fileName) {
-
 		// ファイル内のテキストを取得
 		try {
-			$file = WWW_ROOT . 'files' . DS . $fileName;
-			$text = file_get_contents($file);
+			//$filePath = WWW_ROOT . 'files' . DS . $fileName;
+			$filePath = Configure::read('Site.fileDirPath') . $fileName;
+			$text = file_get_contents($filePath);
+		// 例外時は警告をロギング
 		} catch(Exception $e) {
-			// ロギング ファイルが開けません
 			CakeLog::warning("ファイルが開けません " . $e->getMessage());
-			return false;
+
+			return;
 		}
 
+		$siteModel = ClassRegistry::init('Site');
 		// テキストから配列にURL、サイト名を取得
 		$sites = $this->splitUrlAndSiteName($text);
 
@@ -126,14 +85,16 @@ class SiteRegisterFromFileAction extends AppModel {
 		foreach ($sites as $site) {
 			$site = $this->getFeedUrlAndSiteName($site);
 
-			$site['category_id'] = $catId;
+			if ($site == false) {
+				continue;
+			}
+
+			$site['category_id']     = $catId;
 			$site['registered_from'] = 'file';
 
 			// DBに保存
-			$this->Site->saveIfNotExists($site);
+			$siteModel->saveIfNotExists($site);
 		}
-
-		return true;
 	}
 
 	/**
@@ -141,23 +102,26 @@ class SiteRegisterFromFileAction extends AppModel {
 	 *
 	 * サイト名はnullでない時のみ（ファイルに書いていないとき）取得する
 	 *
-	 * @param array $site
+	 * @param array $site フィードURL取得不可の時はfalse
 	 */
 	protected function getFeedUrlAndSiteName($site) {
 		// フィードURLを取得
-		$feedUrl = $this->RssFetcher->getFeedUrlFromSiteUrl($site['url']);
+		$collection = new ComponentCollection();
+		$rssUtil    = new RssUtilComponent($collection);
+
+		$feedUrl = $rssUtil->getFeedUrlFromSiteUrl($site['url']);
 
 		if ($feedUrl != false) {
 			$site['feed_url'] = $feedUrl;
 		} else {
-			// ロギング
+			// 警告をロギング
 			CakeLog::warning("フィードURLを取得できませんでした {$url}");
-			continue;
+			return false;
 		}
 
 		// サイト名を取得
 		if (is_null($site['name'])) {
-			$siteName = $this->RssFetcher->getSiteName($feedUrl);
+			$siteName = $rssUtil->getSiteName($feedUrl);
 
 			if ($siteName != false) {
 				$site['name'] = $siteName;
@@ -183,7 +147,7 @@ class SiteRegisterFromFileAction extends AppModel {
 	 * 					)
 	 */
 	protected function splitUrlAndSiteName($text) {
-		$urlPattern = '/^http:\/\/[\w\.\-\/_=?&@:]+/';
+		$urlPattern = Configure::read('urlPattern');
 		$sites = array();
 
 		// 配列にURL、名前を取得

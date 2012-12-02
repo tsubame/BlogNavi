@@ -179,3 +179,8 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+config('const');
+
+App::uses('AppModel', 'Model');
+App::uses('ComponentCollection', 'Controller');

@@ -1,14 +1,24 @@
+<?php
+/**
+ * 削除可能な記事のリスト
+ */
+?>
+
 <p>記事のリスト</p>
 <p>
 <?php 	echo $this->Html->link('すべて', array(
 			'controller' => 'articles',
 			'action' => 'index')
 		). '　　';
-		//echo $this->Html->link( 'ブログ', array('3')) . '　　';
+		echo $this->Html->link('ニュース',
+		array(
+			'controller' => 'articles',
+			'action' => 'index',
+			'1')
+		) . '　　';
 
-		foreach ($categories as $id => $categoryName) {
-			echo $this->Html->link($categoryName, array($id)) . '　　';
-		}
+	echo $this->Html->link( '2ch', array('2')) . '　　';
+	echo $this->Html->link( 'ブログ', array('3')) . '　　';
 ?>
 </p>
 <br />

@@ -11,7 +11,7 @@
  * description	 mediumtext
  * site_id		 integer
  * tweeted_count integer
- * disable 		 boolean  true 表示しない記事（ニュース以外のURLなど）
+ * is_deleted 	 boolean  true 表示しない記事（ニュース以外のURLなど）
  * published 	 datetime
  * created  	 datetime
  * modified 	 datetime
@@ -39,56 +39,75 @@ class Article extends AppModel{
 	 */
 	public $cacheQueries = true;
 
+// 削除予定
 // 外に出すべき
-	/**
-	 * 表示する件数
-	 *
-	 * @var unknown_type
-	 */
-	const SHOW_COUNT = 10;
+/*
+	//const SHOW_COUNT = 30;
 
-	/**
-	 * 記事を自動で削除する際に使用。
-	 * 1日前の記事から削除する。
-	 *
-	 * @var int
-	 */
 	const DEL_DAYS_AGO_START = 1;
 
-	/**
-	 * 同上
-	 *
-	 * @var int
-	 */
 	const DEL_DAYS = 50;
+
+	const BLOG_CAT_ID = 3;
 //
+*/
 
 	/**
 	 * 24時間以内の記事をツイート数の多い順に取得
 	 *
-	 * @param  int   $categoryId nullならすべて
+	 * $categoryIdがnullならすべてのカテゴリの記事を取得する
+	 *
+	 * @param  int   $categoryId カテゴリーID、nullはすべて
 	 * @return array $results
 	 */
-	public function selectTodaysArticles($categoryId = null) {
-
+	public function selectTodaysArticles($categoryId = null, $getCount = null) {
+		// 表示件数の初期値
+		if (is_null($getCount)) {
+			$getCount = Configure::read('Article.showCount');
+		}
+		// 日付の文字列を作成
 		$yesterday = date('Y-m-d H:i:s', strtotime('-1 day'));
+		$tomorrow  = date('Y-m-d H:i:s', strtotime('+1 day'));
 
 		if ( !is_null($categoryId)) {
-			$conditions = array('Article.published >' => $yesterday, 'Site.category_id' => $categoryId);
+			$conditions = array('Article.published >' => $yesterday, 'Article.published <' => $tomorrow, 'Site.category_id' => $categoryId);
 		} else {
-			$conditions = array('Article.published >' => $yesterday);
+			$conditions = array('Article.published >' => $yesterday, 'Article.published <' => $tomorrow);
 		}
 
 		$options = array(
 				'conditions' => $conditions,
 				'order' => 'Article.tweeted_count DESC',
-				'limit' => self::SHOW_COUNT
+				'limit' => $getCount
 				);
 
 		$results = $this->find('all', $options);
 
 		return $results;
 	}
+
+	/**
+	 * ブログカテゴリの24時間以内の記事をツイート数の多い順に取得
+	 *
+	 * @param  int   $categoryId nullならすべて
+	 * @return array $results
+	 */
+	public function selectTodaysBlogArticles() {
+
+		$yesterday = date('Y-m-d H:i:s', strtotime('-1 day'));
+		$conditions = array('Article.published >' => $yesterday, 'Site.category_id' => Configure::read('Category.blogId'));
+
+		$options = array(
+				'conditions' => $conditions,
+				'order' => 'Article.tweeted_count DESC',
+				'limit' => Configure::read('Article.showCount')
+		);
+
+		$results = $this->find('all', $options);
+
+		return $results;
+	}
+
 
 	/**
 	 * 24時間以内の記事をすべて取得
@@ -135,7 +154,8 @@ class Article extends AppModel{
 
 		$deleteArticles = array();
 		// 削除する日付分ループ
-		for($dayAgo = self::DEL_DAYS_AGO_START; $dayAgo < self::DEL_DAYS; $dayAgo++) {
+		for($dayAgo = Configure::read('Article.deletePastDayFrom');
+				$dayAgo < Configure::read('Article.deletePastTo'); $dayAgo++) {
 			// カテゴリの件数ループ
 			foreach ($categories as $category) {
 				$catId = $category['id'];
@@ -172,7 +192,7 @@ class Article extends AppModel{
 			$dayAgoMinus = (string)($dayAgo * -1);
 		}
 
-		$dateFrom = date('Y-m-d 0:00:00', strtotime($dayAgoMinus . ' day'));
+		$dateFrom = date('Y-m-d 0:00:00',  strtotime($dayAgoMinus . ' day'));
 		$dateTo   = date('Y-m-d 23:59:59', strtotime($dayAgoMinus . ' day'));
 
 		$conditions = array('Article.published >' => $dateFrom, 'Article.published <' => $dateTo, 'Site.category_id' => $categoryId);
@@ -185,7 +205,7 @@ class Article extends AppModel{
 		$allResults = $this->find('all', $options);
 
 		// 先頭から一定の件数を省く
-		$deleteResults = array_slice($allResults, self::SHOW_COUNT, 9999);
+		$deleteResults = array_slice($allResults, Configure::read('Article.showCount'), 9999);
 
 		$articles = array();
 
@@ -198,37 +218,35 @@ class Article extends AppModel{
 	}
 
 	/**
-	 * テスト出力用
+	 * 同じURLのデータが存在していなければデータ挿入
 	 *
-	 * カテゴリごと、日付ごとに記事を出力
+	 * @param  array $article
+	 * @return int | bool レコードのID 挿入できなければfalse
 	 */
-	public function output() {
+	public function saveIfNotExists($article) {
 
-		for($dayAgo = 1; $dayAgo < 30; $dayAgo++) {
+		// データ削除
+		$conditions = array('Article.url' => $article['url']);
 
-			debug("$dayAgo 日前");
+		$options = array(
+				'conditions' => $conditions
+		);
+		$results = $this->find('all', $options);
 
-			// カテゴリの件数ループ
-			for ($i = 1; $i <= 5; $i++) {
-				$dayAgoMinus = (string)($dayAgo * -1);
+		$count = $this->getNumRows();
 
-				$dateFrom = date('Y-m-d 0:00:00',  strtotime($dayAgoMinus . ' day'));
-				$dateTo   = date('Y-m-d 23:59:59', strtotime($dayAgoMinus . ' day'));
-
-				$conditions = array('Article.published >' => $dateFrom, 'Article.published <' => $dateTo, 'Site.category_id' => $i);
-
-				$options = array(
-						'conditions' => $conditions,
-						'order' => 'Article.tweeted_count DESC'
-				);
-
-				$results = $this->find('all', $options);
-
-				$count = count($results);
-
-				debug("$count 件");
-			}
+		if (0 < $count) {
+			return false;
 		}
-			// 日付の件数ループ
+
+		// なければ追加
+		$this->create($article);
+		if($this->save($article)) {
+			return $this->getInsertID();
+		} else {
+			return false;
+		}
 	}
+
+
 }

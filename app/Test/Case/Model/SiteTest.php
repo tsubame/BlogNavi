@@ -32,26 +32,21 @@ class SiteTest extends CakeTestCase  {
 
 	/**
 	 *
-	 * test
+	 * @test
 	 */
 	public function saveIfNotExists() {
 
+		$rand = rand(0, 999999);
+
 		$site = array(
 				'name' => 'test',
-				'url' => 'http://blog.livedoor.jp/domesoccer/',
-				'feed_url' => 'test');
+				'url' => 'http://test/' . $rand);
 
 		$result = $this->Site->saveIfNotExists($site);
+		$this->assertNotEqual($result, false);
 
-
+		$result = $this->Site->saveIfNotExists($site);
 		$this->assertEqual($result, false);
-
-		$site = array('url' => microtime());
-
-		debug($result);
-		$result = $this->Site->saveIfNotExists($site);
-
-		$this->assertEqual($result, true);
 	}
 
 	/**
@@ -61,18 +56,15 @@ class SiteTest extends CakeTestCase  {
 	public function getUnregiSites() {
 
 		$sites = $this->Site->getUnregiSites();
-
-		debug(count($sites));
+		//debug(count($sites));
 	}
 
 	/**
 	 *
-	 * @test
+	 * test
 	 */
 	public function checkDeleted() {
-
 		$site = array('id' => 13);
-
 		$this->Site->checkDeleted($site);
 	}
 

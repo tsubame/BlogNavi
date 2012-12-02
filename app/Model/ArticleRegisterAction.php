@@ -1,18 +1,17 @@
 <?php
+App::uses('AppModel', 'Model');
+App::uses('ComponentCollection', 'Controller');
+App::uses('RssUtilComponent', 'Controller/Component');
 
 /**
  * 記事登録処理
  *
- * ArticleコントローラのInsertアクションのロジック
+ * ArticleコントローラのRegisterアクションのロジック
  *
  *
  *
  */
-App::uses('AppModel', 'Model');
-App::uses('ComponentCollection', 'Controller');
-App::uses('RssFetcherComponent', 'Controller/Component');
-
-class ArticleInsertAction extends AppModel {
+class ArticleRegisterAction extends AppModel {
 
 	/**
 	 * テーブルの使用
@@ -73,26 +72,14 @@ class ArticleInsertAction extends AppModel {
 			}
 		}
 		// 並列にRSSフィードを取得
-		$fetcher = new RssFetcherComponent($this->Collection);
+		$fetcher = new RssUtilComponent($this->Collection);
 		$feedRow = $fetcher->getFeedParallel($feedUrls);
 
 		foreach ($feedRow as $i => $feed) {
 			foreach ($feed as $article) {
 				$article['site_id'] = $sites[$i]['id'];
 
-				// 同じURLのデータが存在するか調べる
-				$result = $this->Article->hasAny(
-					array('url' => $article['url'])
-				);
-
-				// なければ追加
-				if ($result == true) {
-					continue;
-				}
-
-				$this->Article->create();
-				$this->Article->save($article);
-				debug('追加しました' . $article['url']);
+				$this->Article->saveIfNotExists($article);
 			}
 		}
 	}

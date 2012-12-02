@@ -1,36 +1,30 @@
 <?php
+App::uses('ComponentCollection', 'Controller');
+App::uses('CurlComponent', 'Controller/Component');
+App::uses('RssUtilComponent', 'Controller/Component');
 
 /**
-
+ * SitesControllerのregisterFromRankアクション
  *
+ * ブログランキングのページからサイトを登録する
  *
- *
- */
-App::uses('AppModel', 'Model');
-App::uses('ComponentCollection', 'Controller');
-App::uses('HttpUtilComponent', 'Controller/Component');
-App::uses('RssFetcherComponent', 'Controller/Component');
-
-
-
-
-/***
- *
- *  ブログ自動登録の仕様
+ * ブログ登録の仕様
  *
  *  ・定期的に実行
  *  ・登録済みのものは登録しない
  *  ・削除ボタンで削除 deleted を trueに
  *	・カテゴリ未分類の列を付ける
  *
- */
-
-/**
- * SitesControllerのregisterAutoアクション
+ * 依存クラス
+ * ・Component/RssUtilComponent
+ * ・Component/CurlComponent
+ * ・ComponentCollection
+ *
+ * エラー
+ * ・？？
  *
  */
-class SiteRegisterAutoAction extends AppModel {
-
+class SiteRegisterFromRankAction extends AppModel {
 
 	/**
 	 * テーブルの使用
@@ -40,23 +34,18 @@ class SiteRegisterAutoAction extends AppModel {
 	public $useTable = false;
 
 	/**
-	 * Siteモデル
+	 * CurlComponent
 	 *
-	 * @var object Site
+	 * @var object CurlComponent
 	 */
-	private $Site;
+	private $Curl;
 
 	/**
+	 * RssUtilComponent
 	 *
-	 * @var object HttpUtilComponent
+	 * @var object RssUtilComponent
 	 */
-	private $HttpUtil;
-
-	/**
-	 *
-	 * @var object RssFetcherComponent
-	 */
-	private $RssFetcher;
+	private $RssUtil;
 
 	/**
 	 * FC2ブログランキングのURL
@@ -72,12 +61,9 @@ class SiteRegisterAutoAction extends AppModel {
 	 */
 	const LIVEDOOR_RANK_URL = 'http://blog.livedoor.com/category/9/';
 
-	/**
-	 * 2chまとめのカテゴリーID
-	 *
-	 * @var int
-	 */
-	const CATEGORY_2CH_ID = 2;
+
+
+// アメーバからも登録したい
 
 	/**
 	 * コンストラクタ
@@ -86,10 +72,9 @@ class SiteRegisterAutoAction extends AppModel {
 	public function __construct() {
 		parent::__construct();
 
-		$collection = new ComponentCollection();
-		$this->Site       = ClassRegistry::init('Site');
-		$this->HttpUtil   = new HttpUtilComponent($collection);
-		$this->RssFetcher = new RssFetcherComponent($collection);
+		$collection    = new ComponentCollection();
+		$this->RssUtil = new RssUtilComponent($collection);
+		$this->Curl    = new CurlComponent($collection);
 	}
 
 	/**
@@ -97,34 +82,32 @@ class SiteRegisterAutoAction extends AppModel {
 	 *
 	 */
 	public function exec() {
-
 		// FC2、ライブドアのランキングサイトを取得
 		$fc2Sites = $this->getFc2RankSites();
 		$ldSites  = $this->getLivedoorRankSites();
-
-		$sites = array_merge($fc2Sites, $ldSites);
+		$sites    = array_merge($fc2Sites, $ldSites);
 
 		// フィードURL、その他の値を設定
 		foreach ($sites as $i => $site) {
 			// フィードURLを取得
-			$sites[$i]['feed_url'] = $this->RssFetcher->getFeedUrlFromSiteUrl($site['url']);
+			$sites[$i]['feed_url'] = $this->RssUtil->getFeedUrlFromSiteUrl($site['url']);
 
 			if ($sites[$i]['feed_url'] == false) {
 				debug("フィードURLを取得できませんでした  \n{$site['url']}");
 			}
 
-			$sites[$i]['is_registered']  = false;
-			$sites[$i]['category_id']    = 3;
+			$sites[$i]['is_registered'] = false;
+			// カテゴリIDをブログのカテゴリIDに
+			$sites[$i]['category_id']   = Configure::read('Category.2chId');
 		}
 
 		// カテゴライズ
 		$this->autoCategorize($sites);
 
-		debug($sites);
-
+		$siteModel = ClassRegistry::init('Site');
 		// サイトを登録
 		foreach ($sites as $site) {
-			$this->Site->saveIfNotExists($site);
+			$siteModel->saveIfNotExists($site);
 		}
 	}
 
@@ -137,31 +120,34 @@ class SiteRegisterAutoAction extends AppModel {
 	 * 1ページに30件のサイトがあるので30件登録する
 	 *
 	 * @return array $sites
+	 * 					 $sites => array('name' => サイト名, 'url' => URL)
 	 */
 	protected function getFc2RankSites() {
-
+		// サイト抽出用の正規表現パターン
 		$tagPattern    = '/<a[^>]+[\w]+\.blog[\d]*\.fc2\.com\/[^>]+title[^>]+>/is';
 		$namePattern   = '/title[^"]+"([^"]+)"/is';
 		$urlPattern    = '/http:\/\/[\w]+\.blog[\d]*\.fc2\.com\//';
+		// 登録する件数
 		$registerCount = 30;
 
-		$html = $this->HttpUtil->getContents(self::FC2_RANK_URL);
+		// HTMLデータ取得
+		$html = $this->Curl->getContent(self::FC2_RANK_URL);
+
 		$sites = array();
-
+		// 正規表現でサイトが書かれたタグを検索
 		if (preg_match_all($tagPattern, $html, $tags)) {
-
 			foreach ($tags[0] as $i => $tag) {
 				if ($registerCount < $i) {
 					break;
 				}
 
-				// サイト名を取得
+				// サイト名を抽出
 				if (preg_match($namePattern, $tag, $names)){
 					$sites[$i]['name'] = $names[1];
 				} else {
 					continue;
 				}
-				// URLを取得
+				// URLを抽出
 				if (preg_match($urlPattern, $tag, $urlMatchs)){
 					$sites[$i]['url'] = $urlMatchs[0];
 				}
@@ -182,18 +168,19 @@ class SiteRegisterAutoAction extends AppModel {
 	 * 1ページに50件のサイトがあるので50件登録する
 	 *
 	 * @return array $sites
+	 * 					$sites => array('name' => サイト名, 'url' => URL)
 	 */
 	protected function getLivedoorRankSites() {
-
+		//正規表現パターン
 		$tagPattern    = '/<h3[\s]+class\="ttl">.+?<\/h3>/is';
 		$urlPattern    = '/http:\/\/[\w\/\.\-_]+/is';
 		$namePattern   = '/位">([^<]+)<\/a/is';
 		$registerCount = 50;
 
-		// HTMLを取得
-		$html = $this->HttpUtil->getContents(self::LIVEDOOR_RANK_URL);
-		$sites = array();
+		// HTMLデータ取得
+		$html = $this->Curl->getContent(self::LIVEDOOR_RANK_URL);
 
+		$sites = array();
 		// 正規表現でサイトを検索
 		if (preg_match_all($tagPattern, $html, $tags)) {
 
@@ -223,27 +210,29 @@ class SiteRegisterAutoAction extends AppModel {
 	/**
 	 * 2chまとめブログをカテゴライズ
 	 *
+	 * RSSフィードのサマリーを見て2chまとめブログと判断できたら
+	 * カテゴリIDを2chまとめブログのものに
+	 *
+	 * @param array &$sites
 	 */
 	public function autoCategorize(&$sites) {
-
+		// 2chまとめブログの記事の正規表現パターン 日付とID
 		$pattern = '/201[\d]\/[\d\/]+[^\s]+[\d\s\.:]+ID:/s';
-
-		// 未登録サイトを取得
-		//$sites = $this->Site->getUnRegiSites();
 
 		$feedUrls = array();
 		foreach ($sites as $site) {
 			$feedUrls[] = $site['feed_url'];
 		}
 		// RSSフィードを並列に取得
-		$feedOfSites = $this->RssFetcher->getFeedParallel($feedUrls);
+		$feedOfSites = $this->RssUtil->getFeedParallel($feedUrls);
 
 		// サイトの数ループ
 		foreach ($feedOfSites as $i => $feedOfSite) {
 			foreach ($feedOfSite as $entry) {
 				// エントリ内のサマリーを検索
 				if (preg_match($pattern, $entry['description'], $matches)) {
-					$sites[$i]['category_id'] = self::CATEGORY_2CH_ID;
+					// カテゴリIDを2chまとめの番号に
+					$sites[$i]['category_id'] = Configure::read('Category.2chId');
 
 					break;
 				}

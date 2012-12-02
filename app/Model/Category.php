@@ -24,9 +24,6 @@ class Category extends AppModel{
 		$results = $this->find('all');
 		// 配列に移し替え
 		foreach ($results as $data) {
-
-			//$id = $data['Category']['id'];
-
 			$categories[] = $data['Category'];
 		}
 
@@ -36,7 +33,7 @@ class Category extends AppModel{
 	/**
 	 * すべてのカテゴリ名を取得
 	 *
-	 * @return array $categories カテゴリ名の配列
+	 * @return array $categories カテゴリ名の配列（配列の添字は1から）
 	 */
 	public function getCategoryNames() {
 		$categories = array();
@@ -44,9 +41,7 @@ class Category extends AppModel{
 		$results = $this->find('all');
 		// 配列に移し替え
 		foreach ($results as $data) {
-
 			$id = $data['Category']['id'];
-
 			$categories[$id] = $data['Category']['name'];
 		}
 

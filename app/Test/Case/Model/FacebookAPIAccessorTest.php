@@ -21,10 +21,10 @@ class FacebookAPIAccessorTest extends CakeTestCase  {
 	 *
 	 * @test
 	 */
-	public function getLikeCount() {
+	public function getShareCount() {
 
 		$url = "http://ameblo.jp/nin-shin/";
-		$count = $this->fb->getLikeCount($url);
+		$count = $this->fb->getShareCount($url);
 		debug($count);
 
 		$this->assertEqual($count, 2);
@@ -35,13 +35,13 @@ class FacebookAPIAccessorTest extends CakeTestCase  {
 	 *
 	 * @test
 	 */
-	public function getLikeCountOfUrls() {
+	public function getShareCountOfUrls() {
 
 		$urls = array('http://ameblo.jp/nin-shin/', 'http://www.earlbox.sakura.ne.jp/');
 
 		$expecteds = array(2, 3);
 
-		$results = $this->fb->getLikeCountOfUrls($urls);
+		$results = $this->fb->getShareCountOfUrls($urls);
 		debug($results);
 
 		$i = 0;

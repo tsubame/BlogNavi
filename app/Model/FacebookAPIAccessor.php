@@ -1,16 +1,24 @@
 <?php
 
-/**
- *
- *
- */
-App::uses('AppModel', 'Model');
 App::uses('ComponentCollection', 'Controller');
-App::uses('CurlMultiComponent', 'Controller/Component');
+App::uses('CurlComponent', 'Controller/Component');
 
 /**
- * Facebookから特定のサイトの「いいね！」の数を取得するクラス
+ * Facebookから特定のサイトの「シェア」の数を取得するクラス
  *
+ *
+ * 仕様
+ *
+ * http://graph.facebook.com/のあとにURLをつけてアクセスするとJSONデータが帰ってくる。（要URLエンコード）
+ * JSONデータの'shares'の要素がfacebookのシェアの数。
+ *
+ *
+ * 依存クラス
+ *
+ * ・CurlComponent
+ * ・ComponentCollection
+ *
+ * エラー
  *
  */
 class FacebookAPIAccessor extends AppModel{
@@ -23,18 +31,18 @@ class FacebookAPIAccessor extends AppModel{
 	public $useTable = false;
 
 	/**
-	 * 「いいね！」数取得APIのURL
+	 * Curlコンポーネント
+	 *
+	 * @var object CurlComponent
+	 */
+	private $Curl;
+
+	/**
+	 * シェア数取得APIのURL
 	 *
 	 * @var string
 	 */
 	const GRAPH_API_URL = 'http://graph.facebook.com/';
-
-	/**
-	 * CurlMultiコンポーネント
-	 *
-	 * @var object CurlMultiComponent
-	 */
-	private $curlMulti;
 
 
 	/**
@@ -44,22 +52,22 @@ class FacebookAPIAccessor extends AppModel{
 	public function __construct() {
 		parent::__construct();
 
-		$Collection      = new ComponentCollection();
-		$this->curlMulti = new CurlMultiComponent($Collection);
+		$Collection = new ComponentCollection();
+		$this->Curl = new CurlComponent($Collection);
 	}
 
 	/**
-	 * 特定のサイトの「いいね」数を取得する
+	 * 単一のサイトの「シェア」数を取得する
 	 *
 	 * @param  string $url
 	 * @return int    $count
 	 */
-	public function getLikeCount($url) {
-
+	public function getShareCount($url) {
 		$apiUrl = self::GRAPH_API_URL . urlencode($url);
-
-		$json = $this->curlMulti->getContent($apiUrl);
-		$row  = json_decode($json, true);
+		// APIにアクセスしてJSONデータ取得
+		$json  = $this->Curl->getContent($apiUrl);
+		$row   = json_decode($json, true);
+		// 'shares' の要素を数字に直して取り出す
 		$count = (int)$row['shares'];
 
 		return $count;
@@ -68,27 +76,32 @@ class FacebookAPIAccessor extends AppModel{
 	/**
 	 * 複数のサイトの「いいね」数を取得する
 	 *
-	 * @param  array  $urls
-	 * @return int    $counts URLをキーにしたいいね数の配列
-	 * 							array('URL' => いいね数)
+	 * @param  array  $urls   URLの配列
+	 * @return int    $counts URLをキーにしたシェア数の配列
+	 * 							array('URL' => シェア数)
 	 */
-	public function getLikeCountOfUrls($urls) {
+	public function getShareCountOfUrls($urls) {
+		// URLの配列作成
 		$reqUrls = array();
 		foreach ($urls as $url) {
 			$reqUrls[] = self::GRAPH_API_URL . urlencode($url);
 		}
 
 		// 並列にアクセス
-		$jsons = $this->curlMulti->getContents($reqUrls);
+		$jsons = $this->Curl->getContents($reqUrls);
 
 		$counts = array();
 		foreach ($jsons as $json) {
 			// JSONデコード
 			$row   = json_decode($json, true);
-			// URLといいね数を取り出す
-			$count  = (int)$row['shares'];
-			$key    = (string)$row['id'];
+			// URLとシェア数を取り出す
+			if ( isset($row['shares'])) {
+				$count  = (int)$row['shares'];
+			} else {
+				$count = 0;
+			}
 
+			$key = (string)$row['id'];
 			$counts[$key] = $count;
 		}
 

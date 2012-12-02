@@ -1,9 +1,11 @@
 サイトのリスト
 
 <br />
-<?= $this->Html->link('ブログランキングからサイトを登録', array('controller' => 'sites','action' => 'registerAuto')) ?>　　
+<?= $this->Html->link('ブログランキングからサイトを登録', array('controller' => 'sites','action' => 'registerFromRank')) ?>　　
 <?= $this->Html->link('サイトをファイルから登録', array('controller' => 'sites','action' => 'registerFromFile')) ?>　　
-<?= $this->Html->link('未登録サイトをすべて登録', array('controller' => 'sites','action' => 'registerAll')) ?>
+<?= $this->Html->link('未登録サイトをすべて登録', array('controller' => 'sites','action' => 'registerAll')) ?>　　
+<?= $this->Html->link('Sナビからサイトを登録', array('controller' => 'sites', 'action' => 'registerFromSNavi')) ?>
+
 <table class = "site">
 	<?php
 

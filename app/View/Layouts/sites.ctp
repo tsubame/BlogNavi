@@ -23,13 +23,13 @@
 	<div id="container">
 		<div id="header">
 			<?php
-				echo $this->Html->link('記事一覧', array('controller' => 'articles','action' => 'index')) . '　　';
-				echo $this->Html->link('記事の登録', array('controller' => 'articles', 'action' => 'insert')) . '　　';
-				echo $this->Html->link('ツイート数の更新',array('controller' => 'articles', 'action' => 'getTweetCount')) . '　　';
+				echo $this->Html->link('記事一覧',        array('controller' => 'articles', 'action' => 'index')) . '　　';
+				echo $this->Html->link('記事の登録',      array('controller' => 'articles', 'action' => 'register')) . '　　';
+				echo $this->Html->link('ツイート数の更新',array('controller' => 'articles', 'action' => 'getShareCount')) . '　　';
 
-				echo $this->Html->link('サイトの一覧', array('controller' => 'sites', 'action' => 'editList')) . '　　';
-				echo $this->Html->link('サイトの登録', array('controller' => 'sites', 'action' => 'registerForm')) . '　　';
-				echo $this->Html->link('未登録サイト一覧', array('controller' => 'sites', 'action' => 'uncatList')) . '　　';
+				echo $this->Html->link('サイトの一覧',     array('controller' => 'sites', 'action' => 'editIndex')) . '　　';
+				echo $this->Html->link('サイトの登録',     array('controller' => 'sites', 'action' => 'registerForm')) . '　　';
+				echo $this->Html->link('未登録サイト一覧', array('controller' => 'sites', 'action' => 'unregiSiteIndex')) . '　　';
 			?>
 		</div>
 		<div id="content">

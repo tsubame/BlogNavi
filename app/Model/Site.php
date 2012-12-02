@@ -1,35 +1,47 @@
 <?php
+App::uses('AppModel', 'Model');
 
 /**
  * モデルクラス sitesテーブル
  *
- * ・sitesテーブル
+ * sitesテーブルの構成
+ *
  * id			   int primary
  * name			   varchar
  * url			   varchar
  * feed_url		   varchar
  * category_id	   int
- * like_count	   int	   Facebookのいいね！の数
+ * like_count	   int
  * registered_from varchar
- * is_categorized  boolean 自動登録の際は手動でカテゴリ分けするまでfalse
+ * is_categorized  boolean
  * is_available	   boolean
- * is_deleted	   boolean
  * created		   datetime
  * modified		   datetime
  */
-App::uses('AppModel', 'Model');
-
 class Site extends AppModel{
 
-	public $belongsTo = array("Category" =>
-			array("className" => "Category",
-					"conditions" => "",
-					"foreignKey" => "category_id"));
+	/**
+	 * 他テーブルとの関連性
+	 *
+	 * @var array
+	 */
+	public $belongsTo = array(
+		"Category" => array(
+				"className" => "Category",
+				"conditions" => "",
+				"foreignKey" => "category_id"
+			)
+		);
 
+	/**
+	 * キャッシュ
+	 *
+	 * @var bool
+	 */
 	public $cacheQueries = true;
 
-	// モデルに必要なプロパティ、メソッドは？
 
+// 要メソッド名の再考
 
 	/**
 	 * すべてのサイトを取得
@@ -39,10 +51,8 @@ class Site extends AppModel{
 	 * @return array $sites サイトの配列
 	 *						$sites[0] ('name' = > 'サイト名')
 	 */
-	public function getSitesIncludesDeleted($categoryId = null) {
-
+	public function getAllSites($categoryId = null) {
 		$conditions = array();
-
 		if ( !is_null($categoryId)) {
 			$conditions['Site.category_id'] = $categoryId;
 		}
@@ -73,9 +83,7 @@ class Site extends AppModel{
 	 *						$sites[0] ('name' = > 'サイト名')
 	 */
 	public function getSites($categoryId = null) {
-
 		$conditions = array(
-				'Site.is_available'  => true,
 				'Site.is_registered' => true,
 				'Site.is_deleted'    => false
 		);
@@ -134,24 +142,32 @@ class Site extends AppModel{
 	 * 同じURLのデータが存在していなければデータ挿入
 	 *
 	 * @param  array $site
-	 * @return bool 挿入できなければfalse
+	 * @return bool | int レコードのID | 挿入できなければfalse
 	 */
 	public function saveIfNotExists($site) {
+		/*
+		$result = $this->hasAny(array('url' => $site['url']));
+		if ($result == true) {
+			return false;
+		}
+		*/
 
-		// 同じURLのデータが存在するか調べる
-		$result = $this->hasAny(
-			array('url' => $site['url'])
+		$conditions = array('Site.url' => $site['url']);
+		$options = array(
+				'conditions' => $conditions
 		);
+		$results = $this->find('all', $options);
 
-		// なければ追加
-		if ($result !== false) {
+		$count = $this->getNumRows();
+		if (0 < $count) {
 			return false;
 		}
 
+		// なければ保存
 		$this->create();
 
 		if($this->save($site)) {
-			return true;
+			return $this->getInsertID();
 		} else {
 			return false;
 		}
@@ -167,7 +183,7 @@ class Site extends AppModel{
 
 		foreach ($sites as $i => $site) {
 			$site['is_registered'] = true;
-debug($site);
+
 			$this->save($site);
 		}
 	}
@@ -195,4 +211,15 @@ debug($site);
 		}
 	}
 
+	/**
+	 * 複数のサイトを更新
+	 *
+	 * @param array $sites
+	 */
+	public function updateSites($sites) {
+
+		foreach ($sites as $site) {
+			$this->save($site);
+		}
+	}
 }

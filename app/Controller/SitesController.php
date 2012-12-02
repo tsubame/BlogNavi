@@ -1,32 +1,29 @@
 <?php
 /**
- * コントローラ
- *
- *
- * メモ
- * ・コンポーネントには他のアプリでも使えるものを
- * ・それ以外の独自処理はモデルまたはvendorで
+ * Sitesコントローラ
  *
  *
  * アクション
  *
- * ・編集画面
+ * ・サイトの一覧
+ *
+ * ・サイトの一覧（管理者向け）
  *     カテゴリ別のサイトのリスト
  *     削除済みのサイトは表示しない
  *
- * ・編集処理 ajax 画面はなし
+ * ・サイトの編集処理 ajax 画面なし
  *
- * ・未カテゴライズサイトの一覧画面
+ * ・未登録サイトの一覧
  *     削除済みのサイトは表示しない
  *
- * ・登録画面
+ * ・サイト登録フォーム
  *
- * ・登録処理 画面はなし
+ * ・サイトの登録処理 画面はなし
  *     登録フォームを表示
  *
- * ・サイトを自動登録
+ * ・サイトをファイルから登録
  *
- * ・削除処理 ajax 画面はなし
+ * ・サイトを削除 ajax 画面なし
  *
  */
 class SitesController extends Controller {
@@ -61,36 +58,45 @@ class SitesController extends Controller {
 
 
 	/**
-	 * サイトの一覧
+	 * アクションの前の処理
 	 *
-	 */
-	public function index($categoryId = null) {
-
-		$sites = $this->Site->getSites($categoryId);
-
-		$this->set('sites', $sites);
-	}
-
-	/**
-	 * 編集画面 サイトの一覧
+	 * カテゴリの取得
 	 *
-	 * @param string $categoryId
+	 * @see Controller::beforeFilter()
 	 */
-	public function editForm($categoryId = null) {
-		$sites = $this->Site->getSites($categoryId);
-		$this->set('sites', $sites);
+	public function beforeFilter() {
+		parent::beforeFilter();
 
 		$categories = $this->Category->getCategoryNames();
 		$this->set('categories', $categories);
 	}
 
 	/**
-	 * 編集処理 Ajax
+	 * サイトの一覧を表示 ユーザ向け
 	 *
 	 */
-	public function edit() {
+	public function index($categoryId = null) {
+		$sites = $this->Site->getSites($categoryId);
+		$this->set('sites', $sites);
+	}
+
+	/**
+	 * サイトの一覧を表示 管理者向け
+	 *
+	 */
+	public function editIndex($categoryId = null) {
+		$sites = $this->Site->getSites($categoryId);
+		$this->set('sites', $sites);
+	}
+
+	/**
+	 * サイトの編集
+	 * このアクションにはAjaxでのみアクセス可
+	 *
+	 */
+	public function update() {
 		if ( !isset($this->request->data)) {
-			$this->redirect(array('action' => 'editList'));
+			$this->redirect(array('action' => 'index'));
 
 			return;
 		}
@@ -100,36 +106,41 @@ class SitesController extends Controller {
 			$this->Site->save($site);
 		}
 
-		$this->render('editForm');
+		$this->render('edit_index');
 	}
 
 	/**
-	 * 未登録サイトの一覧
-	 * 編集画面
+	 * サイトの削除
+	 * このアクションにはAjaxでのみアクセス可
 	 *
 	 */
-	public function unregiList() {
-		$sites = $this->Site->getUnRegiSites();
-		$categories = $this->Category->getCategoryNames();
+	public function delete() {
+		if ( !isset($this->request->data)) {
+			$this->redirect(array('action' => 'index'));
 
-		$this->set('sites', $sites);
-		$this->set('categories', $categories);
+			return;
+		}
+
+		$site = $this->request->data;
+
+		if (isset($site['id'])) {
+			$this->Site->checkDeleted($site);
+		}
+
+		$this->render('edit_index');
 	}
 
 	/**
-	 * 登録フォーム
+	 * サイト登録フォームを表示
 	 *
 	 */
 	public function registerForm() {
-		// カテゴリ取得
-		$categories = $this->Category->getCategoryNames();
-
-		$this->set('categories', $categories);
+		$this->render('register_form');
 	}
 
 	/**
-	 * 登録処理
-	 * フォームからサイトを登録
+	 * サイトの登録
+	 * 登録フォームからサイトを登録する
 	 *
 	 */
 	public function register() {
@@ -145,53 +156,77 @@ class SitesController extends Controller {
 	}
 
 	/**
-	 * サイトを自動登録
+	 * サイトをブログランキングから登録
+	 *
 	 */
-	public function registerAuto() {
-		$action = ClassRegistry::init('SiteRegisterAutoAction');
+	public function registerFromRank() {
+		$action = ClassRegistry::init('SiteRegisterFromRankAction');
 		$action->exec();
 
-		$this->render('unregiList');
+		$this->render('unregi_site_index');
 	}
 
 	/**
 	 * サイトをファイルから登録
+	 *
 	 */
 	public function registerFromFile() {
 		$action = ClassRegistry::init('SiteRegisterFromFileAction');
 		$action->exec();
 
-		$this->render('unregiList');
+		$this->render('unregi_site_index');
+	}
+
+	/**
+	 * サイトをスポーツナビ+のRSSから登録
+	 *
+	 */
+	public function registerFromSNavi() {
+		$action = ClassRegistry::init('SiteRegisterFromSNaviAction');
+		$action->exec();
+
+		$this->render('unregi_site_index');
+	}
+
+// アクション未実装
+	/**
+	 * ヤフー検索からサイトを登録
+	 */
+	public function registerFromYahoo() {
+		$action = ClassRegistry::init('SiteRegisterFromYahooAction');
+		$action->exec();
+
+		$this->render('unregi_site_index');
+	}
+
+	/**
+	 * 未登録サイトの一覧を表示
+	 *
+	 */
+	public function unregiSiteIndex() {
+		$sites = $this->Site->getUnRegiSites();
+		$categories = $this->Category->getCategoryNames();
+
+		$this->set('sites', $sites);
+		$this->set('categories', $categories);
 	}
 
 	/**
 	 * 未登録サイトをすべて登録
+	 *
 	 */
 	public function registerAll() {
-
 		$this->Site->registerAll();
-
-		$this->render('unregiList');
+		$this->render('unregi_site_index');
 	}
 
 	/**
-	 * 削除
+	 * サイトのFacebookシェア数を取得
 	 *
 	 */
-	public function delete() {
-		if ( !isset($this->request->data)) {
-			$this->redirect(array('action' => 'editList'));
-
-			return;
-		}
-
-		$site = $this->request->data;
-
-		if (isset($site['id'])) {
-			$this->Site->checkDeleted($site);
-		}
-
-		$this->render('editForm');
+	public function getShareCount() {
+		$action = ClassRegistry::init('SiteGetLikeCountAction');
+		$action->exec();
 	}
 
 }

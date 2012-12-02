@@ -7,7 +7,7 @@
  * ・配列内の要素にfalseが格納される
  *
  */
-class CurlMultiComponent extends Component {
+class CurlComponent extends Component {
 
 	/**
 	 * 一度に並列にアクセスする件数
@@ -21,7 +21,7 @@ class CurlMultiComponent extends Component {
 	 *
 	 * @var int
 	 */
-	private $timeOut = 10;
+	private $timeOut = 5;
 
 
 	/**
@@ -63,8 +63,12 @@ class CurlMultiComponent extends Component {
 	 * @return array $allContents 文字列形式のコンテンツの配列
 	 */
 	public function getContents($urls) {
-		$allContents = array();
+		// 引数が単一のURLであれば別のメソッドを使用
+		if ( !is_array($urls)) {
+			return $this->getContent($url);
+		}
 
+		$allContents = array();
 		$reqUrls = array();
 		// リクエスト用のURLの配列を作成
 		foreach ($urls as $i => $url) {

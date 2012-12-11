@@ -1,7 +1,7 @@
 <?php
 
-//App::uses('ComponentCollection', 'Controller');
-App::uses('RssFetcherComponent', 'Controller/Component');
+App::uses('RssUtilComponent', 'Controller/Component');
+App::uses('TwApiAccessorComponent', 'Controller/Component');
 
 /**
  * SitesControllerのregisterFromArticleアクション
@@ -15,8 +15,9 @@ App::uses('RssFetcherComponent', 'Controller/Component');
  * 依存クラス
  * ・Model/Site
  * ・Model/Article
- * ・Component/RssFetcherComponent
+ * ・Component/RssUtilComponent
  * ・ComponentCollection
+ * ・Component/TwApiAccessorComponent
  *
  * エラー
  * ・サイトの情報がRSSで取得できない →
@@ -31,11 +32,11 @@ class SiteRegisterFromSNaviAction extends AppModel {
 	public $useTable = false;
 
 	/**
-	 * RssFetcherコンポーネント
+	 * RssUtilコンポーネント
 	 *
-	 * @var object RssFetcherComponent
+	 * @var object RssUtilComponent
 	 */
-	private $rssFetcher;
+	private $RssUtil;
 
 
 	/**
@@ -69,7 +70,7 @@ class SiteRegisterFromSNaviAction extends AppModel {
 		parent::__construct();
 
 		$collection = new ComponentCollection();
-		$this->rssFetcher = new RssFetcherComponent($collection);
+		$this->RssUtil = new RssUtilComponent($collection);
 	}
 
 	/**
@@ -80,9 +81,10 @@ class SiteRegisterFromSNaviAction extends AppModel {
 		// スポーツナビプラスから24h以内の記事のURLを取得
 		$urls = $this->getTodaysArticleUrls();
 
-// 要コンポーネントに変更
 		// 各記事のRT数取得
-		$twAccessor = ClassRegistry::init('TwitterAPIAccessor');
+		$collection = new ComponentCollection();
+		$twAccessor = new TwApiAccessorComponent($collection);
+
 		$rtCounts   = $twAccessor->getTweetCountOfUrls($urls);
 
 		// サイトを登録する基準のRT数を取得
@@ -93,7 +95,7 @@ class SiteRegisterFromSNaviAction extends AppModel {
 		foreach ($rtCounts as $url => $rtCount) {
 			if ($minRtCount < $rtCount) {
 				// サイトの情報をRSSで取得
-				$site = $this->rssFetcher->getSiteInfo($url);
+				$site = $this->RssUtil->getSiteInfo($url);
 				$site['registered_from'] = 'sports navi';
 				$site['category_id'] = Configure::read('Category.blogId');;
 
@@ -114,7 +116,7 @@ class SiteRegisterFromSNaviAction extends AppModel {
 		$oneDayAgoTs = strtotime('-1 day');
 
 		// RSSを並列に取得
-		$feedRow = $this->rssFetcher->getFeedParallel($this->sNaviPlusUrls);
+		$feedRow = $this->RssUtil->getFeedParallel($this->sNaviPlusUrls);
 
 		// 記事を取り出す
 		foreach ($feedRow as $i => $feed) {
@@ -144,7 +146,7 @@ class SiteRegisterFromSNaviAction extends AppModel {
 
 		// 配列の最後の要素のツイート数を取得
 		$arrayCount = count($popArticles);
-		$minCount   = $popArticles[$arrayCount - 1]['Article']['tweeted_count'];
+		$minRTCount   = $popArticles[$arrayCount - 1]['Article']['tweeted_count'];
 
 		return $minRTCount;
 	}

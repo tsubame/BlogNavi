@@ -1,12 +1,12 @@
 <?php
-
+App::uses('FbApiAccessorComponent', 'Controller/Component');
 /**
  * SitesControllerのgetShareCountアクション
  * ツイート数を取得して記事を更新
  *
  * 依存クラス
  * ・Model/Site
- * ・Model/FacebookAPIAccessor
+ * ・Component/FbApiAccessorComponent
  *
  * エラー
  * ・？？
@@ -42,7 +42,7 @@ class SiteGetShareCountAction extends AppModel {
 			if ($url != $site['url']) {
 				continue;
 			}
-			$site['like_count'] = $count;
+			$site['fb_share_count'] = $count;
 
 			$siteModel->save($site);
 			$i++;
@@ -63,9 +63,10 @@ class SiteGetShareCountAction extends AppModel {
 		}
 
 		// それぞれのURLのシェア数を取得
-		$fb = ClassRegistry::init('FacebookAPIAccessor');
-		$counts = $fb->getLikeCountOfUrls($urls);
+		$collection = new ComponentCollection();
+		$fb = new FbApiAccessorComponent($collection);
 
+		$counts = $fb->getShareCountOfUrls($urls);
 		//debug($counts);
 
 		return $counts;

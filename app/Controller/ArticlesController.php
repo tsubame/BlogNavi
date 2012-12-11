@@ -67,7 +67,7 @@ class ArticlesController extends Controller {
 		$action = ClassRegistry::init('ArticleRegisterAction');
 		$action->exec();
 
-		$this->getShareCount();
+		//$this->getShareCount();
 	}
 
 	/**
@@ -97,55 +97,5 @@ class ArticlesController extends Controller {
 	}
 
 
-
-
-
-
-
-// 以下、削除予定
-
-	/**
-	 * 記事を取得とツイート数の取得を同時に
-	 *
-	 */
-/*
-	public function insertAndUpdate() {
-		$this->insert();
-		$this->update();
-
-		$this->render('update');
-	}
-*/
-	/**
- 	 * RSSから記事の登録
- 	 *
- 	 */
-// 削除予定
-	public function insert() {
-		$this->register();
-	}
-
-	// 要名前変更 → getShareCunts
-	/**
-	 * ツイート数を取得して記事を更新
-	 *
-	 */
-	public function update() {
-		$this->getShareCount();
-	}
-
-// かぶってない？
-
-
-	/**
-	 * ツイート数を取得
-	 *
-	 */
-/*
-	public function getTweetCount() {
-		$action = ClassRegistry::init('ArticleGetTweetCountAction');
-		$action->exec();
-	}
-*/
 
 }

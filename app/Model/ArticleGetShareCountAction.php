@@ -1,6 +1,5 @@
 <?php
-
-//App::uses('AppModel', 'Model');
+App::uses('TwApiAccessorComponent', 'Controller/Component');
 
 /**
  * ArticlesControllerのgetShareCountアクション
@@ -9,8 +8,8 @@
  *
  *
  * 依存クラス
- * ・Article
- * ・TwitterAPIAccessor
+ * ・Model/Article
+ * ・Component/TwApiAccessorComponent
  *
  * エラー
  *
@@ -58,8 +57,9 @@ class ArticleGetShareCountAction extends AppModel {
 		}
 
 		// 記事のツイート数取得
-		// 要 コンポーネントに書き換え
-		$twAccessor  = ClassRegistry::init('TwitterAPIAccessor');
+		$collection = new ComponentCollection();
+		$twAccessor = new TwApiAccessorComponent($collection);
+
 		$tweetCounts = $twAccessor->getTweetCountOfUrls($urls);
 
 // ここから差し替えたい
@@ -70,6 +70,8 @@ class ArticleGetShareCountAction extends AppModel {
 				if ($url == $article['url']) {
 					$article['tweeted_count'] = $count;
 					$savedArticles[] = $article;
+
+					break;
 				}
 			}
 		}

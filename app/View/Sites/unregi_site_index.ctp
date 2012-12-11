@@ -25,7 +25,7 @@
 			<?= $site['registered_from'] ?>
 		</td>
 		<td class = "category">
-			<?= $this->Form->input('Site.category_id', array('type' => 'select', 'label' => ' ', 'options' => $categories, 'selected' => $site['category_id'], 'class' => 'category_id')); ?>
+			<?= $this->Form->input('Site.category_id', array('type' => 'select', 'label' => ' ', 'options' => $categories, 'selected' => $site['category_id'], 'class' => 'categoryId')); ?>
 		</td>
 		<td class = "editButton">
 			<input type = "button" value = "登録" class = "button registerButton" name = "<?= $site['id'] ?>" />

@@ -1,4 +1,4 @@
- articles
+ ・articles
 
   id			integer
   title		 	varchar
@@ -13,24 +13,23 @@
 
 
 
- sites
+・sites
 
   id			  int primary
   name			  varchar
   url			  varchar
   feed_url		  varchar
   category_id	  int
-  like_count	  int	   Facebookのいいね！の数
+  fb_share_count  int	   Facebookの「シェア」数
   registered_from varchar
-  has_many_sites  boolean  スポーツナビのRSSはtrue
-  is_registered   boolean  ブログランキングから自動で登録したサイトはfalse、名前を考える
+  is_registered   boolean  ブログランキングから自動で登録したサイトはfalse
   is_deleted	  boolean
   created		  datetime
   modified		  datetime
 
 
 
-categories
+・categories
 
   id			   int primary
   name			   varchar

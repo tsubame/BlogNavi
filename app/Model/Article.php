@@ -39,18 +39,6 @@ class Article extends AppModel{
 	 */
 	public $cacheQueries = true;
 
-// 削除予定
-// 外に出すべき
-/*
-	//const SHOW_COUNT = 30;
-
-	const DEL_DAYS_AGO_START = 1;
-
-	const DEL_DAYS = 50;
-
-	const BLOG_CAT_ID = 3;
-//
-*/
 
 	/**
 	 * 24時間以内の記事をツイート数の多い順に取得

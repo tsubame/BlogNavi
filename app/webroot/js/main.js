@@ -42,6 +42,7 @@ $(function() {
 	});
 
 	/**
+	 * サイト編集画面
 	 * サイト更新ボタンを押した時
 	 */
 	$("input.editButton").click(function() {
@@ -50,8 +51,8 @@ $(function() {
 		var id   = siteId;
 		var name = $("tr#tr" + siteId + " input.name").val();
 		var url  = $("tr#tr" + siteId + " input.url").val();
-		var feed_url  =$("tr#tr" + siteId + " input.feed_url").val();
-		var category_id  =$("tr#tr" + siteId + " .category_id").get(0).selectedIndex + 1;
+		var feed_url  =$("tr#tr" + siteId + " input.feedUrl").val();
+		var category_id  =$("tr#tr" + siteId + " select.categoryIdDialog").get(0).selectedIndex + 1;
 
 		var data = {
 				"id": id,
@@ -62,19 +63,38 @@ $(function() {
 			};
 
 		// POSTでデータ送信
-		$.post("edit", data);
-
+		$.post("update", data);
 	});
 
 	/**
+	 * サイト編集画面
+	 * カテゴリ変更ボタンを押した時
+	 */
+	$("input.changeCatButton").click(function() {
+		// サイトIDを収得
+		var id   = $(this).attr("name");
+		// カテゴリメニューのIDを取得
+		var category_id  =$("tr#tr" + id + " select.categoryId").get(0).selectedIndex + 1;
+
+		var data = {
+				"id": id,
+				"category_id": category_id
+			};
+
+		// POSTでデータ送信
+		$.post("update", data);
+	});
+
+	/**
+	 * 未登録サイト一覧画面
 	 * サイト登録ボタンを押した時
+	 *
 	 */
 	$("input.registerButton").click(function() {
-
 		// サイトIDを収得
 		var siteId = $(this).attr("name");
 		// フォームのデータを受け取る
-		var category_id  =$("tr#tr" + siteId + " .category_id").get(0).selectedIndex + 1;
+		var category_id  =$("tr#tr" + siteId + " select.categoryId").get(0).selectedIndex + 1;
 
 		var data = {
 				"id": siteId,

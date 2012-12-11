@@ -16,10 +16,10 @@
 			<a href = "<?= $site['feed_url'] ?>" target = "_blank">RSS</a>
 		</td>
 		<td class = "category">
-				<?= $this->Form->input('Site.category_id', array('type' => 'select', 'label' => ' ', 'options' => $categories, 'selected' => $site['category_id'], 'class' => 'category_id')); ?>
+				<?= $this->Form->input('Site.category_id', array('type' => 'select', 'label' => ' ', 'options' => $categories, 'selected' => $site['category_id'], 'class' => 'categoryId')); ?>
 		</td>
 		<td class = "catButton">
-			<input type = "button" value = "カテゴリ変更" class = "button" name = "<?= $site['id'] ?>" />
+			<input type = "button" value = "カテゴリ変更" class = "button changeCatButton" name = "<?= $site['id'] ?>" />
 		</td>
 		<td class = "editButton">
 			<input type = "button" value = "編集" class = "button editFormOpenButton" name = "<?= $site['id'] ?>" />
@@ -30,8 +30,8 @@
 			<fieldset class = "siteEditDialog dialog" id = "siteEditDialog<?= $site['id'] ?>">
 				<?= $this->Form->input('Site.name', array('default' => $site['name'], 'class' => 'name')); ?>
 				<?= $this->Form->input('Site.url', array('default' => $site['url'], 'class' => 'url')); ?>
-				<?= $this->Form->input('Site.feed_url', array('default' => $site['feed_url'], 'class' => 'feed_url')); ?>
-				<?= $this->Form->input('Site.category_id', array('type' => 'select', 'options' => $categories, 'selected' => $site['category_id'], 'class' => 'category_id')); ?>
+				<?= $this->Form->input('Site.feed_url', array('default' => $site['feed_url'], 'class' => 'feedUrl')); ?>
+				<?= $this->Form->input('Site.category_id', array('type' => 'select', 'options' => $categories, 'selected' => $site['category_id'], 'class' => 'categoryIdDialog')); ?>
 				<p class = "submit">
 					<input type = "button" value = "更新" class = "closeButton editButton" name = "<?= $site['id'] ?>" />
 				</p>

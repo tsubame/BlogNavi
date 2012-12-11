@@ -60,8 +60,6 @@ class RssUtilComponent extends Component {
 		$simplePie->init();
 
 		$entries = array();
-//debug($simplePie->get_title());
-//debug($simplePie->get_encoding());
 
 		foreach ($simplePie->get_items() as $i => $item) {
 			$entries[$i]['url']         = $item->get_permalink();
@@ -116,22 +114,17 @@ class RssUtilComponent extends Component {
 				$entries[$i]['published']   = $item->get_date('Y-m-d H:i:s');
 				$entries[$i]['description'] = $item->get_description();
 
-// 文字化け対策
-if (strpos($entries[$i]['title'], '&#') !== false) {
-	debug('&#あり');
-	echo $entries[$i]['title'] . '<br />';
+				// 文字化け対策
+				if (strpos($entries[$i]['title'], '&#') !== false) {
+					//debug('&#あり');
+					//echo $entries[$i]['title'] . '<br />';
+					continue;
+				}
 
-	continue;
-}
-
-// &amp;を&に置き換え
-//$entries[$i]['title'] = str_replace('&amp;', '&', $entries[$i]['title']);
-//$entries[$i]['title'] = str_replace('&quot;', '"', $entries[$i]['title']);
-$entries[$i]['title'] = htmlspecialchars_decode($entries[$i]['title'], ENT_QUOTES);
-$entries[$i]['title'] = htmlspecialchars_decode($entries[$i]['title'], ENT_QUOTES);
-
-$entries[$i]['description'] = str_replace('&amp;', '&', $entries[$i]['description']);
-
+				// &amp;を&に置き換え
+				$entries[$i]['title'] = htmlspecialchars_decode($entries[$i]['title'], ENT_QUOTES);
+				$entries[$i]['title'] = htmlspecialchars_decode($entries[$i]['title'], ENT_QUOTES);
+				$entries[$i]['description'] = str_replace('&amp;', '&', $entries[$i]['description']);
 			}
 
 			array_push($parsedFeeds, $entries);

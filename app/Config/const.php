@@ -10,6 +10,16 @@ Configure::write('Article.showCount', 30);
 //Configure::read('Article.showCount');
 
 /**
+ * 何時間前の記事まで登録するか
+ *
+ * RSSで取得した記事のうち、この時間以上過去の記事は無視する
+ *
+ * @see Article
+ * @var int
+ */
+Configure::write('Article.registerPastHourFrom', 24);
+
+/**
  * 記事を自動で削除する際に使用。
  * この日付分前の記事から削除する。
  *

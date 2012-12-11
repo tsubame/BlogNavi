@@ -1,10 +1,11 @@
 
 （ToDoリスト）
 
-・APIアクセスクラスをコンポーネントに
+・cakeTestSuiteを使う
 
+・curl実行時間のテスト
 
-
+・protetedメソッドのテスト
 
 ・依存クラスを@liberaryみたいな形に
 
@@ -20,8 +21,6 @@
 
 
 ・ロギング log4phpの利用
-
-・定数を外のクラスに出す
 
 ・DBのテストの仕方を覚える
 
@@ -74,6 +73,16 @@
 	→過去の記事は1ケ月ごとの人気記事のみ残す
 
 
+■cronで実行
+
+3時間ごと
+・ArticlesController::register
+・SitesController::registerFromSNavi
+
+24時間ごと
+・ArticlesController::deletePastArticles
+
+
 
 ■要調査
 
@@ -82,5 +91,6 @@
 ・App::usesが必要なところ、必要じゃないところ
 
 ・コントロラーラ、コンポーネント、モデル、テストのコンストラクタ的なクラスは？
+
 
 

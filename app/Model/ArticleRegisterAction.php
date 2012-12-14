@@ -1,6 +1,4 @@
 <?php
-App::uses('AppModel', 'Model');
-App::uses('ComponentCollection', 'Controller');
 App::uses('RssUtilComponent', 'Controller/Component');
 
 /**
@@ -8,7 +6,11 @@ App::uses('RssUtilComponent', 'Controller/Component');
  *
  * ArticleコントローラのRegisterアクションのロジック
  *
+ * 依存クラス
+ * ・Component/RssUtilComponent
  *
+ * エラー
+ * ・？？
  *
  */
 class ArticleRegisterAction extends AppModel {
@@ -20,38 +22,6 @@ class ArticleRegisterAction extends AppModel {
 	 */
 	public $useTable = false;
 
-	/**
-	 * Siteモデル
-	 *
-	 * @var object Site
-	 */
-	private $Site;
-
-	/**
-	 * Articleモデル
-	 *
-	 * @var object Article
-	 */
-	private $Article;
-
-	/**
-	 * コンポーネントのインスタンス生成用引数
-	 *
-	 * @var object ComponentCollection
-	 */
-	private $Collection;
-
-	/**
-	 * コンストラクタ
-	 *
-	 */
-	public function __construct() {
-		parent::__construct();
-
-		$this->Site       = ClassRegistry::init('Site');
-		$this->Article    = ClassRegistry::init('Article');
-		$this->Collection = new ComponentCollection();
-	}
 
 	/**
 	 * 処理実行
@@ -59,28 +29,22 @@ class ArticleRegisterAction extends AppModel {
 	 */
 	public function exec() {
 		// sitesテーブルからサイトを取得
-		$sites = $this->Site->getSites();
+		$model = ClassRegistry::init('Site');
+		$sites = $model->getSites();
+		// フィードURLの配列作成
+		$feedUrls = $this->createFeedUrlsArray($sites);
 
-		$feedUrls = array();
-		// URLを配列に入れる
-		foreach ($sites as $i => $site) {
-			// フィードURLを配列に入れる なければサイトのURL
-			if (isset($site['feed_url'])) {
-				array_push($feedUrls, $site['feed_url']);
-			} else {
-				array_push($feedUrls, $site['url']);
-			}
-		}
-		// 並列にRSSフィードを取得
-		$fetcher = new RssUtilComponent($this->Collection);
-		$feedRow = $fetcher->getFeedParallel($feedUrls);
+		// 各URLのRSSフィードを取得
+		$collection  = new ComponentCollection();
+		$fetcher     = new RssUtilComponent($collection);
+		$feedOfSites = $fetcher->getFeedParallel($feedUrls);
 
 		$saveCount = 0;
 
-		foreach ($feedRow as $i => $feed) {
-			foreach ($feed as $article) {
+		// 記事を登録
+		foreach ($feedOfSites as $i => $feedOfSite) {
+			foreach ($feedOfSite as $article) {
 				$article['site_id'] = $sites[$i]['id'];
-
 				$result = $this->saveArticle($article);
 
 				if ($result !== false) {
@@ -91,6 +55,28 @@ class ArticleRegisterAction extends AppModel {
 		// ロギング
 		CakeLog::info("{$saveCount}件の記事を登録しました。");
 	}
+
+	/**
+	 * サイトの配列を受け取ってフィードURLの配列を返す
+	 * フィードURLがないサイトはURLを入れる
+	 *
+	 * @param  array $sites
+	 * @return array $feedUrls
+	 */
+	protected function createFeedUrlsArray($sites) {
+		$feedUrls = array();
+		// フィードURLの配列を作成 なければサイトのURL
+		foreach ($sites as $i => $site) {
+			if (isset($site['feed_url'])) {
+				array_push($feedUrls, $site['feed_url']);
+			} else {
+				array_push($feedUrls, $site['url']);
+			}
+		}
+
+		return $feedUrls;
+	}
+
 
 	/**
 	 * 登録処理
@@ -107,8 +93,10 @@ class ArticleRegisterAction extends AppModel {
 		$intervalSec = Configure::read('Article.registerPastHourFrom') * 3600;
 		$nowTs = time();
 
+		$model = ClassRegistry::init('Article');
+
 		if (($nowTs - $pubTs) < $intervalSec) {
-			$result = $this->Article->saveIfNotExists($article);
+			$result = $model->saveIfNotExists($article);
 
 			return true;
 		} else {

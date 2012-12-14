@@ -78,8 +78,8 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'hideki',
 		'password' => 'ka4023',
-		'database' => 'foot_blog_navi',
-		//'database' => 'foot_blog_navi_test',
+		//'database' => 'foot_blog_navi',
+		'database' => 'foot_blog_navi_test',
 		//'prefix' => 'test_',
 		'encoding' => 'utf8',
 	);

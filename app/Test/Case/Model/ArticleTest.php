@@ -12,22 +12,48 @@ class ArticleTest extends CakeTestCase  {
 
 	private $Article;
 
+	/**
+	 * Fixture
+	 *
+	 * @var array
+	 */
+	public $fixtures = array('Article', 'Site', 'Category');
+
+	/**
+	 * 初期処理
+	 *
+	 * @see CakeTestCase::setUp()
+	 */
 	public function setUp() {
 		parent::setUp();
 		$this->Article = ClassRegistry::init('Article');
 	}
 
 	/**
+	 * 終了処理
 	 *
-	 * test
+	 * @see CakeTestCase::tearDown()
+	 */
+	public function tearDown() {
+		unset($this->Article);
+
+		parent::tearDown();
+	}
+
+
+	/**
+	 * 正常系
+	 *
+	 * @test
 	 */
 	public function selectTodaysArticlesTest() {
 		$this->Article->selectTodaysArticles();
 	}
 
 	/**
+	 * 正常系
 	 *
-	 * test
+	 * @test
 	 */
 	public function insertTest() {
 
@@ -37,26 +63,6 @@ class ArticleTest extends CakeTestCase  {
 				);
 
 		$this->Article->save($article);
-	}
-
-	/**
-	 * 動作の確認
-	 *
-	 * test
-	 */
-	public function demo() {
-
-		$article = array(
-				'title' => 'タイトル',
-				'url' => 'http://url.test'
-		);
-
-		$this->Article->save($article);
-
-		$results = $this->Article->find('all');
-		$count = $this->Article->getNumRows();
-
-		debug($count);
 	}
 
 	/**
@@ -72,7 +78,7 @@ class ArticleTest extends CakeTestCase  {
 		// 1軒目のデータを挿入
 		$article = array('url' => $url);
 		$res = $this->Article->saveIfNotExists($article);
-		$this->assertEqual($res, true);
+		$this->assertNotEqual($res, false);
 
 		// 2件目のデータを挿入
 		$article2 = array('url' => $url);
@@ -88,7 +94,7 @@ class ArticleTest extends CakeTestCase  {
 	/**
 	 * 複数件の記事を挿入できる
 	 *
-	 * test
+	 * @test
 	 */
 	public function insertMultipleArticles() {
 		$insertCount = 30;
@@ -149,7 +155,7 @@ class ArticleTest extends CakeTestCase  {
 	/**
 	 * 正常系
 	 *
-	 * test
+	 * @test
 	 */
 	public function selectDeletableArticles() {
 

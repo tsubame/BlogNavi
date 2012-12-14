@@ -17,7 +17,6 @@
  * modified 	 datetime
  *
  */
-App::uses('AppModel', 'Model');
 App::uses('Category', 'Model');
 
 class Article extends AppModel{
@@ -27,10 +26,13 @@ class Article extends AppModel{
 	 *
 	 * @var array
 	 */
-	public $belongsTo = array("Site" =>
-			array("className" => "Site",
-					"conditions" => "",
-					"foreignKey" => "site_id"));
+	public $belongsTo = array (
+			"Site" => array (
+				"className" => "Site",
+				"conditions" => "",
+				"foreignKey" => "site_id"
+			)
+		);
 
 	/**
 	 * キャッシュの有効化
@@ -81,7 +83,6 @@ class Article extends AppModel{
 	 * @return array $results
 	 */
 	public function selectTodaysBlogArticles() {
-
 		$yesterday = date('Y-m-d H:i:s', strtotime('-1 day'));
 		$conditions = array('Article.published >' => $yesterday, 'Site.category_id' => Configure::read('Category.blogId'));
 
@@ -127,7 +128,6 @@ class Article extends AppModel{
 		return $articles;
 	}
 
-//ツイート数が0件の記事も削除すべき？
 	/**
 	 * 過去数日分の記事を一度に削除する
 	 *
@@ -135,7 +135,6 @@ class Article extends AppModel{
 	 *
 	 */
 	public function deletePastArticles() {
-
 		// カテゴリを取得
 		$category = ClassRegistry::init('Category');
 		$categories = $category->getAllCategories();
@@ -173,7 +172,6 @@ class Article extends AppModel{
 	 * @return array $articles
 	 */
 	public function selectDeletableArticles($dayAgo = 1, $categoryId = 1) {
-
 		if ($dayAgo == 0) {
 			$dayAgoMinus = '+0';
 		} else {
@@ -212,17 +210,12 @@ class Article extends AppModel{
 	 * @return int | bool レコードのID 挿入できなければfalse
 	 */
 	public function saveIfNotExists($article) {
-
-		// データ削除
-		$conditions = array('Article.url' => $article['url']);
-
 		$options = array(
-				'conditions' => $conditions
+				'conditions' => array('Article.url' => $article['url'])
 		);
 		$results = $this->find('all', $options);
 
 		$count = $this->getNumRows();
-
 		if (0 < $count) {
 			return false;
 		}

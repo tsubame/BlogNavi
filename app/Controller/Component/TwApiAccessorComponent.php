@@ -32,6 +32,13 @@ class TwApiAccessorComponent extends Component {
 	 */
 	const COUNT_API_URL = 'http://urls.api.twitter.com/1/urls/count.json?url=';
 
+	/**
+	 * 並列アクセス時に一度にリクエストを送る件数
+	 *
+	 * @var int
+	 */
+	private $reqCountOnce = null;
+
 
 	/**
 	 * 複数のURLのRT数を並列に取得
@@ -48,6 +55,10 @@ class TwApiAccessorComponent extends Component {
 		foreach ($urls as $url) {
 			$reqUrl = self::COUNT_API_URL . $url;
 			array_push($reqUrls, $reqUrl);
+		}
+
+		if ( !is_null($this->reqCountOnce)) {
+			$this->Curl->setReqCountOnce($this->reqCountOnce);
 		}
 
 		// 並列にAPIにリクエスト
@@ -84,5 +95,17 @@ class TwApiAccessorComponent extends Component {
 		$rtCount = array_pop($rtCounts);
 
 		return $rtCount;
+	}
+
+	/**
+	 *
+	 * @param int $count
+	 */
+	public function setReqCountOnce($count) {
+		if ( !is_int($count)) {
+			return;
+		}
+
+		$this->reqCountOnce = $count;
 	}
 }

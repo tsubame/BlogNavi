@@ -3,7 +3,8 @@
 App::uses('TwitterAPIAccessor', 'Model');
 App::uses('ComponentCollection', 'Controller');
 App::uses('HttpUtilComponent', 'Controller/Component');
-App::uses('RssFetcherComponent', 'Controller/Component');
+App::uses('CurlComponent', 'Controller/Component');
+App::uses('RssUtilComponent', 'Controller/Component');
 /**
  *
  *
@@ -12,29 +13,96 @@ App::uses('RssFetcherComponent', 'Controller/Component');
  */
 class DemoCodeTest extends CakeTestCase  {
 
-	private $TwitterAPIAccessor;
-
 	private $httpUtil;
-	private $rssFetcher;
+	private $rssUtil;
+	private $curl;
 
+	/**
+	 * fixture
+	 *
+	 * @var array
+	 */
+	public $fixtures = array('article', 'site');
+
+	/**
+	 * (non-PHPdoc)
+	 * @see CakeTestCase::setUp()
+	 */
 	public function setUp() {
 		parent::setUp();
-		$this->TwitterAPIAccessor = ClassRegistry::init('TwitterAPIAccessorExtend');
 
 		$collection = new ComponentCollection();
-		$this->httpUtil = new HttpUtilComponent($collection);
-		$this->rssFetcher = new RssFetcherComponent($collection);
+		//$this->httpUtil = new HttpUtilComponent($collection);
+		$this->curl = new CurlComponent($collection);
+		$this->rssUtil = new RssUtilComponent($collection);
 	}
 
 	/**
+	 * (non-PHPdoc)
+	 * @see CakeTestCase::tearDown()
+	 */
+	public function tearDown() {
+		unset($this->curl);
+
+		parent::tearDown();
+	}
+
+
+	/**
 	 *
-	 * @test
+	 * test
 	 */
 	public function constTest() {
 		debug(Configure::read('test2.test'));
 		debug(Configure::read('test'));
 
 		debug(Configure::read('Category.names'));
+	}
+
+	/**
+	 * キーフレーズの抽出
+	 *
+	 * @test
+	 */
+	public function pickupKeyPhrase() {
+		$appId = 'J8nvyLixg676zBufLdmjXZ_rAEq3XeFgY5EG50w2P116X4QlCPVDTVa2bn0feuG7FTc-';
+		$apiUrl = 'http://jlp.yahooapis.jp/KeyphraseService/V1/extract?';
+		$output = 'xml';
+		//$text = '本田圭佑本日の移籍報道まとめ ラツィオかマンUか？:本田△';
+
+
+		$model = ClassRegistry::init('Article');
+		$results = $model->selectTodaysArticles(1, 30);
+
+		$urls = array();
+
+		foreach ($results as $result) {
+			$title = $result['Article']['title'];
+			$title = urlencode($title);
+			$url = "{$apiUrl}appid={$appId}&output={$output}&sentence={$title}";
+			$urls[] = $url;
+		}
+//debug($urls);
+		$results = $this->curl->getContents($urls);
+		$words = array();
+
+		foreach ($results as $result) {
+			$xml = simplexml_load_string($result);
+
+			foreach ($xml->Result as $value) {
+				//debug($value);
+				$word  = (string)$value->Keyphrase;
+				$score = (int)$value->Score;
+				//$word = $phrase['Keyphrase'];
+				$row = array('word' => $word, 'score' => $score);
+
+				$words[$word] = $score;
+			}
+		}
+
+		$hotwords = arsort($words, SORT_NUMERIC);
+
+		debug($words);
 	}
 
 	/**
@@ -150,7 +218,7 @@ class DemoCodeTest extends CakeTestCase  {
 
 	/**
 	 *
-	 * @test
+	 * test
 	 */
 	public function demo2() {
 		$dayAgo = -1;

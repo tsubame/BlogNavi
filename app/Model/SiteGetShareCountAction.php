@@ -67,7 +67,6 @@ class SiteGetShareCountAction extends AppModel {
 		$fb = new FbApiAccessorComponent($collection);
 
 		$counts = $fb->getShareCountOfUrls($urls);
-		//debug($counts);
 
 		return $counts;
 	}

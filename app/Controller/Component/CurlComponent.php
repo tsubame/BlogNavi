@@ -21,7 +21,7 @@ class CurlComponent extends Component {
 	 *
 	 * @var int
 	 */
-	private $timeOut = 5;
+	private $timeOut = 3;
 
 
 	/**
@@ -253,7 +253,7 @@ class CurlComponent extends Component {
 	}
 
 
-	public function setreqCountOnce($count) {
+	public function setReqCountOnce($count) {
 		$this->reqCountOnce = $count;
 	}
 

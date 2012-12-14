@@ -64,10 +64,17 @@ class ArticlesController extends Controller {
 	 *
 	 */
 	public function register() {
+		$beforeTime = time();
+
 		$action = ClassRegistry::init('ArticleRegisterAction');
 		$action->exec();
 
 		//$this->getShareCount();
+		$afterTime = time();
+		$actTime = $afterTime - $beforeTime;
+
+		CakeLog::info("実行時間：{$actTime}秒");
+		$this->render('editIndex');
 	}
 
 	/**

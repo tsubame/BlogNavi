@@ -34,6 +34,16 @@ class Site extends AppModel{
 		);
 
 	/**
+	 * バリデーション
+	 */
+	public $validate = array(
+			'url' => array(
+						'rure' => array('minLength', 12),
+						'required' => true
+					)
+		);
+
+	/**
 	 * キャッシュ
 	 *
 	 * @var bool

@@ -4,7 +4,7 @@ App::uses('TwApiAccessorComponent', 'Controller/Component');
 /**
  * ArticlesControllerのgetShareCountアクション
  *
- * 書く記事のリツイート数を取得してarticlesテーブルを更新
+ * 24時間以内の記事のRT数を取得してarticlesテーブルを更新
  *
  *
  * 依存クラス
@@ -41,10 +41,8 @@ class ArticleGetShareCountAction extends AppModel {
 		$articleModel->saveAll($savedArticles);
 	}
 
-
-// 要修正 コードに無駄がありそう
 	/**
-	 * 書く記事のツイート数を取得して設定
+	 * 各記事のツイート数を取得して設定
 	 *
 	 * @param  array $articles
 	 * @return array $savedArticles
@@ -55,48 +53,49 @@ class ArticleGetShareCountAction extends AppModel {
 		foreach ($articles as $article) {
 			$urls[] = $article['url'];
 		}
-
-		// 記事のツイート数取得
+		// 記事のRT数取得
 		$collection = new ComponentCollection();
 		$twAccessor = new TwApiAccessorComponent($collection);
-
 		$tweetCounts = $twAccessor->getTweetCountOfUrls($urls);
 
-// ここから差し替えたい
-
-		$savedArticles = array();
+		$i = 0;
 		foreach ($tweetCounts as $url => $count) {
-			foreach ($articles as $article) {
-				if ($url == $article['url']) {
-					$article['tweeted_count'] = $count;
-					$savedArticles[] = $article;
 
-					break;
-				}
+			$result = $this->checkUrlMatch($url, $articles[$i]['url']);
+			//if ($url == $articles[$i]['url']) {
+			if ($result == true) {
+				$articles[$i]['tweeted_count'] = $count;
+			} else {
+				$articles[$i]['tweeted_count'] = 0;
 			}
-		}
 
-		return $savedArticles;
-
-// ここまで
-
-// テストして大丈夫そうなら以下のコードに差し替え
-/*
-// ここ無駄なループがない？
-
-		foreach ($tweetCounts as $url => $count) {
-			foreach ($articles as $i => $article) {
-				if ($url == $article['url']) {
-					$articles[$i]['tweeted_count'] = $count;
-
-					break;
-				}
-			}
+			$i++;
 		}
 
 		return $articles;
-//
- */
+	}
+
+	/**
+	 * ２つのURLが同じページかどうかを調べる
+	 *
+	 * @param string $url1
+	 * @param string $url2
+	 * @return bool
+	 */
+	protected function checkUrlMatch($url1, $url2) {
+		//http://と最後の/を除く
+		$url1 = str_replace('http://', '', $url1);
+		$url2 = str_replace('http://', '', $url2);
+
+		if ($url1 == $url2) {
+			return true;
+		} else if ($url1 == $url2 . '/') {
+			return true;
+		} else if ($url1 . '/' == $url2) {
+			return true;
+		}
+
+		return false;
 	}
 
 }

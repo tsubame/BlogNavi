@@ -59,7 +59,7 @@ class Article extends AppModel{
 		$yesterday = date('Y-m-d H:i:s', strtotime('-1 day'));
 		$tomorrow  = date('Y-m-d H:i:s', strtotime('+1 day'));
 
-		if ( !is_null($categoryId)) {
+		if ( !is_null($categoryId) && $categoryId != 0) {
 			$conditions = array('Article.published >' => $yesterday, 'Article.published <' => $tomorrow, 'Site.category_id' => $categoryId);
 		} else {
 			$conditions = array('Article.published >' => $yesterday, 'Article.published <' => $tomorrow);

@@ -1,38 +1,51 @@
- articles
+Controller
+・ArticlesController
+・SitesController
 
-  id			integer
-  title		 	varchar
-  url			mediumtext
-  description	mediumtext
-  site_id		integer
-  tweeted_count integer
-  is_deleted 	boolean  true 表示しない記事（ニュース以外のURLなど）
-  published 	datetime
-  created  	 	datetime
-  modified 	 	datetime
+Controller/Component
+・CurlComponent
+・RssUtilComponent
+・StringUtilComponent
 
+Model
+・Article
+・Model
+・Category
+・ArticleGetShareCountAction
+・ArticleRegisterAction
+・SiteRegisterAction
+・SiteRegisterFromRankAction
+・SiteRegisterFromFileAction
+・SiteRegisterFromSNaviAction
+・SiteRegisterFromSEngineAction
+・SiteGetShareCountAction
 
+View
+・Sites/
+  ・index
+  ・edit_index
+  ・register_form
+  ・edit → edit_index
 
- sites
+  ・delete → edit_index
+  ・register → register_form
+  ・register_from_file → register
+  ・register_all → edit_index
+  （要名前変更）
 
-  id			  int primary
-  name			  varchar
-  url			  varchar
-  feed_url		  varchar
-  category_id	  int
-  like_count	  int	   Facebookのいいね！の数
-  registered_from varchar
-  has_many_sites  boolean  スポーツナビのRSSはtrue
-  is_registered   boolean  ブログランキングから自動で登録したサイトはfalse、名前を考える
-  is_deleted	  boolean
-  created		  datetime
-  modified		  datetime
+  ・unregi_site_index
 
+・Articles/
+  ・index
+  ・edit_index
+  ・register → edit_index
+  （要名前変更）
 
+  ・update  → edit_index
+   （要名前変更）
+    ・get_counts
+    ・get_ref_counts
+    ・get_share_counts
 
-categories
-
-  id			   int primary
-  name			   varchar
-  created		   datetime
-  modified		   datetime
+  ・delete → edit_index
+  ・autoDelete → edit_index

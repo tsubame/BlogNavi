@@ -70,9 +70,8 @@ class DemoCodeTest extends CakeTestCase  {
 		$output = 'xml';
 		//$text = '本田圭佑本日の移籍報道まとめ ラツィオかマンUか？:本田△';
 
-
 		$model = ClassRegistry::init('Article');
-		$results = $model->selectTodaysArticles(1, 30);
+		$results = $model->selectTodaysArticles(2);
 
 		$urls = array();
 
@@ -82,27 +81,44 @@ class DemoCodeTest extends CakeTestCase  {
 			$url = "{$apiUrl}appid={$appId}&output={$output}&sentence={$title}";
 			$urls[] = $url;
 		}
-//debug($urls);
 		$results = $this->curl->getContents($urls);
-		$words = array();
+		$keywords = array();
+		$multiWords = array();
+
+		$wordScores = array();
 
 		foreach ($results as $result) {
 			$xml = simplexml_load_string($result);
 
 			foreach ($xml->Result as $value) {
-				//debug($value);
-				$word  = (string)$value->Keyphrase;
-				$score = (int)$value->Score;
-				//$word = $phrase['Keyphrase'];
-				$row = array('word' => $word, 'score' => $score);
+				$keyword = (string)$value->Keyphrase;
+				$score   = (int)$value->Score;
 
-				$words[$word] = $score;
+				$keywords[] = $keyword;
+				$wordScores[$keyword] = $score;
 			}
 		}
 
-		$hotwords = arsort($words, SORT_NUMERIC);
+		while (0 < count($keywords)) {
+			$word = array_pop($keywords);
+			// 重複単語の配列に値が存在するか調べる
 
-		debug($words);
+			if (isset($multiWords[$word])) {
+				$multiWords[$word]++ ;
+				continue;
+			}
+
+			$res = array_search($word, $keywords);
+
+			if ($res !== false) {
+				$multiWords[$word] = 1;
+			}
+		}
+
+		arsort($wordScores, SORT_NUMERIC);
+		arsort($multiWords, SORT_NUMERIC);
+		debug($wordScores);
+		debug($multiWords);
 	}
 
 	/**

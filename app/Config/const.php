@@ -126,6 +126,13 @@ Configure::write('Site.fileNames', array(
  */
 Configure::write('urlPattern', '/^http:\/\/[\w\.\-\/_=?&@:]+/');
 
+/**
+ * ヤフー検索のアプリケーションID
+ *
+ * @see http://developer.yahoo.co.jp/webapi/jlp/keyphrase/v1/extract.html
+ * @var string
+ */
+Configure::write('YAHOO_APP_ID', 'J8nvyLixg676zBufLdmjXZ_rAEq3XeFgY5EG50w2P116X4QlCPVDTVa2bn0feuG7FTc-');
 
 
 
@@ -135,7 +142,6 @@ Configure::write('urlPattern', '/^http:\/\/[\w\.\-\/_=?&@:]+/');
  * @var string
  */
 Configure::write('Site.newsFileName', 'sites_news.txt');
-//const FILE_NEWS = 'sites_news.txt';
 
 /**
  * 2chまとめサイトのファイル名
@@ -143,7 +149,6 @@ Configure::write('Site.newsFileName', 'sites_news.txt');
  * @var string
  */
 Configure::write('Site.2chFileName', 'sites_2ch.txt');
-//const FILE_2CH = 'sites_2ch.txt';
 
 /**
  * ブログサイト（その他）のファイル名

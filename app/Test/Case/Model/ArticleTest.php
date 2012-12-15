@@ -47,7 +47,9 @@ class ArticleTest extends CakeTestCase  {
 	 * @test
 	 */
 	public function selectTodaysArticlesTest() {
-		$this->Article->selectTodaysArticles();
+		$articles = $this->Article->selectTodaysArticles(0);
+
+		debug($articles);
 	}
 
 	/**
@@ -161,7 +163,7 @@ class ArticleTest extends CakeTestCase  {
 
 		$articles = $this->Article->selectDeletableArticles(1, 1);
 
-		debug($articles);
+		//debug($articles);
 	}
 
 }

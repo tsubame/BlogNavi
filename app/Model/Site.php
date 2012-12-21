@@ -86,7 +86,7 @@ class Site extends AppModel{
 	/**
 	 * 特定のカテゴリのサイトを取得
 	 *
-	 * 未登録、削除済み、使用不可のサイトは除く
+	 * 未登録、削除済みのサイトは除く
 	 *
 	 * @return int   $categoryId カテゴリID nullの場合はすべてのカテゴリ
 	 * @return array $sites サイトの配列

@@ -17,7 +17,7 @@ class ArticleTest extends CakeTestCase  {
 	 *
 	 * @var array
 	 */
-	public $fixtures = array('Article', 'Site', 'Category');
+	//public $fixtures = array('Article', 'Site', 'Category');
 
 	/**
 	 * 初期処理
@@ -48,7 +48,7 @@ class ArticleTest extends CakeTestCase  {
 	public function selectTodaysBlogArticles() {
 		$articles = $this->Article->selectTodaysBlogArticles();
 
-		debug($articles);
+		//debug($articles);
 	}
 
 
@@ -61,12 +61,13 @@ class ArticleTest extends CakeTestCase  {
 		$articles = $this->Article->selectTodaysArticles(0);
 
 		//debug($articles);
+		//$this->assertNotEqual(count($articles), 0);
 	}
 
 	/**
 	 * 正常系
 	 *
-	 * @test
+	 * test
 	 */
 	public function insertTest() {
 
@@ -81,7 +82,7 @@ class ArticleTest extends CakeTestCase  {
 	/**
 	 * 正常系
 	 *
-	 * @test
+	 * test
 	 */
 	public function saveIfNotExists() {
 		$rand = rand(0, 99999);
@@ -107,7 +108,7 @@ class ArticleTest extends CakeTestCase  {
 	/**
 	 * 複数件の記事を挿入できる
 	 *
-	 * @test
+	 * test
 	 */
 	public function insertMultipleArticles() {
 		$insertCount = 30;
@@ -175,6 +176,88 @@ class ArticleTest extends CakeTestCase  {
 		$articles = $this->Article->selectDeletableArticles(1, 1);
 
 		//debug($articles);
+	}
+
+	/**
+	 * 複数件挿入のパフォーマンスチェック
+	 *
+	 * @test
+	 */
+	public function checkPerformance() {
+		$ts = time();
+		$dataCount = 1000;
+		$articles = array();
+
+		// 挿入用データ
+		for ($i = 0; $i < 30; $i++) {
+			$article = array();
+			$article['url'] = 'http://test.test.' . $i;
+			$articles[] = $article;
+
+			//$this->Article->saveIfNotExists($article);
+		}
+
+		// 挿入用データ
+		for ($i = 0; $i < $dataCount; $i++) {
+			$article = array();
+			$article['url'] = 'http://test.test.' . $i;
+			$articles[] = $article;
+
+			//$this->Article->saveIfNotExists($article);
+			//$this->Article->save($article);
+		}
+
+		$saveArticles = array();
+		//
+		foreach ($articles as $article) {
+			$this->Article->set($article);
+			$res = $this->Article->isUnique(array('url'));
+			if ($res == true) {
+				$saveArticles[] = $article;
+			}
+		}
+
+		try {
+			$this->Article->saveAll($saveArticles);
+		} catch(Exception $e) {
+			debug($e->getMessage());
+		}
+
+
+		$saveTime = time() - $ts;
+		debug("{$dataCount}件の挿入にかかった時間は{$saveTime}秒");
+
+		$results = $this->Article->find('all');
+
+		debug(count($results));
+		//debug($results);
+
+
+
+
+		// 一度に同じURLを挿入した場合の対処
+		$sql = 'SELECT url, count(url) AS `count` FROM `articles`
+				GROUP BY `url` HAVING `count` >= 2 ORDER BY `count` DESC';
+
+		$results = $this->Article->query($sql);
+
+
+//debug($results);
+		foreach ($results as $result) {
+			//debug('重複:' . $result['articles']['url']);
+			$url = $result['articles']['url'];
+
+			$result = $this->Article->findByUrl($url);
+			//debug($result);
+			$id = $result['Article']['id'];
+
+			$res = $this->Article->delete($id);
+			//debug($res);
+		}
+
+		$results = $this->Article->find('all');
+
+		//debug($results);
 	}
 
 }

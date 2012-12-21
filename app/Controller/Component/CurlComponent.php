@@ -14,7 +14,7 @@ class CurlComponent extends Component {
 	 *
 	 * @var int
 	 */
-	private $reqCountOnce = 50;
+	private $reqCountOnce = 100;
 
 	/**
 	 * タイムアウトの秒数
@@ -92,7 +92,7 @@ class CurlComponent extends Component {
 	 * @return array $allContents 文字列形式のコンテンツの配列
 	 */
 	public function getContents($urls) {
-$this->beforeTs = time();
+
 //debug(time());
 		// 引数が単一のURLであれば別のメソッドを使用
 		if ( !is_array($urls)) {
@@ -103,11 +103,13 @@ $this->beforeTs = time();
 		$reqUrls = array();
 		// リクエスト用のURLの配列を作成
 		foreach ($urls as $i => $url) {
+
 			array_push($reqUrls, $url);
 
 			if ($this->reqCountOnce <= count($reqUrls) || $i + 1 == count($urls)) {
+$beforeTs = time();
 				$contents = $this->getContentsAtOnce($reqUrls);
-$execTime = time() - $this->beforeTs;
+$execTime = time() - $beforeTs;
 debug("1回のアクセスの処理時間：{$execTime}秒");
 
 				$allContents = array_merge($allContents, $contents);

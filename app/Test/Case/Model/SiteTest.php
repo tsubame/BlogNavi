@@ -116,4 +116,27 @@ class SiteTest extends CakeTestCase  {
 		$this->assertEqual($result[0]['Site']['url'], 'http://testUpdate');
 	}
 
+	/**
+	 * 複数件挿入のパフォーマンスチェック
+	 *
+	 * @test
+	 */
+	public function checkPerformance() {
+		$ts = time();
+		$dataCount = 500;
+		$sites = array();
+
+		// 挿入用データ
+		for ($i = 0; $i <= $dataCount; $i++) {
+			$site = array();
+			$site['url'] = 'http://test.test.' . $i;
+			$sites[] = $site;
+
+			$this->Site->saveIfNotExists($site);
+		}
+
+		$saveTime = time() - $ts;
+		debug("{$dataCount}件の挿入にかかった時間は{$saveTime}秒");
+	}
+
 }

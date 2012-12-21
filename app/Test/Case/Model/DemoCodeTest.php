@@ -60,9 +60,38 @@ class DemoCodeTest extends CakeTestCase  {
 	}
 
 	/**
-	 * キーフレーズの抽出
+	 * 日本語URLをそのまま格納
 	 *
 	 * @test
+	 */
+	public function useJapaneseUrl() {
+
+		// 日本語URLをarticlesテーブルに保存
+		$model = ClassRegistry::init('Article');
+
+		$article = array();
+		$article['id'] = 9999;
+		//$article['url']  = 'http://www.goal.com/jp/news/74/イングランド/2012/12/22/3619777/香川が２４日からチーム練習合流';
+		$article['url']  = 'http://www.goal.com/jp/news/74/%E3%82%A4%E3%83%B3%E3%82%B0%E3%83%A9%E3%83%B3%E3%83%89/2012/12/22/3619777/%E9%A6%99%E5%B7%9D%E3%81%8C%EF%BC%92%EF%BC%94%E6%97%A5%E3%81%8B%E3%82%89%E3%83%81%E3%83%BC%E3%83%A0%E7%B7%B4%E7%BF%92%E5%90%88%E6%B5%81';
+
+		$article['url'] = urldecode($article['url']);
+		$article['title'] = 'Goal.com テスト用';
+
+		$model->save($article);
+		// 取り出す
+		$result = $model->findById(9999);
+
+		debug($result);
+		$url = $result['Article']['url'];
+		$html = $this->curl->getContent($url);
+
+		debug($html);
+	}
+
+	/**
+	 * キーフレーズの抽出
+	 *
+	 * test
 	 */
 	public function pickupKeyPhrase() {
 		$appId = 'J8nvyLixg676zBufLdmjXZ_rAEq3XeFgY5EG50w2P116X4QlCPVDTVa2bn0feuG7FTc-';

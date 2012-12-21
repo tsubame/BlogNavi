@@ -91,11 +91,8 @@ class SiteRegisterFromFileAction extends AppModel {
 
 			$site['category_id']     = $catId;
 			$site['registered_from'] = 'file';
-//debug($site);
 			// DBに保存
 			$res = $siteModel->saveIfNotExists($site);
-
-//debug($res);
 		}
 	}
 

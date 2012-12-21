@@ -210,6 +210,7 @@ class Article extends AppModel{
 	 * @return int | bool レコードのID 挿入できなければfalse
 	 */
 	public function saveIfNotExists($article) {
+
 		$options = array(
 				'conditions' => array('Article.url' => $article['url'])
 		);
@@ -219,6 +220,14 @@ class Article extends AppModel{
 		if (0 < $count) {
 			return false;
 		}
+
+		// 簡潔なコードだが一度に同じURLを挿入した場合にユニークと判断してしまう
+		/*
+		$this->set($article);
+		$res = $this->isUnique(array('url'));
+		if ($res != true) {
+			return false;
+		}*/
 
 		// なければ追加
 		$this->create($article);

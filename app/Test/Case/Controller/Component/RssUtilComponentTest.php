@@ -13,17 +13,25 @@ class RssUtilComponentTestCase extends CakeTestCase {
 	private $Collection;
 	private $rssFetcher;
 
+	public $fixtures = array('site', 'category');
+
 	public function setUp(){
 		parent::setUp();
 		$this->Collection = new ComponentCollection();
 		$this->rssFetcher = new RssUtilComponent($this->Collection);
 	}
 
+	public function tearDown() {
+		unset($this->rssFetcher);
+		parent::tearDown();
+	}
+
+
 	/**
 	 *
 	 * 正常系
 	 *
-	 * @test
+	 * test
 	 */
 	public function getSiteUrl() {
 		$urls = array(
@@ -36,12 +44,82 @@ class RssUtilComponentTestCase extends CakeTestCase {
 		}
 	}
 
+	/**
+	 * 正常系
+	 *
+	 * @test
+	 */
+	public function getFeedAndParse() {
+		$siteModel = ClassRegistry::init('Site');
+		$sites = $siteModel->getAllSites();
+
+		$urls = array();
+		foreach($sites as $site) {
+			$urls[] = $site['feed_url'];
+		}
+		/*
+		 $urls = array(
+		 		'http://inacstaff.blog27.fc2.com/?xml'
+		 );
+		*/
+		$entriesOfSites = $this->rssFetcher->getFeedAndParse($urls);
+		debug($entriesOfSites);
+/*
+		foreach ($feedRow as $i => $entries) {
+			foreach ($entries as $entry) {
+				if (is_null($entry['url']) || is_null($entry['title'])) {
+					debug($entry);
+					debug($sites[$i]);
+				}
+			}
+		}
+*/
+	}
+
+	/**
+	 * 正常系
+	 *
+	 * test
+	 */
+	public function getFeedWithMagpie() {
+		$url = 'http://blog.livedoor.jp/domesoccer/index.rdf';
+
+		$feed = $this->rssFetcher->getFeedWithMagpie($url);
+
+		debug($feed);
+	}
+
+	/**
+	 * 正常系
+	 *
+	 * test
+	 */
+	public function getFeedWithLastRss() {
+		$siteModel = ClassRegistry::init('Site');
+		$sites = $siteModel->getAllSites();
+
+		foreach ($sites as $site) {
+
+			$url = $site['feed_url'];
+
+			if (strpos($url, 'atom') !== false) {
+				continue;
+			}
+
+debug($url);
+			$feed = $this->rssFetcher->getFeedWithLastRss($url);
+
+			debug($feed);
+
+			break;
+		}
+	}
 
 	/**
 	 *
 	 * 正常系
 	 *
-	 * @test
+	 * test
 	 */
 	public function getFeedTest() {
 		$urls = array(
@@ -69,7 +147,6 @@ class RssUtilComponentTestCase extends CakeTestCase {
 				echo $entry['title'] . '<br />';
 			}
 		}
-
 	}
 
 	/**

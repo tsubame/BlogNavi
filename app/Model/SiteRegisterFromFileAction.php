@@ -91,9 +91,11 @@ class SiteRegisterFromFileAction extends AppModel {
 
 			$site['category_id']     = $catId;
 			$site['registered_from'] = 'file';
-
+//debug($site);
 			// DBに保存
-			$siteModel->saveIfNotExists($site);
+			$res = $siteModel->saveIfNotExists($site);
+
+//debug($res);
 		}
 	}
 
@@ -115,7 +117,7 @@ class SiteRegisterFromFileAction extends AppModel {
 			$site['feed_url'] = $feedUrl;
 		} else {
 			// 警告をロギング
-			CakeLog::warning("フィードURLを取得できませんでした {$url}");
+			CakeLog::warning("フィードURLを取得できませんでした {$site['url']}");
 			return false;
 		}
 

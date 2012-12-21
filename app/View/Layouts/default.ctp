@@ -24,6 +24,7 @@
 				echo $this->Html->link('記事一覧',         array('controller' => 'articles', 'action' => 'index')) . '　　';
 				echo $this->Html->link('記事の登録',       array('controller' => 'articles', 'action' => 'register')) . '　　';
 				echo $this->Html->link('ツイート数の更新', array('controller' => 'articles', 'action' => 'getShareCount')) . '　　';
+				echo $this->Html->link('Sナビから記事登録',array('controller' => 'articles', 'action' => 'registerFromSNavi')) . '　　';
 				echo $this->Html->link('不要な記事の削除', array('controller' => 'articles', 'action' => 'deletePastArticles')) . '　　';
 
 				echo $this->Html->link('サイトの一覧',     array('controller' => 'sites', 'action' => 'editIndex')) . '　　';

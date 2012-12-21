@@ -61,6 +61,12 @@ class SiteRegisterFromRankAction extends AppModel {
 	 */
 	const LIVEDOOR_RANK_URL = 'http://blog.livedoor.com/category/9/';
 
+	/**
+	 * ライブドアブログランキングのURL
+	 *
+	 * @var string
+	 */
+	const AMEBA_RANK_URL = 'http://ranking.ameba.jp/gr_soccer';
 
 
 // アメーバからも登録したい
@@ -83,9 +89,13 @@ class SiteRegisterFromRankAction extends AppModel {
 	 */
 	public function exec() {
 		// FC2、ライブドアのランキングサイトを取得
+
 		$fc2Sites = $this->getFc2RankSites();
 		$ldSites  = $this->getLivedoorRankSites();
+		$amSites  = $this->getAmebaRankSites();
 		$sites    = array_merge($fc2Sites, $ldSites);
+		$sites    = array_merge($sites, $amSites);
+		//$sites = $amSites;
 
 		// フィードURL、その他の値を設定
 		foreach ($sites as $i => $site) {
@@ -98,7 +108,7 @@ class SiteRegisterFromRankAction extends AppModel {
 
 			$sites[$i]['is_registered'] = false;
 			// カテゴリIDをブログのカテゴリIDに
-			$sites[$i]['category_id']   = Configure::read('Category.2chId');
+			$sites[$i]['category_id']   = Configure::read('Category.blogId');
 		}
 
 		// カテゴライズ
@@ -208,6 +218,46 @@ class SiteRegisterFromRankAction extends AppModel {
 	}
 
 	/**
+	 * アメーバブログから登録
+	 *
+	 * @return array $sites
+	 */
+	protected function getAmebaRankSites() {
+		//正規表現パターン
+		$tagPattern    = '/<dd class="title">.+?<\/dd>/is';
+		$namePattern   = '/http:\/\/[\w\.\-\/_=?&@:]+">([^<]+)<\/a/is';
+		$registerCount = 20;
+
+		// HTMLデータ取得
+		$html = $this->Curl->getContent(self::AMEBA_RANK_URL);
+
+		$sites = array();
+		// 正規表現でサイトを検索
+		if (preg_match_all($tagPattern, $html, $tags)) {
+			foreach ($tags[0] as $i => $tag) {
+				if ($registerCount < $i) {
+					break;
+				}
+
+				// サイト名を取得
+				if (preg_match($namePattern, $tag, $names)){
+					$sites[$i]['name'] = $names[1];
+				} else {
+					continue;
+				}
+				// URLを取得
+				if (preg_match(Configure::read('urlPattern'), $tag, $urlMatchs)){
+					$sites[$i]['url'] = $urlMatchs[0];
+				}
+
+				$sites[$i]['registered_from']  = 'ameba';
+			}
+		}
+
+		return $sites;
+	}
+
+	/**
 	 * 2chまとめブログをカテゴライズ
 	 *
 	 * RSSフィードのサマリーを見て2chまとめブログと判断できたら
@@ -225,11 +275,14 @@ class SiteRegisterFromRankAction extends AppModel {
 		}
 		// RSSフィードを並列に取得
 		$feedOfSites = $this->RssUtil->getFeedParallel($feedUrls);
-
+//debug($feedOfSites);
 		// サイトの数ループ
 		foreach ($feedOfSites as $i => $feedOfSite) {
+
 			foreach ($feedOfSite as $entry) {
 				// エントリ内のサマリーを検索
+
+// desctiptionがない場合もある？
 				if (preg_match($pattern, $entry['description'], $matches)) {
 					// カテゴリIDを2chまとめの番号に
 					$sites[$i]['category_id'] = Configure::read('Category.2chId');

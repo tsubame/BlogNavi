@@ -88,7 +88,7 @@ class SiteRegisterAction extends AppModel {
 
 		// サイト名を設定
 		if ( !isset($site['name']) || $site['name'] == '') {
-			$siteName = $siteInfo($site['name']);
+			$siteName = $siteInfo['name'];
 
 			if ($siteName != false) {
 				$site['name'] = $siteName;

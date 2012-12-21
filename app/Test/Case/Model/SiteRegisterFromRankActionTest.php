@@ -12,7 +12,7 @@ class SiteRegisterFromRankActionTest extends CakeTestCase  {
 
 	public function setUp() {
 		parent::setUp();
-		$this->action = ClassRegistry::init('SiteRegisterFromRankActionExtend');
+		$this->action = ClassRegistry::init('SiteRegisterFromRankAction');
 	}
 
 	/**
@@ -30,7 +30,9 @@ class SiteRegisterFromRankActionTest extends CakeTestCase  {
 	 * test
 	 */
 	public function autoCategorize() {
-		$this->action->autoCategorize();
+		$ref = new ReflectionMethod('SiteRegisterFromRankAction', 'autoCategorize');
+		$ref->setAccessible(true);
+		$ref->invoke(new SiteRegisterFromRankAction());
 	}
 
 	/**
@@ -39,7 +41,9 @@ class SiteRegisterFromRankActionTest extends CakeTestCase  {
 	 * test
 	 */
 	public function getLivedoorRankSites() {
-		$sites = $this->action->getLivedoorRankSites();
+		$ref = new ReflectionMethod('SiteRegisterFromRankAction', 'getLivedoorRankSites');
+		$ref->setAccessible(true);
+		$sites = $ref->invoke(new SiteRegisterFromRankAction());
 
 		debug($sites);
 	}
@@ -50,26 +54,33 @@ class SiteRegisterFromRankActionTest extends CakeTestCase  {
 	 * test
 	 */
 	public function getFc2RankSites() {
-		$sites = $this->action->getFc2RankSites();
+		$ref = new ReflectionMethod('SiteRegisterFromRankAction', 'getFc2RankSites');
+		$ref->setAccessible(true);
+		$sites = $ref->invoke(new SiteRegisterFromRankAction());
 
 		debug($sites);
 	}
 
-}
+	/**
+	 * 正常系
+	 *
+	 * @test
+	 */
+	public function getAmebaRankSites() {
+		$ref = new ReflectionMethod('SiteRegisterFromRankAction', 'getAmebaRankSites');
+		$ref->setAccessible(true);
+		$sites = $ref->invoke(new SiteRegisterFromRankAction());
 
-/**
- * protectedメソッドテスト用
- *
- *
- */
-class SiteRegisterFromRankActionExtend extends SiteRegisterFromRankAction {
+		debug($sites);
 
-	public function getFc2RankSites() {
-		return parent::getFc2RankSites();
-	}
+// サイトの件数ループ
 
-	public function getLivedoorRankSites() {
-		return parent::getLivedoorRankSites();
+// URLの配列作成
+
+// RSSを取得
+
+
+
 	}
 
 }

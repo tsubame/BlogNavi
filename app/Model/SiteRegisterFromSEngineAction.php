@@ -54,7 +54,7 @@ class SiteRegisterFromSEngineAction extends AppModel {
 	 * これ未満のキーワードは取得しない
 	 *
 	 */
-	const MIN_WORD_STR_COUNT = 2;
+	const MIN_WORD_STR_COUNT = 3;
 
 
 	/**
@@ -135,10 +135,10 @@ debug($wordScores);
 			$keyword = $this->getSimularShortWord($keywords, $keywords[$i]);
 			$count = $this->getSimularWordCount($keywords, $keyword);
 
-			// 文字数が短すぎればスキップ
-			if (mb_strlen($keyword) < self::MIN_WORD_STR_COUNT) {
-				continue;
-			}
+// 文字数が短すぎればスキップ
+if (mb_strlen($keyword) < self::MIN_WORD_STR_COUNT) {
+	continue;
+}
 
 			if ($count <= 1) {
 				continue;
@@ -190,6 +190,7 @@ debug($wordScores);
 	}
 
 	/**
+	 * 配列の中で似ている単語のうち、最も文字数の少ないものを取り出す
 	 *
 	 * @param unknown_type $words
 	 * @param unknown_type $word

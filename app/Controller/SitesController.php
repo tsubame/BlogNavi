@@ -120,11 +120,12 @@ class SitesController extends Controller {
 
 			return;
 		}
-
 		$site = $this->request->data;
 
 		if (isset($site['id'])) {
-			$this->Site->checkDeleted($site);
+			$site['is_deleted'] = true;
+			$this->Site->save($site);
+			//$this->Site->checkDeleted($site);
 		}
 
 		$this->render('edit_index');
@@ -144,10 +145,14 @@ class SitesController extends Controller {
 	 *
 	 */
 	public function register() {
+debug('デバッグ');
+echo 'test';
+
 		if ( !isset($this->data['Site'])) {
 			$this->redirect(array('action' => 'registerForm'));
 		}
 		$site = $this->data['Site'];
+debug($site);
 
 		$action = ClassRegistry::init('SiteRegisterAction');
 		$action->exec($site);

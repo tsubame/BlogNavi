@@ -69,11 +69,20 @@ class ArticlesController extends Controller {
 		$action = ClassRegistry::init('ArticleRegisterAction');
 		$action->exec();
 
-		//$this->getShareCount();
 		$afterTime = time();
 		$actTime = $afterTime - $beforeTime;
 
 		CakeLog::info("実行時間：{$actTime}秒");
+		$this->render('editIndex');
+	}
+
+	/**
+	 * スポーツナビ+から記事の登録
+	 */
+	public function registerFromSNavi() {
+		$action = ClassRegistry::init('ArticleRegisterFromSNaviAction');
+		$action->exec();
+
 		$this->render('editIndex');
 	}
 

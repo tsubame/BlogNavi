@@ -33,11 +33,16 @@ class ArticleRegisterAction extends AppModel {
 		$sites = $model->getSites();
 		// フィードURLの配列作成
 		$feedUrls = $this->createFeedUrlsArray($sites);
-
 		// 各URLのRSSフィードを取得
 		$collection  = new ComponentCollection();
 		$fetcher     = new RssUtilComponent($collection);
-		$feedOfSites = $fetcher->getFeedParallel($feedUrls);
+$beforeTs = time();
+debug(time());
+
+		//$feedOfSites = $fetcher->getFeedParallel($feedUrls);
+		$feedOfSites = $fetcher->getFeedAndParse($feedUrls);
+debug(time());
+
 
 		$saveCount = 0;
 
@@ -52,6 +57,9 @@ class ArticleRegisterAction extends AppModel {
 				}
 			}
 		}
+
+$execTime = time() - $beforeTs;
+debug("最終処理時間：{$execTime}秒");
 		// ロギング
 		CakeLog::info("{$saveCount}件の記事を登録しました。");
 	}
@@ -97,11 +105,13 @@ class ArticleRegisterAction extends AppModel {
 
 		if (($nowTs - $pubTs) < $intervalSec) {
 			$result = $model->saveIfNotExists($article);
-
-			return true;
-		} else {
-			return false;
+			// 登録できればtrueを返す
+			if ($result !== false) {
+				return true;
+			}
 		}
+
+		return false;
 	}
 
 }

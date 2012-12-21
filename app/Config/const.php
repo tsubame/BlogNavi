@@ -6,7 +6,8 @@
  * @see Article
  * @var int
  */
-Configure::write('Article.showCount', 30);
+Configure::write('Article.showCount', 50);
+//読み込みは以下の形式
 //Configure::read('Article.showCount');
 
 /**
@@ -124,7 +125,7 @@ Configure::write('Site.fileNames', array(
  * @see SiteRegisterFromFileAction::splitUrlAndSiteName()
  * @var string
  */
-Configure::write('urlPattern', '/^http:\/\/[\w\.\-\/_=?&@:]+/');
+Configure::write('urlPattern', '/http:\/\/[\w\.\-\/_=?&@:]+/is');
 
 /**
  * ヤフー検索のアプリケーションID

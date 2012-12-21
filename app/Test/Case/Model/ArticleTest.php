@@ -40,6 +40,17 @@ class ArticleTest extends CakeTestCase  {
 		parent::tearDown();
 	}
 
+	/**
+	 * 正常系
+	 *
+	 * @test
+	 */
+	public function selectTodaysBlogArticles() {
+		$articles = $this->Article->selectTodaysBlogArticles();
+
+		debug($articles);
+	}
+
 
 	/**
 	 * 正常系
@@ -49,7 +60,7 @@ class ArticleTest extends CakeTestCase  {
 	public function selectTodaysArticlesTest() {
 		$articles = $this->Article->selectTodaysArticles(0);
 
-		debug($articles);
+		//debug($articles);
 	}
 
 	/**

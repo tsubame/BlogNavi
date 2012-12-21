@@ -1,7 +1,6 @@
 <?php
 
 App::uses('SiteRegisterFromFileAction', 'Model');
-//App::uses('SiteRegisterAutoActionExtend', 'Model');
 
 /**
  *
@@ -12,11 +11,18 @@ class SiteRegisterFromFileActionTest extends CakeTestCase  {
 
 	private $action;
 
+	public $fixtures = array('article', 'site', 'category');
+
 	public function setUp() {
 		parent::setUp();
 		$this->action = ClassRegistry::init('SiteRegisterFromFileAction');
-		$this->action = ClassRegistry::init('SiteRegisterFromFileActionExtend');
 	}
+
+	public function tearDown() {
+		unset($this->action);
+		parent::tearDown();
+	}
+
 
 	/**
 	 *
@@ -32,21 +38,32 @@ class SiteRegisterFromFileActionTest extends CakeTestCase  {
 	 * @test
 	 */
 	public function register() {
-		$this->action->register(1, SiteRegisterFromFileAction::FILE_NEWS);
-		$this->action->register(2, SiteRegisterFromFileAction::FILE_2CH);
-		$this->action->register(3, SiteRegisterFromFileAction::FILE_BLOG);
+		// ファイル名を定数から取得
+		$fileNames = Configure::read('Site.fileNames');
+
+		// プライベートメソッドテスト用
+		$ref = new ReflectionMethod('SiteRegisterFromFileAction', 'register');
+		$ref->setAccessible(true);
+
+		// 各ファイルから読み込んで登録
+		foreach ($fileNames as $i => $fileName) {
+			//$this->action->register($i, $fileName);
+
+			// 第2引数でメソッドへの引数を渡す
+			$counts = $ref->invoke(new SiteRegisterFromFileAction(), $i, $fileName);
+		}
 	}
 
 	/**
 	 * getFeedUrlAndSiteName() 正常系
 	 *
-	 * @test
+	 * test
 	 */
 	public function getFeedUrlAndSiteName() {
 
 		$text = "http://www.plus-blog.sportsnavi.com/centric/eusoccer
-	http://www.plus-blog.sportsnavi.com/centric/soccer_wcup
-	http://www.plus-blog.sportsnavi.com/centric/uefacl";
+			http://www.plus-blog.sportsnavi.com/centric/soccer_wcup
+			http://www.plus-blog.sportsnavi.com/centric/uefacl";
 
 		$sites = $this->action->splitUrlAndSiteName($text);
 
@@ -63,7 +80,7 @@ class SiteRegisterFromFileActionTest extends CakeTestCase  {
 	/**
 	 * splitUrlAndSiteName() 正常系
 	 *
-	 * @test
+	 * test
 	 */
 	public function splitUrlAndSiteName() {
 		$text = "http://www.plus-blog.sportsnavi.com/centric/eusoccer
@@ -89,7 +106,7 @@ http://www.plus-blog.sportsnavi.com/centric/uefacl";
 	/**
 	 * ファイルが開けないとき
 	 *
-	 * @test
+	 * test
 	 */
 	public function cantOpenFile() {
 
@@ -98,7 +115,7 @@ http://www.plus-blog.sportsnavi.com/centric/uefacl";
 	/**
 	 * フィードURLが取得できないとき
 	 *
-	 * @test
+	 * test
 	 */
 	public function cantGetFeedUrl() {
 
@@ -107,7 +124,7 @@ http://www.plus-blog.sportsnavi.com/centric/uefacl";
 	/**
 	 * 書式がおかしい行がある
 	 *
-	 * @test
+	 * test
 	 */
 	public function invalidLine() {
 
@@ -115,22 +132,3 @@ http://www.plus-blog.sportsnavi.com/centric/uefacl";
 
 }
 
-
-/**
- *
- *
- */
-class SiteRegisterFromFileActionExtend extends SiteRegisterFromFileAction  {
-
-	public function splitUrlAndSiteName($text) {
-		return parent::splitUrlAndSiteName($text);
-	}
-
-	public function getFeedUrlAndSiteName($site) {
-		return parent::getFeedUrlAndSiteName($site);
-	}
-
-	public function register($catId, $fileName) {
-		return parent::register($catId, $fileName);
-	}
-}

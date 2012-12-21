@@ -14,14 +14,41 @@ class CurlComponent extends Component {
 	 *
 	 * @var int
 	 */
-	private $reqCountOnce = 30;
+	private $reqCountOnce = 50;
 
 	/**
 	 * タイムアウトの秒数
 	 *
 	 * @var int
 	 */
-	private $timeOut = 3;
+	private $timeOut = 5;
+
+	/**
+	 * キャッシュを使わない場合はtrue
+	 *
+	 * @var bool
+	 */
+	private $freshConnect = false;
+
+
+	/**
+	 * 実行時間測定用
+	 *
+	 * @var int
+	 */
+	private $beforeTs;
+
+
+	/**
+	 * (non-PHPdoc)
+	 * @see Component::startup()
+	 */
+	public function initialize(Controller $controller) {
+		parent::initialize($controller);
+
+		//$this->beforeTs = time();
+	}
+
 
 
 	/**
@@ -33,6 +60,8 @@ class CurlComponent extends Component {
 	public function getContent($url) {
 		$ch = curl_init($url);
 		// cURLオプション
+		curl_setopt($ch, CURLOPT_FRESH_CONNECT, $this->freshConnect);
+		curl_setopt($ch, CURLOPT_DNS_CACHE_TIMEOUT, 43200);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);    // データを文字列で取得
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);	   // リダイレクト先のコンテンツを取得
 		curl_setopt($ch, CURLOPT_MAXREDIRS, 4);			   // リダイレクトを受け入れる回数
@@ -63,6 +92,8 @@ class CurlComponent extends Component {
 	 * @return array $allContents 文字列形式のコンテンツの配列
 	 */
 	public function getContents($urls) {
+$this->beforeTs = time();
+//debug(time());
 		// 引数が単一のURLであれば別のメソッドを使用
 		if ( !is_array($urls)) {
 			return $this->getContent($url);
@@ -75,13 +106,17 @@ class CurlComponent extends Component {
 			array_push($reqUrls, $url);
 
 			if ($this->reqCountOnce <= count($reqUrls) || $i + 1 == count($urls)) {
-				$headers = $this->getContentsAtOnce($reqUrls);
-				$allContents = array_merge($allContents, $headers);
+				$contents = $this->getContentsAtOnce($reqUrls);
+$execTime = time() - $this->beforeTs;
+debug("1回のアクセスの処理時間：{$execTime}秒");
+
+				$allContents = array_merge($allContents, $contents);
 
 				$reqUrls = array();
 			}
 		}
 
+//debug(time());
 		return $allContents;
 	}
 
@@ -102,6 +137,8 @@ class CurlComponent extends Component {
 		foreach ($urls as $url) {
 			$ch = curl_init($url);
 			// cURLオプション
+			curl_setopt($ch, CURLOPT_DNS_CACHE_TIMEOUT, 43200);
+			curl_setopt($ch, CURLOPT_FRESH_CONNECT, $this->freshConnect); // キャッシュ
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);    // データを文字列で取得
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);	   // リダイレクト先のコンテンツを取得
 			curl_setopt($ch, CURLOPT_MAXREDIRS, 4);			   // リダイレクトを受け入れる回数
@@ -261,5 +298,8 @@ class CurlComponent extends Component {
 		$this->timeOut = $timeOut;
 	}
 
+	public function setFreshConnect($freshConnect) {
+		$this->freshConnect = $freshConnect;
+	}
 
 }

@@ -46,7 +46,6 @@ $(function() {
 	 * サイト更新ボタンを押した時
 	 */
 	$("input.editButton").click(function() {
-
 		// フォームのデータを受け取る
 		var id   = siteId;
 		var name = $("tr#tr" + siteId + " input.name").val();
@@ -112,7 +111,6 @@ $(function() {
 	 * 削除ボタンを押した時
 	 */
 	$("input.deleteButton").click(function() {
-
 		// サイトIDを収得
 		siteId = $(this).attr("name");
 

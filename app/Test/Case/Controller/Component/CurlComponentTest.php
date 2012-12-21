@@ -9,23 +9,45 @@ class CurlComponentTestCase extends CakeTestCase {
 
 	private $Curl;
 
+	public $fixtures = array('site', 'category');
+
 	public function setUp(){
 		parent::setUp();
 		$Collection = new ComponentCollection();
 		$this->Curl = new CurlComponent($Collection);
 	}
 
+	public function tearDown() {
+		unset($this->Curl);
+		parent::tearDown();
+	}
+
 	/**
 	 * パフォーマンス測定
 	 *
-	 *
+	 * @test
 	 */
 	public function checkPerformance() {
+		$reqCount = 200;
+		$timeOut = 5;
 
-		$this->Curl->setreqCountOnce(100);
+		$siteModel = ClassRegistry::init('Site');
 
+		$sites = $siteModel->getAllSites();
 
+		$feedUrls = array();
 
+		foreach ($sites as $site) {
+			//$feedUrls[] = $site['feed_url'];
+			$feedUrls[] = $site['url'];
+		}
+
+		$this->Curl->setFreshConnect(true);
+		$this->Curl->setreqCountOnce($reqCount);
+		$this->Curl->setTimeOut($timeOut);
+		$contents = $this->Curl->getContents($feedUrls);
+
+		debug(count($contents));
 	}
 
 	/**
@@ -33,7 +55,7 @@ class CurlComponentTestCase extends CakeTestCase {
 	 * ・帰ってきたデータの件数が正しいか
 	 * ・帰ってきたデータがすべてfalseではないか
 	 *
-	 * @test
+	 * test
 	 */
 	public function getContents() {
 		$urls = array(
@@ -55,7 +77,7 @@ class CurlComponentTestCase extends CakeTestCase {
 	 * 異常系
 	 * 存在しないアドレスを指定
 	 *
-	 * @test
+	 * test
 	 */
 	public function getContentsHostNotFound () {
 		$urls = array(
@@ -74,7 +96,7 @@ class CurlComponentTestCase extends CakeTestCase {
 	 * 異常系
 	 * http以外のプロトコルを指定
 	 *
-	 * @test
+	 * test
 	 */
 	public function getContentsInvalidProtocol () {
 		$urls = array(
@@ -92,7 +114,7 @@ class CurlComponentTestCase extends CakeTestCase {
 	/**
 	 * 正常系
 	 *
-	 * @test
+	 * test
 	 */
 	public function expandUrls() {
 

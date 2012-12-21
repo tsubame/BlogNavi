@@ -12,14 +12,18 @@ class SiteTest extends CakeTestCase  {
 
 	private $Site;
 
+	public $fixtures = array('article', 'site', 'category');
+
 	public function setUp() {
 		parent::setUp();
-
-		// 削除予定
-		$this->Site = new Site();
-
 		$this->Site = ClassRegistry::init('Site');
 	}
+
+	public function tearDown() {
+		unset($this->Site);
+		parent::tearDown();
+	}
+
 
 	/**
 	 *
@@ -34,8 +38,23 @@ class SiteTest extends CakeTestCase  {
 	 *
 	 * @test
 	 */
-	public function saveIfNotExists() {
+	public function getIdFromUrl() {
+		$url = 'http://ameblo.jp/okazaki-shinji/';
 
+		$id = $this->Site->getIdFromUrl($url);
+		$this->assertNotEqual($id, false);
+
+		$url = 'abc';
+
+		$id = $this->Site->getIdFromUrl($url);
+		$this->assertEqual($id, false);
+	}
+
+	/**
+	 *
+	 * @test
+	 */
+	public function saveIfNotExists() {
 		$rand = rand(0, 999999);
 
 		$site = array(
@@ -61,12 +80,40 @@ class SiteTest extends CakeTestCase  {
 
 	/**
 	 *
-	 * test
+	 * @test
 	 */
 	public function checkDeleted() {
-		$site = array('id' => 13);
-		$this->Site->checkDeleted($site);
+		$site = array('id' => 41);
+		$res = $this->Site->checkDeleted($site);
+
+		debug($res);
+		$this->assertEqual($res, true);
 	}
 
+	/**
+	 * 更新処理
+	 *
+	 * @test
+	 */
+	public function update() {
+		$site = array(
+					'id' => 41,
+					'url' => 'http://testUpdate'
+				);
+
+		if (isset($site['id'])) {
+			$res = $this->Site->save($site);
+		}
+
+		//debug($res);
+
+		$conditions = array('Site.id' => 41);
+		$options = array(
+				'conditions' => $conditions
+		);
+		$result = $this->Site->find('all', $options);
+//debug($result);
+		$this->assertEqual($result[0]['Site']['url'], 'http://testUpdate');
+	}
 
 }

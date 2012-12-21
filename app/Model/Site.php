@@ -11,10 +11,10 @@ App::uses('AppModel', 'Model');
  * url			   varchar
  * feed_url		   varchar
  * category_id	   int
- * like_count	   int
+ * fb_share_count  int	   Facebookの「シェア」数
  * registered_from varchar
- * is_categorized  boolean
- * is_available	   boolean
+ * is_registered   boolean  ブログランキングから自動で登録したサイトはfalse
+ * is_deleted	   boolean
  * created		   datetime
  * modified		   datetime
  */
@@ -38,8 +38,8 @@ class Site extends AppModel{
 	 */
 	public $validate = array(
 			'url' => array(
-						'rure' => array('minLength', 12),
-						'required' => true
+						'rule' => array('minLength', 12),
+						'message' => 'URLは12文字以上にしてください。'
 					)
 		);
 
@@ -184,6 +184,26 @@ class Site extends AppModel{
 	}
 
 	/**
+	 * 指定したURLと同じレコードのIDを返す
+	 *
+	 *
+	 */
+	public function getIdFromUrl($url) {
+		$conditions = array('Site.url' => $url);
+		$options = array(
+				'conditions' => $conditions
+		);
+		$results = $this->find('all', $options);
+
+		if (count($results) < 1) {
+			return false;
+		}
+
+		return $results[0]['Site']['id'];
+	}
+
+
+	/**
 	 * 未登録サイトをすべて登録
 	 *
 	 */
@@ -206,19 +226,20 @@ class Site extends AppModel{
 	 * @return bool
 	 */
 	public function checkDeleted($site) {
-
 		// 同じidのデータがなければ終了
-		if ( !$this->exists($site['id'])) {
+		$this->set($site);
+		if ( !$this->exists()) {
+			debug('データなし');
 			return false;
 		}
 
 		$site['is_deleted'] = true;
+		$res = $this->save();
 
-		if($this->save($site)) {
-			return true;
-		} else {
+		if ($res == false) {
 			return false;
 		}
+		return true;
 	}
 
 	/**
